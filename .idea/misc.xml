@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.2555" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/activity_main.xml" value="0.2708803611738149" />
+        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/chat.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_chat.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_maintenance_request.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_propert_details.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
       </map>
     </option>
   </component>
