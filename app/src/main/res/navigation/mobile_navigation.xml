@@ -21,14 +21,8 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.tenantview_android_f22.ui.notifications.NotificationsFragment"
-        android:label="Property Details"
+        android:label="Chat"
         tools:layout="@layout/fragment_notifications" />
-
-    <fragment
-        android:id="@+id/navigation_chat"
-        android:name="com.example.tenantview_android_f22.ui.chat.ChatFragment"
-        android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" />
 
 
 </navigation>
