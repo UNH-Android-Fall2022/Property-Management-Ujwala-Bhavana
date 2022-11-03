@@ -7,9 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_properties"
-        android:name="com.example.property_management.ui.properties.propertiesFragment"
+        android:name="com.example.property_management.ui.properties.PropertiesFragment"
         android:label="@string/title_properties"
-        tools:layout="@layout/fragment_properties" />
+        tools:layout="@layout/fragment_properties" >
+        <action
+            android:id="@+id/action_navigation_properties_to_addpropertyFragment"
+            app:destination="@id/addpropertyFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_requests"
@@ -27,4 +31,8 @@
         android:name="com.example.property_management.ui.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account"/>
+    <fragment
+        android:id="@+id/addpropertyFragment"
+        android:name="com.example.property_management.ui.addproperty.AddpropertyFragment"
+        android:label="AddpropertyFragment" />
 </navigation>
