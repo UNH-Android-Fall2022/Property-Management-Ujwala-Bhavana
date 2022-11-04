@@ -1,10 +1,10 @@
-package com.example.tenantview_android_f22.ui.notifications
+package com.example.tenantview_android_f22.ui.chat
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class ChatViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is Chat Fragment"
