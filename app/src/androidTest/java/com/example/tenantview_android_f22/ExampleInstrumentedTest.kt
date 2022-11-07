@@ -1,5 +1,4 @@
 package com.example.tenantview_android_f22
-
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 

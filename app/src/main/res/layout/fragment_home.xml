@@ -10,7 +10,7 @@
         android:id="@+id/textViewForPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:text="Payments"
         android:textAlignment="center"
         android:textSize="70px"
@@ -32,8 +32,9 @@
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_constraintTop_toBottomOf="@+id/textViewForPayment"
-        tools:layout_editor_absoluteX="10dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewForPayment">
 
 
         <TextView
@@ -64,50 +65,33 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/showDueBy"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginTop="2dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="12dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintTop_toBottomOf="@+id/cardView1"
-        tools:layout_editor_absoluteX="16dp">
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="Due by:"
+        android:textAlignment="center"
+        android:textSize="50px"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView1" />
 
-        <TextView
-            android:id="@+id/showDueBy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|center_horizontal"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="20dp"
-            android:text="Due by:"
-            android:textAlignment="center"
-            android:textSize="50px"
-            android:textStyle="bold"
+    <TextView
+        android:id="@+id/showDueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_horizontal"
+        android:layout_marginTop="8dp"
+        android:text="November 1st, 2022"
+        android:textAlignment="center"
+        android:textSize="50px"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showDueBy" />
 
-            tools:layout_editor_absoluteX="117dp"
-            tools:layout_editor_absoluteY="136dp" />
-
-        <TextView
-            android:id="@+id/showDueDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|center_horizontal"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="25dp"
-            android:text="November 1st, 2022"
-            android:textAlignment="center"
-            android:textSize="50px"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="117dp"
-            tools:layout_editor_absoluteY="136dp" />
-
-
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
