@@ -2,5 +2,5 @@
     <string name="app_name">tenantView_Android_F22</string>
     <string name="title_home">Home</string>
     <string name="title_maintenance_request">Maintenance Request</string>
-    <string name="title_chat">Chat</string>
+    <string name="title_account">My Account</string>
 </resources>

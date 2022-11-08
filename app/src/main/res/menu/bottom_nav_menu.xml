@@ -4,7 +4,7 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:title="Home" />
 
     <item
         android:id="@+id/navigation_maintenance_request"
@@ -12,8 +12,8 @@
         android:title="Maintenance Request" />
 
     <item
-        android:id="@+id/navigation_chat"
-        android:icon="@drawable/ic_baseline_chat_24"
-        android:title="Chat" />
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="My Account" />
 
 </menu>

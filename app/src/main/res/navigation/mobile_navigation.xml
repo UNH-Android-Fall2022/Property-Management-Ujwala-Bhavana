@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.tenantview_android_f22.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
@@ -19,10 +19,10 @@
 
 
     <fragment
-        android:id="@+id/navigation_chat"
-        android:name="com.example.tenantview_android_f22.ui.chat.ChatFragment"
-        android:label="Chat"
-        tools:layout="@layout/fragment_chat" />
+        android:id="@+id/navigation_account"
+        android:name="com.example.tenantview_android_f22.ui.account.AccountFragment"
+        android:label="My Account"
+        tools:layout="@layout/fragment_account" />
 
 
 </navigation>

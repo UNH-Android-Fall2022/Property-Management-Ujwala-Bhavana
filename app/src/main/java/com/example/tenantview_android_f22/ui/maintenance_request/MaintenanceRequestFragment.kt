@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tenantview_android_f22.databinding.FragmentMaintenanceRequestBinding
-import com.example.tenantview_android_f22.ui.chat.MaintenanceRequestViewModel
+import com.example.tenantview_android_f22.ui.account.MaintenanceRequestViewModel
 
 class MaintenanceRequestFragment : Fragment() {
 

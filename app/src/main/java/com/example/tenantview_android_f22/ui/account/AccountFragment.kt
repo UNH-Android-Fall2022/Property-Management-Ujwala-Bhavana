@@ -1,4 +1,4 @@
-package com.example.tenantview_android_f22.ui.chat
+package com.example.tenantview_android_f22.ui.account
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.tenantview_android_f22.databinding.FragmentChatBinding
+import com.example.tenantview_android_f22.databinding.FragmentAccountBinding
 
-class ChatFragment : Fragment() {
+class AccountFragment : Fragment() {
 
-    private var _binding: FragmentChatBinding? = null
+    private var _binding: FragmentAccountBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,12 +23,12 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val chatViewModel =
-            ViewModelProvider(this).get(ChatViewModel::class.java)
+            ViewModelProvider(this).get(AccountViewModel::class.java)
 
-        _binding = FragmentChatBinding.inflate(inflater, container, false)
+        _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textChat
+        val textView: TextView = binding.textAccount
         chatViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }

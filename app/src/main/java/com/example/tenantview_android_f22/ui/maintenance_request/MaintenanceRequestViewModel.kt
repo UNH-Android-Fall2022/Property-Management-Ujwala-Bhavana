@@ -1,4 +1,4 @@
-package com.example.tenantview_android_f22.ui.chat
+package com.example.tenantview_android_f22.ui.account
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
