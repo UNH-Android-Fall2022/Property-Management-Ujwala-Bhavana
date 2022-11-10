@@ -15,7 +15,11 @@
         android:id="@+id/navigation_maintenance_request"
         android:name="com.example.tenantview_android_f22.ui.maintenance_request.MaintenanceRequestFragment"
         android:label="Maintenance Request"
-        tools:layout="@layout/fragment_maintenance_request" />
+        tools:layout="@layout/fragment_maintenance_request" >
+        <action
+            android:id="@+id/action_navigation_maintenance_request_to_navigation_create_request"
+            app:destination="@id/navigation_create_request" />
+    </fragment>
 
 
     <fragment
@@ -23,6 +27,11 @@
         android:name="com.example.tenantview_android_f22.ui.account.AccountFragment"
         android:label="My Account"
         tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/navigation_create_request"
+        android:label="Create Request"
+        tools:layout="@layout/create_maintenance_request" />
 
 
 </navigation>

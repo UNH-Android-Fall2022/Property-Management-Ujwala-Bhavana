@@ -8,7 +8,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/maintenance_request_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Request Maintenance"
@@ -16,27 +16,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="681dp"
-        android:layout_marginTop="4dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:layout_editor_absoluteX="1dp">
-        <ListView
-            android:id="@+id/maintenanceRequestList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-            <TextView
-                android:id="@+id/subject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ListView>
-    </LinearLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maintenance_request_button" />
+
+    <TextView
+        android:id="@+id/textPastRequests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Past Maintenance Requests"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <ListView
+        android:id="@+id/pastRequestList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:divider="@color/grey"
+        android:dividerHeight="1dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPastRequests" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

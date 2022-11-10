@@ -1,18 +1,24 @@
 package com.example.tenantview_android_f22.ui.maintenance_request
 
+import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.example.tenantview_android_f22.databinding.CreateMaintenanceRequestBinding
 import com.example.tenantview_android_f22.databinding.FragmentMaintenanceRequestBinding
-import com.example.tenantview_android_f22.ui.maintenance_request.MaintenanceRequestViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import android.widget.ListView
+
+
 
 class MaintenanceRequestFragment : Fragment() {
 
@@ -35,8 +41,15 @@ class MaintenanceRequestFragment : Fragment() {
         _binding = FragmentMaintenanceRequestBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val listView: ListView = binding.maintenanceRequestList
-        val listOfRequests: MutableList<String> = mutableListOf()
+        binding.maintenanceRequestButton.setOnClickListener{
+            Log.d(TAG,"Request Maintenance Button clicked")
+            //findNavController().navigate(CreateMaintenanceRequestBinding)
+
+        }
+
+        val requestListView: ListView = binding.pastRequestList
+        val listOfRequests: MutableList<String> = ArrayList()
+        val arrayAdapter: ArrayAdapter<*>
 
         Log.d(TAG,"Calling maintenance request database...")
         db.collection("Maintenance Request")
@@ -44,12 +57,17 @@ class MaintenanceRequestFragment : Fragment() {
             .addOnSuccessListener { documents ->
                 for (document in documents){
                     Log.d(TAG,"${document.id} => ${document.data}")
-                    listOfRequests.add(document.data.toString())
+                    listOfRequests.add(document.data["subject"].toString())
+
                 }
+                Log.d(TAG,"$listOfRequests")
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
             }
+        arrayAdapter = ArrayAdapter(requireActivity(),
+            android.R.layout.simple_list_item_1, listOfRequests)
+        requestListView.adapter = arrayAdapter
         return root
     }
 
