@@ -32,8 +32,7 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        Log.d(TAG,"Calling the database...")
+        Log.d(TAG,"Calling the tenant database...")
         db.collection("Tenant1")
             .get()
             .addOnSuccessListener { documents ->

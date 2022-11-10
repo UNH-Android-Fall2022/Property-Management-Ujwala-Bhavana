@@ -1,6 +1,5 @@
 package com.example.tenantview_android_f22.ui.maintenance_request
 
-import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,11 +9,10 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
-import com.example.tenantview_android_f22.databinding.CreateMaintenanceRequestBinding
 import com.example.tenantview_android_f22.databinding.FragmentMaintenanceRequestBinding
+import com.example.tenantview_android_f22.ui.create_request.NewRequestFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -43,7 +41,9 @@ class MaintenanceRequestFragment : Fragment() {
 
         binding.maintenanceRequestButton.setOnClickListener{
             Log.d(TAG,"Request Maintenance Button clicked")
-            //findNavController().navigate(CreateMaintenanceRequestBinding)
+            val action = MaintenanceRequestFragmentDirections.actionNavigationMaintenanceRequestToNavigationCreateRequest()
+            findNavController().navigate(action)
+
 
         }
 

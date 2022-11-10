@@ -30,6 +30,7 @@
 
     <fragment
         android:id="@+id/navigation_create_request"
+        android:name="com.example.tenantview_android_f22.ui.create_request.NewRequestFragment"
         android:label="Create Request"
         tools:layout="@layout/create_maintenance_request" />
 
