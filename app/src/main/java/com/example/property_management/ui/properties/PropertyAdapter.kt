@@ -1,14 +1,19 @@
 package com.example.property_management.ui.properties
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.property_management.PropertyData
 import com.example.property_management.R
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.core.View
 
 class PropertyAdapter (
@@ -18,7 +23,7 @@ class PropertyAdapter (
     class PropertyViewHolder(itemView: android.view.View):RecyclerView.ViewHolder(itemView){
         // val pImageView:ImageView = itemView.findViewById(R.id.imageView)
         val pName: TextView = itemView.findViewById(R.id.txtName)
-        val pUnits: TextView = itemView.findViewById(R.id.txtUnits)
+        val pUnits: TextView = itemView.findViewById(R.id.txtunits)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
@@ -33,10 +38,13 @@ class PropertyAdapter (
         //TODO ("Implement Image")
         holder.pName.text = property.propertyName
         holder.pUnits.text = property.units
+        //TODO get property.units value
+        Log.d("Test","${property.units}")
         Log.d("Test","Binds values to Listitems")
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener{view ->
             Log.d("Test","Position Clicked $position")
-
+            val action = PropertiesFragmentDirections.actionNavigationPropertiesToUnitsFragment2()
+            view.findNavController().navigate(action)
         }
     }
 
