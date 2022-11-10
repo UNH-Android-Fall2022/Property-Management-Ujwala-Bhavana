@@ -1,6 +1,7 @@
 package com.example.property_management
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -15,6 +16,8 @@ class PropertiesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d("Test", "Bottom navigation activity")
 
         binding = ActivityPropertiesBinding.inflate(layoutInflater)
         setContentView(binding.root)

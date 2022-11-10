@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_properties_to_addpropertyFragment"
             app:destination="@id/addpropertyFragment" />
+        <action
+            android:id="@+id/action_navigation_properties_to_unitsFragment2"
+            app:destination="@id/unitsFragment2" />
     </fragment>
 
     <fragment
@@ -34,5 +37,19 @@
     <fragment
         android:id="@+id/addpropertyFragment"
         android:name="com.example.property_management.ui.addproperty.AddpropertyFragment"
-        android:label="AddpropertyFragment" />
+        android:label="AddpropertyFragment" >
+        <action
+            android:id="@+id/action_addpropertyFragment_to_navigation_properties"
+            app:destination="@id/navigation_properties" />
+    </fragment>
+    <fragment
+        android:id="@+id/unitsFragment2"
+        android:name="com.example.property_management.UnitsFragment"
+        android:label="fragment_units"
+        tools:layout="@layout/fragment_units" >
+        <action
+            android:id="@+id/action_unitsFragment2_to_navigation_properties"
+            app:destination="@id/navigation_properties" />
+    </fragment>
+
 </navigation>
