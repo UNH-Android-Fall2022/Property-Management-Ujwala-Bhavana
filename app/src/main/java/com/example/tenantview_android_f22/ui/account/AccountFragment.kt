@@ -1,5 +1,6 @@
 package com.example.tenantview_android_f22.ui.account
 
+import android.accounts.Account
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

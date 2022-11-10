@@ -53,12 +53,13 @@
             tools:layout_editor_absoluteY="136dp" />
 
         <TextView
+            android:id="@+id/duePaymentAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal"
             android:layout_marginTop="70dp"
             android:layout_marginBottom="50dp"
-            android:text="$1550"
+
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -85,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|center_horizontal"
         android:layout_marginTop="8dp"
-        android:text="November 1st, 2022"
+
         android:textAlignment="center"
         android:textSize="50px"
         android:textStyle="bold"

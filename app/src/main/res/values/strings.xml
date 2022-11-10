@@ -3,4 +3,14 @@
     <string name="title_home">Home</string>
     <string name="title_maintenance_request">Maintenance Request</string>
     <string name="title_account">My Account</string>
+    <string-array name="static_list_for_account_page">
+        <item>My Profile</item>
+        <item>Notifications</item>
+        <item>Property Details</item>
+        <item>Contact Owner</item>
+        <item>Chat with Owner</item>
+        <item>Sign Out</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
