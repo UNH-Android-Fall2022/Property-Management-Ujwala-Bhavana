@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                         Log.d(TAG, "signInWithEmail:success")
                         if(binding.rbtnowner.isChecked) {
                             //Log.d(TAG,"Owner radio button checked")
-                            val intent = Intent(this,PropertiesActivity::class.java)
+                            val intent = Intent(this, PropertiesActivity::class.java)
                             startActivity(intent)
                         }
                         else if(binding.rbtntenant.isChecked)
@@ -63,11 +63,6 @@ class MainActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT).show()
                     }
                 }
-            if(binding.rbtnowner.isChecked) {
-                //Log.d(TAG,"Owner radio button checked")
-                val intent = Intent(this,PropertiesActivity::class.java)
-                startActivity(intent)
-            }
 
 
         }

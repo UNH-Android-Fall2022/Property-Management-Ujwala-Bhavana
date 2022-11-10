@@ -34,5 +34,9 @@
     <fragment
         android:id="@+id/addpropertyFragment"
         android:name="com.example.property_management.ui.addproperty.AddpropertyFragment"
-        android:label="AddpropertyFragment" />
+        android:label="AddpropertyFragment" >
+        <action
+            android:id="@+id/action_addpropertyFragment_to_navigation_properties"
+            app:destination="@id/navigation_properties" />
+    </fragment>
 </navigation>
