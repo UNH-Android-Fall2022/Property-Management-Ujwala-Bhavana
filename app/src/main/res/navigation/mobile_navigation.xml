@@ -14,8 +14,12 @@
             android:id="@+id/action_navigation_properties_to_addpropertyFragment"
             app:destination="@id/addpropertyFragment" />
         <action
-            android:id="@+id/action_navigation_properties_to_unitsFragment2"
-            app:destination="@id/unitsFragment2" />
+            android:id="@+id/action_navigation_properties_to_unitsFragment"
+            app:destination="@id/unitsFragment"/>
+
+
+
+
     </fragment>
 
     <fragment
@@ -43,13 +47,31 @@
             app:destination="@id/navigation_properties" />
     </fragment>
     <fragment
-        android:id="@+id/unitsFragment2"
+        android:id="@+id/unitsFragment"
         android:name="com.example.property_management.UnitsFragment"
         android:label="fragment_units"
         tools:layout="@layout/fragment_units" >
         <action
-            android:id="@+id/action_unitsFragment2_to_navigation_properties"
-            app:destination="@id/navigation_properties" />
+            android:id="@+id/action_unitsFragment_to_addunitFragment"
+            app:destination="@id/addunitFragment" />
+        <argument
+            android:name="propertyName"
+            app:argType="string"
+            />
+
     </fragment>
+    <fragment
+        android:id="@+id/addunitFragment"
+        android:name="com.example.property_management.AddunitFragment"
+        android:label="AddunitFragment" >
+        <action
+            android:id="@+id/action_addunitFragment_to_unitsFragment"
+            app:destination="@id/unitsFragment" />
+        <argument
+            android:name="propertyName"
+            app:argType="string"
+            />
+    </fragment>
+
 
 </navigation>

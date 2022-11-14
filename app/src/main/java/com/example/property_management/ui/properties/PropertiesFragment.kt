@@ -88,6 +88,7 @@ class PropertiesFragment : Fragment() {
                 propertyAdapter = PropertyAdapter(propertyList,this)
                 pRecyclerView.adapter = propertyAdapter
 
+
                 binding.btnAdd.setOnClickListener{
                     Log.d("Test","Add property button selected")
                     val action = PropertiesFragmentDirections.actionNavigationPropertiesToAddpropertyFragment()
@@ -99,6 +100,7 @@ class PropertiesFragment : Fragment() {
                 Log.d("Test", "Error getting documents", exception)
             }
     }
+
         /*
         db.collection("Owners").document(userid!!).collection("properties")
             .addSnapshotListener { snapshot, e ->

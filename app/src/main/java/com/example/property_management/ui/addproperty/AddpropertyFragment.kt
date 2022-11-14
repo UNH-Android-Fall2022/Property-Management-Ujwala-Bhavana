@@ -17,6 +17,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import java.math.BigInteger
+import java.security.MessageDigest
 
 class AddpropertyFragment:Fragment() {
     private var _binding: FragmentAddpropertyBinding? = null
@@ -56,6 +58,11 @@ class AddpropertyFragment:Fragment() {
             selectImage.launch("image/*")
         }
 
+        binding.btnCancel.setOnClickListener{
+            val action = AddpropertyFragmentDirections.actionAddpropertyFragmentToNavigationProperties()
+            findNavController().navigate(action)
+        }
+
         binding.btnAddProperty.setOnClickListener{
             //val imgURL = uploadImage()
             //ToDO add image to Firebase storage
@@ -70,8 +77,6 @@ class AddpropertyFragment:Fragment() {
 
             // Write to firestore
             writeToFirebase(propertyData)
-            // Read from firestore - all properties and add it to array list
-            // val properties = readFromFirestore()
 
             val action = AddpropertyFragmentDirections.actionAddpropertyFragmentToNavigationProperties()
             findNavController().navigate(action)
@@ -85,9 +90,11 @@ class AddpropertyFragment:Fragment() {
             "propertyName" to propertyData.propertyName,
             "Units" to propertyData.units
         )
+        val md = MessageDigest.getInstance("MD5")
+        val docId = md.digest(propertyData.propertyName.toByteArray()).toString().padStart(15,'0')
         val userid = auth.currentUser?.uid
         if (userid != null) {
-            db.collection("Owners").document(userid).collection("Properties").add(property)
+            db.collection("Owners").document(userid).collection("Properties").document(docId).set(property)
                 .addOnSuccessListener {
                     Log.d(TAG, "Property details added to collection")
                 }
