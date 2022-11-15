@@ -38,36 +38,37 @@ class MaintenanceRequestFragment : Fragment() {
 
         _binding = FragmentMaintenanceRequestBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        binding.maintenanceRequestButton.setOnClickListener{
-            Log.d(TAG,"Request Maintenance Button clicked")
-            val action = MaintenanceRequestFragmentDirections.actionNavigationMaintenanceRequestToNavigationCreateRequest()
+        binding.floatingActionReqMaintenance.setOnClickListener {
+            Log.d(TAG, "Request Maintenance Button clicked")
+            val action =
+                MaintenanceRequestFragmentDirections.actionNavigationMaintenanceRequestToNavigationCreateRequest()
             findNavController().navigate(action)
 
 
-        }
+            val requestListView: ListView = binding.pastRequestList
+            val listOfRequests: MutableList<String> = ArrayList()
+            val arrayAdapter: ArrayAdapter<*>
 
-        val requestListView: ListView = binding.pastRequestList
-        val listOfRequests: MutableList<String> = ArrayList()
-        val arrayAdapter: ArrayAdapter<*>
+            Log.d(TAG, "Calling maintenance request database...")
+            db.collection("Maintenance Request")
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        Log.d(TAG, "${document.id} => ${document.data}")
+                        listOfRequests.add(document.data["subject"].toString())
 
-        Log.d(TAG,"Calling maintenance request database...")
-        db.collection("Maintenance Request")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents){
-                    Log.d(TAG,"${document.id} => ${document.data}")
-                    listOfRequests.add(document.data["subject"].toString())
-
+                    }
+                    Log.d(TAG, "$listOfRequests")
                 }
-                Log.d(TAG,"$listOfRequests")
-            }
-            .addOnFailureListener{ exception ->
-                Log.w(TAG,"Error getting documents", exception)
-            }
-        arrayAdapter = ArrayAdapter(requireActivity(),
-            android.R.layout.simple_list_item_1, listOfRequests)
-        requestListView.adapter = arrayAdapter
+                .addOnFailureListener { exception ->
+                    Log.w(TAG, "Error getting documents", exception)
+                }
+            arrayAdapter = ArrayAdapter(
+                requireActivity(),
+                android.R.layout.simple_list_item_1, listOfRequests
+            )
+            requestListView.adapter = arrayAdapter
+        }
         return root
     }
 
