@@ -33,6 +33,15 @@
         <action
             android:id="@+id/action_navigation_account_to_propertyDetailsFragment"
             app:destination="@id/propertyDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_chatWithOwnerFragment"
+            app:destination="@id/chatWithOwnerFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_contactOwnerFragment"
+            app:destination="@id/contactOwnerFragment" />
     </fragment>
 
     <fragment
@@ -49,8 +58,23 @@
     <fragment
         android:id="@+id/propertyDetailsFragment"
         android:name="com.example.tenantview_android_f22.ui.property_details.PropertyDetailsFragment"
-        android:label="Property Details Fragment"
+        android:label="Property Details"
         tools:layout="@layout/fragment_property_details"/>
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.example.tenantview_android_f22.ui.notifications.NotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notifications"/>
+    <fragment
+        android:id="@+id/chatWithOwnerFragment"
+        android:name="com.example.tenantview_android_f22.ui.chat_with_owner.ChatWithOwnerFragment"
+        android:label="Chat With Owner"
+        tools:layout="@layout/fragment_chat_with_owner"/>
+    <fragment
+        android:id="@+id/contactOwnerFragment"
+        android:name="com.example.tenantview_android_f22.ui.contact_owner.ContactOwnerFragment"
+        android:label="Contact Owner Fragment"
+        tools:layout="@layout/fragment_contact_owner"/>
 
 
 </navigation>

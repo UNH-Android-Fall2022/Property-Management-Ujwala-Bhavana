@@ -40,13 +40,31 @@ class AccountFragment : Fragment() {
             Log.d(TAG, "My Profile clicked")
             val action =
                 AccountFragmentDirections.actionNavigationAccountToMyProfile()
-                findNavController().navigate(action)
+            findNavController().navigate(action)
         }
         binding.textViewPropertyDetails.setOnClickListener {
             Log.d(TAG, "Property Details clicked")
             val action =
                 AccountFragmentDirections.actionNavigationAccountToPropertyDetailsFragment()
-                findNavController().navigate(action)
+            findNavController().navigate(action)
+        }
+        binding.textViewNotification.setOnClickListener {
+            Log.d(TAG, "Notifications clicked")
+            val action =
+                AccountFragmentDirections.actionNavigationAccountToNotificationsFragment()
+            findNavController().navigate(action)
+        }
+        binding.textViewChatWithOwner.setOnClickListener {
+            Log.d(TAG, "Chat With Owner clicked")
+            val action =
+                AccountFragmentDirections.actionNavigationAccountToChatWithOwnerFragment()
+            findNavController().navigate(action)
+        }
+        binding.textViewContactOwner.setOnClickListener {
+            Log.d(TAG, "Contact Owner clicked")
+            val action =
+                AccountFragmentDirections.actionNavigationAccountToContactOwnerFragment()
+            findNavController().navigate(action)
         }
 
         return root
