@@ -29,7 +29,7 @@ class UnitAdapter (
         val unit = ulist[position]
         holder.uname.text=unit.unitName
         holder.utype.text=unit.unitType
-        holder.usize.text= unit.unitSize.toString()
+        holder.usize.text= unit.unitSize.toString()+" SqFt"
 
         holder.itemView.setOnClickListener{
             Log.d("Test","Position clicked $position")

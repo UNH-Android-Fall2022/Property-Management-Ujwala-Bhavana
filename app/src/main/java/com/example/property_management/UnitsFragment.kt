@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -103,4 +104,5 @@ class UnitsFragment : Fragment() {
     }
 
     private fun ByteArray.toHex() :String = joinToString(separator = "") { byte -> "%02x".format(byte) }
+
 }
