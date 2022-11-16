@@ -1,10 +1,10 @@
-package com.example.tenantview_android_f22.ui.my_profile
+package com.example.tenantview_android_f22.ui.property_details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MyProfileViewModel : ViewModel() {
+class PropertyDetailsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = null

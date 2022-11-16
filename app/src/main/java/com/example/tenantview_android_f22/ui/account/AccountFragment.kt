@@ -2,6 +2,7 @@ package com.example.tenantview_android_f22.ui.account
 
 import android.accounts.Account
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,9 @@ import android.widget.TextView
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.tenantview_android_f22.databinding.FragmentAccountBinding
+import com.example.tenantview_android_f22.ui.maintenance_request.MaintenanceRequestFragmentDirections
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -33,7 +36,18 @@ class AccountFragment : Fragment() {
 
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        binding.textViewMyProfile.setOnClickListener{
+            Log.d(TAG, "My Profile clicked")
+            val action =
+                AccountFragmentDirections.actionNavigationAccountToMyProfile()
+                findNavController().navigate(action)
+        }
+        binding.textViewPropertyDetails.setOnClickListener {
+            Log.d(TAG, "Property Details clicked")
+            val action =
+                AccountFragmentDirections.actionNavigationAccountToPropertyDetailsFragment()
+                findNavController().navigate(action)
+        }
 
         return root
     }

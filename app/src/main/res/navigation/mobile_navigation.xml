@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_navigation_account_to_my_profile"
             app:destination="@id/my_profile" />
+        <action
+            android:id="@+id/action_navigation_account_to_propertyDetailsFragment"
+            app:destination="@id/propertyDetailsFragment" />
     </fragment>
 
     <fragment
@@ -37,11 +40,17 @@
         android:name="com.example.tenantview_android_f22.ui.create_request.NewRequestFragment"
         android:label="Create Request"
         tools:layout="@layout/create_maintenance_request" />
+
     <fragment
         android:id="@+id/my_profile"
-        android:name="com.example.tenantview_android_f22.ui.my_profile.my_profile"
-        android:label="fragment_my_profile"
+        android:name="com.example.tenantview_android_f22.ui.my_profile.MyProfileFragment"
+        android:label="My Profile"
         tools:layout="@layout/fragment_my_profile" />
+    <fragment
+        android:id="@+id/propertyDetailsFragment"
+        android:name="com.example.tenantview_android_f22.ui.property_details.PropertyDetailsFragment"
+        android:label="Property Details Fragment"
+        tools:layout="@layout/fragment_property_details"/>
 
 
 </navigation>

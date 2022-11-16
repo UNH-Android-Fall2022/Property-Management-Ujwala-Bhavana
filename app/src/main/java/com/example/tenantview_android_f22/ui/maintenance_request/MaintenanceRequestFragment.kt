@@ -43,7 +43,7 @@ class MaintenanceRequestFragment : Fragment() {
             val action =
                 MaintenanceRequestFragmentDirections.actionNavigationMaintenanceRequestToNavigationCreateRequest()
             findNavController().navigate(action)
-
+        }
 
             val requestListView: ListView = binding.pastRequestList
             val listOfRequests: MutableList<String> = ArrayList()
@@ -68,7 +68,7 @@ class MaintenanceRequestFragment : Fragment() {
                 android.R.layout.simple_list_item_1, listOfRequests
             )
             requestListView.adapter = arrayAdapter
-        }
+
         return root
     }
 
