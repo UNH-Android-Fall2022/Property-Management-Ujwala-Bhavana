@@ -74,6 +74,7 @@ class PropertiesFragment : Fragment() {
 
         db.collection("Owners").document(userid!!).collection("Properties").get()
             .addOnCompleteListener { result ->
+                Log.d("Test","propertiesFragemnt $result")
                 for (document in result.getResult()) {
                     if (document.data.get("propertyName") != "") {
                         Log.d("Test", "${document.id} => ${document.data}")

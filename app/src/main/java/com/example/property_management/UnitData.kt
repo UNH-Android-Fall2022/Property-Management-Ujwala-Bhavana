@@ -4,7 +4,5 @@ data class UnitData (
     var imgURL:String = "image",
     var unitName:String,
     var unitType: String,
-    var unitSize: Int,
-    var propertyAddress:String
+    var unitSize: Int
         )
-val unitList:ArrayList<UnitData> = arrayListOf()

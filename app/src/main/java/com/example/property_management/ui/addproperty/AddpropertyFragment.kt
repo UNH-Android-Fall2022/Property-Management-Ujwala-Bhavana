@@ -19,6 +19,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import java.math.BigInteger
 import java.security.MessageDigest
+import kotlin.text.Charsets.UTF_8
 
 class AddpropertyFragment:Fragment() {
     private var _binding: FragmentAddpropertyBinding? = null
@@ -91,7 +92,10 @@ class AddpropertyFragment:Fragment() {
             "Units" to propertyData.units
         )
         val md = MessageDigest.getInstance("MD5")
-        val docId = md.digest(propertyData.propertyName.toByteArray()).toString().padStart(15,'0')
+        val docId = md.digest(propertyData.propertyName.trim().toByteArray(UTF_8)).toHex()
+
+        Log.d("Test","AddPropertyFragment propertyname ${propertyData.propertyName}")
+        Log.d("Test","AddPropertyFragment $docId")
         val userid = auth.currentUser?.uid
         if (userid != null) {
             db.collection("Owners").document(userid).collection("Properties").document(docId).set(property)
@@ -103,6 +107,7 @@ class AddpropertyFragment:Fragment() {
                 }
         }
     }
+    private fun ByteArray.toHex() :String = joinToString(separator = "") { byte -> "%02x".format(byte) }
 
     /*private fun uploadImage(): Task<Uri>? {
 

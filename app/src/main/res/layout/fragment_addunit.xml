@@ -23,23 +23,13 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/imageViewUnit" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtPrAddress"
-        android:hint="Property Address"
-        app:layout_constraintTop_toBottomOf="@+id/btnUploadUnit"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/edit_text_border"
-        android:layout_marginTop="15dp"
-        android:padding="10dp"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Unit Name"
         android:id="@+id/txtUnitName"
-        app:layout_constraintTop_toBottomOf="@+id/txtPrAddress"
+        app:layout_constraintTop_toBottomOf="@+id/btnUploadUnit"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/edit_text_border"

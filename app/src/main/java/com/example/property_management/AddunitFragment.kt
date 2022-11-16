@@ -52,7 +52,7 @@ class AddunitFragment:Fragment() {
             selectImage.launch("image/*")
         }
 
-        propertyName = args.propertyName
+        propertyName = args.propertyName.trim()
         //Listener to Cancel button
         binding.btnCancelUnit.setOnClickListener{
             val action = AddunitFragmentDirections.actionAddunitFragmentToUnitsFragment(propertyName)
@@ -62,39 +62,43 @@ class AddunitFragment:Fragment() {
 
         //Listener to Add Unit button
         binding.btnAddUnit.setOnClickListener{
-            val action = AddunitFragmentDirections.actionAddunitFragmentToUnitsFragment(propertyName)
-            findNavController().navigate(action)
 
             val unitData = UnitData(
                 imgURL = "",
                 binding.txtUnitName.text.toString(),
                 binding.txtUnittype.text.toString(),
-                binding.txtSqft.text.toString().toInt(),
-                binding.txtPrAddress.text.toString()
+                binding.txtSqft.text.toString().toInt()
             )
 
-            wrireToFirebase(unitData)
+            writeToFirebase(unitData)
+
+
         }
     }
 
-    private fun wrireToFirebase(unitData: UnitData) {
+    private fun writeToFirebase(unitData: UnitData) {
         val unit = hashMapOf(
             "imguRL" to "",
             "Unit Name" to unitData.unitName,
             "Unit Type" to unitData.unitType,
-            "Unit Size" to unitData.unitType,
-            "Property Address" to unitData.propertyAddress
+            "Unit Size" to unitData.unitSize,
         )
         val md = MessageDigest.getInstance("MD5")
-        val docId = md.digest(unitData.propertyAddress.toByteArray()).toString().padStart(15,'0')
+        val docId = md.digest(propertyName.trim().toByteArray(Charsets.UTF_8)).toHex()
+
+        Log.d("Test","AddunitFragment propertyname $propertyName")
+        Log.d("Test","AddUnitFragment $docId")
         val userid = auth.currentUser?.uid
         db.collection("Owners").document(userid!!).collection("Properties").document(docId).collection("Units").add(unit)
             .addOnSuccessListener { document->
                 Log.d("Test","Unit details added to collection ${document.id}")
+                val action = AddunitFragmentDirections.actionAddunitFragmentToUnitsFragment(propertyName)
+                findNavController().navigate(action)
             }
             .addOnFailureListener{exception ->
                 Log.d("Test","Error in writing document in Firebase",exception)
             }
 
     }
+    private fun ByteArray.toHex() :String = joinToString(separator = "") { byte -> "%02x".format(byte) }
 }

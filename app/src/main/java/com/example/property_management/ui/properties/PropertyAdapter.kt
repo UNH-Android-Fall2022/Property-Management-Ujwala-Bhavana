@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.property_management.PropertyData
 import com.example.property_management.R
 import androidx.navigation.fragment.findNavController
-import com.example.property_management.propertyList
 import com.google.firebase.firestore.core.View
 
 class PropertyAdapter (
