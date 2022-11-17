@@ -1,14 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textContactInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contact Owner"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="133dp" />
+        android:layout_marginTop="4dp"
+        android:text="Contact Info:"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textOwnerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Owner Name:"
+        android:textAlignment="center"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textContactInfo" />
+
+    <TextView
+        android:id="@+id/textOwnerNameValue"
+        android:layout_width="300dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/back"
+        android:text="XYZ"
+        android:textSize="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOwnerName" />
+
+    <TextView
+        android:id="@+id/textOwnerContactNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Contact Number:"
+        android:textAlignment="center"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOwnerNameValue" />
+
+    <TextView
+        android:id="@+id/textOwnerContactNumValue"
+        android:layout_width="300dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/back"
+        android:text="+1(203)-987-6543"
+        android:textSize="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOwnerContactNum" />
+
+    <TextView
+        android:id="@+id/textOwnerEmailID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Email ID:"
+        android:textAlignment="center"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOwnerContactNumValue" />
+
+    <TextView
+        android:id="@+id/textOwnerEmailIDValue"
+        android:layout_width="300dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/back"
+        android:text="xyz@gmail.com"
+        android:textSize="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOwnerEmailID" />
 </androidx.constraintlayout.widget.ConstraintLayout>

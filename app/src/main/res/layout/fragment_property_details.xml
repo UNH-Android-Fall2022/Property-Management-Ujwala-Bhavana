@@ -40,8 +40,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/back"
         android:text="Blake Street"
-        android:textSize="21dp"
-
+        android:textSize="19dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,8 +67,7 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/back"
         android:text="Unit 73"
-        android:textSize="21dp"
-
+        android:textSize="19dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,8 +94,7 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/back"
         android:text="New Haven"
-        android:textSize="21dp"
-
+        android:textSize="19dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,8 +121,7 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/back"
         android:text="CT"
-        android:textSize="21dp"
-
+        android:textSize="19dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
@@ -152,8 +148,7 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/back"
         android:text="06511"
-        android:textSize="21dp"
-
+        android:textSize="19dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
