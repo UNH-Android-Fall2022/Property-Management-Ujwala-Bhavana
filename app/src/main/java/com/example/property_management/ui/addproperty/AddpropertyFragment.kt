@@ -17,6 +17,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import java.math.BigInteger
+import java.security.MessageDigest
+import kotlin.text.Charsets.UTF_8
 
 class AddpropertyFragment:Fragment() {
     private var _binding: FragmentAddpropertyBinding? = null
@@ -26,6 +29,9 @@ class AddpropertyFragment:Fragment() {
     private lateinit var auth: FirebaseAuth
     private val TAG = "Test"
     private lateinit var imgURI:Uri
+    private var imgURL =""
+    private var storageRef = Firebase.storage
+    lateinit var propertyData:PropertyData
 
     var properties:MutableList<PropertyData> = arrayListOf()
 
@@ -44,7 +50,7 @@ class AddpropertyFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
-        storage = FirebaseStorage.getInstance()
+        storageRef = FirebaseStorage.getInstance()
 
         //Select Image from Gallery
         val selectImage = registerForActivityResult(ActivityResultContracts.GetContent(),
@@ -56,22 +62,14 @@ class AddpropertyFragment:Fragment() {
             selectImage.launch("image/*")
         }
 
+        binding.btnCancel.setOnClickListener{
+            val action = AddpropertyFragmentDirections.actionAddpropertyFragmentToNavigationProperties()
+            findNavController().navigate(action)
+        }
+
         binding.btnAddProperty.setOnClickListener{
-            //val imgURL = uploadImage()
-            //ToDO add image to Firebase storage
+            uploadImage()
             //TODO check if all entries all filled
-
-            // Create PropertyData instance of new property
-            val propertyData = PropertyData(
-                    "image",
-                    binding.txtAddress.text.toString(),
-                    binding.txtUnits.text.toString()
-            )
-
-            // Write to firestore
-            writeToFirebase(propertyData)
-            // Read from firestore - all properties and add it to array list
-            // val properties = readFromFirestore()
 
             val action = AddpropertyFragmentDirections.actionAddpropertyFragmentToNavigationProperties()
             findNavController().navigate(action)
@@ -85,9 +83,14 @@ class AddpropertyFragment:Fragment() {
             "propertyName" to propertyData.propertyName,
             "Units" to propertyData.units
         )
+        val md = MessageDigest.getInstance("MD5")
+        val docId = md.digest(propertyData.propertyName.trim().toByteArray(UTF_8)).toHex()
+
+        Log.d("Test","AddPropertyFragment propertyname ${propertyData.propertyName}")
+        Log.d("Test","AddPropertyFragment $docId")
         val userid = auth.currentUser?.uid
         if (userid != null) {
-            db.collection("Owners").document(userid).collection("Properties").add(property)
+            db.collection("Owners").document(userid).collection("Properties").document(docId).set(property)
                 .addOnSuccessListener {
                     Log.d(TAG, "Property details added to collection")
                 }
@@ -96,20 +99,35 @@ class AddpropertyFragment:Fragment() {
                 }
         }
     }
+    private fun ByteArray.toHex() :String = joinToString(separator = "") { byte -> "%02x".format(byte) }
 
-    /*private fun uploadImage(): Task<Uri>? {
+    private fun uploadImage() {
 
         Log.d(TAG,"UploadImage function called")
-        val storageRef = storage.getReference("PropertyImages").child(System.currentTimeMillis().toString())
-        storageRef.putFile(imgURI)
-            .addOnSuccessListener{
-                Log.d(TAG,"Image uploaded to Firebase storage")
+        storageRef.getReference("images").child(System.currentTimeMillis().toString())
+            .putFile(imgURI)
+            .addOnSuccessListener { task ->
+                task.metadata!!.reference!!.downloadUrl
+                    .addOnSuccessListener {
+                        imgURL = it.toString()
+                        Log.d("Test","Image URL $imgURL")
+                        propertyData = PropertyData(
+                            imgURL,
+                            binding.txtAddress.text.toString(),
+                            binding.txtUnits.text.toString()
+                        )
+                        // Write to firestore
+                        writeToFirebase(propertyData)
+                    }
+                    .addOnFailureListener{error ->
+                        Log.d("Test","Error in getting image URL")
+
+                    }
             }
-            .addOnFailureListener{
-                Log.d(TAG,"Error in uploading image to Firebase storage",it)
+            .addOnFailureListener{exception ->
+                Log.d("Test","Error in uploading image to Firebase")
             }
-        return storageRef.downloadUrl
-    }*/
+    }
 
     /*override fun onDestroyView() {
         super.onDestroyView()

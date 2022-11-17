@@ -40,10 +40,12 @@ class PropertyAdapter (
         holder.pUnits.text = property.units
         //TODO get property.units value
         Log.d("Test","${property.units}")
-        Log.d("Test","Binds values to Listitems")
+
         holder.itemView.setOnClickListener{view ->
             Log.d("Test","Position Clicked $position")
-            val action = PropertiesFragmentDirections.actionNavigationPropertiesToUnitsFragment2()
+            Log.d("Test", "${plist[position].propertyName}")
+            val name:String = plist[position].propertyName
+            val action = PropertiesFragmentDirections.actionNavigationPropertiesToUnitsFragment(name)
             view.findNavController().navigate(action)
         }
     }
