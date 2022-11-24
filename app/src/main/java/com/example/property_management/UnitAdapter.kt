@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 
@@ -31,8 +33,10 @@ class UnitAdapter (
         holder.utype.text=unit.unitType
         holder.usize.text= unit.unitSize.toString()+" SqFt"
 
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener{view->
             Log.d("Test","Position clicked $position")
+            val action = UnitsFragmentDirections.actionUnitsFragmentToTablayoutFragment()
+            view.findNavController().navigate(action)
         }
     }
 
