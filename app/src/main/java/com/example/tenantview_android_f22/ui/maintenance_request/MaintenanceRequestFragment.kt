@@ -5,14 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tenantview_android_f22.databinding.FragmentMaintenanceRequestBinding
-import com.example.tenantview_android_f22.ui.create_request.NewRequestFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -27,6 +25,7 @@ class MaintenanceRequestFragment : Fragment() {
     private val binding get() = _binding!!
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
+    private lateinit var mRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,30 +44,36 @@ class MaintenanceRequestFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-            val requestListView: ListView = binding.pastRequestList
-            val listOfRequests: MutableList<String> = ArrayList()
-            val arrayAdapter: ArrayAdapter<*>
 
-            Log.d(TAG, "Calling maintenance request database...")
-            db.collection("Maintenance Request")
-                .get()
-                .addOnSuccessListener { documents ->
-                    for (document in documents) {
-                        Log.d(TAG, "${document.id} => ${document.data}")
-                        listOfRequests.add(document.data["subject"].toString())
-
-                    }
-                    Log.d(TAG, "$listOfRequests")
-                }
-                .addOnFailureListener { exception ->
-                    Log.w(TAG, "Error getting documents", exception)
-                }
-            arrayAdapter = ArrayAdapter(
-                requireActivity(),
-                android.R.layout.simple_list_item_1, listOfRequests
+        val listOfRequests: ArrayList<PastRequestCard> = ArrayList()
+        for (request in pastRequestList){
+            listOfRequests.add(
+                PastRequestCard(
+                    request.d_subject,
+                    request.d_description
+                )
             )
-            requestListView.adapter = arrayAdapter
+        }
+        mRecyclerView = binding.pastRequestRecyclerViewList
+        //mRecyclerView.setHasFixedSize(true)
+        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.adapter = PastRequestAdapter(listOfRequests,this)
 
+
+
+        Log.d(TAG, "Calling maintenance request database...")
+        db.collection("Maintenance Request")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                        //listOfRequests.add(document.data["subject"].toString())
+                }
+                    //Log.d(TAG, "$listOfRequests")
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents", exception)
+            }
         return root
     }
 

@@ -57,6 +57,15 @@ class PropertyDetailsFragment : Fragment() {
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
             }
+        Log.d(TAG,"Unit collections called...")
+        db.collection("Property_Details_Test").document().collection("Unit")
+            .get()
+            .addOnSuccessListener { unitN ->
+                Log.d(TAG,"Unit name: $unitN")
+            }
+            .addOnFailureListener{ exception ->
+                Log.w(TAG,"Error getting documents", exception)
+            }
         return root
     }
 
