@@ -39,7 +39,7 @@ class PastRequestAdapter(
         holder.description.text = req.d_description
         holder.itemView.setOnClickListener{view->
             Log.d(TAG,"Position Clicked: $position")
-            val action = MaintenanceRequestFragmentDirections.actionNavigationMaintenanceRequestToViewPastRequestFragment(req.d_subject,req.d_description)
+            val action = MaintenanceRequestFragmentDirections.actionNavigationMaintenanceRequestToViewPastRequestFragment(req.d_subject,req.d_description,req.d_id)
             view.findNavController().navigate(action)
         }
     }

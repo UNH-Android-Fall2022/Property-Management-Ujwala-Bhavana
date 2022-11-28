@@ -55,10 +55,11 @@ class MaintenanceRequestFragment : Fragment() {
                     Log.d(TAG, "${document.getData()}")
                     val temp = document.getData()
                     val req: PastRequestData = PastRequestData(
-                        "",
+                        d_id = document.id,
                         "",
                         d_subject = temp.get("subject").toString(),
-                        d_description = temp.get("Description").toString()
+                        d_description = temp.get("Description").toString(),
+                        ""
                     )
                     listOfRequests.add(req)
                 }

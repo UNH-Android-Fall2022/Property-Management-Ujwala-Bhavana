@@ -51,7 +51,11 @@
         android:id="@+id/navigation_create_request"
         android:name="com.example.tenantview_android_f22.ui.create_request.NewRequestFragment"
         android:label="Create Request"
-        tools:layout="@layout/create_maintenance_request" />
+        tools:layout="@layout/create_maintenance_request" >
+        <action
+            android:id="@+id/action_navigation_create_request_to_navigation_maintenance_request"
+            app:destination="@id/navigation_maintenance_request" />
+    </fragment>
 
     <fragment
         android:id="@+id/my_profile"
@@ -88,6 +92,12 @@
             app:argType="string" />
         <argument
             android:name="description"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_viewPastRequestFragment_to_navigation_maintenance_request"
+            app:destination="@id/navigation_maintenance_request" />
+        <argument
+            android:name="documentID"
             app:argType="string" />
     </fragment>
 
