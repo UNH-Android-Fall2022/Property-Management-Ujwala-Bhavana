@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_maintenance_request_to_navigation_create_request"
             app:destination="@id/navigation_create_request" />
+        <action
+            android:id="@+id/action_navigation_maintenance_request_to_viewPastRequestFragment"
+            app:destination="@id/viewPastRequestFragment" />
     </fragment>
 
 
@@ -75,6 +78,18 @@
         android:name="com.example.tenantview_android_f22.ui.contact_owner.ContactOwnerFragment"
         android:label="Contact Owner Fragment"
         tools:layout="@layout/fragment_contact_owner"/>
+    <fragment
+        android:id="@+id/viewPastRequestFragment"
+        android:name="com.example.tenantview_android_f22.ui.view_past_request.ViewPastRequestFragment"
+        android:label="ViewPastRequestFragment"
+        tools:layout="@layout/fragment_view_each_past_request">
+        <argument
+            android:name="subject"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+    </fragment>
 
 
 </navigation>

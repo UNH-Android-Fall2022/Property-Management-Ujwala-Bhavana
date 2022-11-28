@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -19,13 +20,11 @@ import com.google.firebase.ktx.Firebase
 class MaintenanceRequestFragment : Fragment() {
 
     private var _binding: FragmentMaintenanceRequestBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
     private lateinit var mRecyclerView: RecyclerView
+    private lateinit var listOfRequests: ArrayList<PastRequestData>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,38 +42,33 @@ class MaintenanceRequestFragment : Fragment() {
                 MaintenanceRequestFragmentDirections.actionNavigationMaintenanceRequestToNavigationCreateRequest()
             findNavController().navigate(action)
         }
-
-
-        val listOfRequests: ArrayList<PastRequestCard> = ArrayList()
-        for (request in pastRequestList){
-            listOfRequests.add(
-                PastRequestCard(
-                    request.d_subject,
-                    request.d_description
-                )
-            )
-        }
-        mRecyclerView = binding.pastRequestRecyclerViewList
-        //mRecyclerView.setHasFixedSize(true)
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
-        mRecyclerView.adapter = PastRequestAdapter(listOfRequests,this)
-
-
-
         Log.d(TAG, "Calling maintenance request database...")
+        listOfRequests = arrayListOf()
+        readFromFirestore()
+        return root
+    }
+    private fun readFromFirestore(){
         db.collection("Maintenance Request")
             .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
-                        //listOfRequests.add(document.data["subject"].toString())
+            .addOnCompleteListener { snapshot ->
+                for (document in snapshot.result) {
+                    Log.d(TAG, "${document.getData()}")
+                    val temp = document.getData()
+                    val req: PastRequestData = PastRequestData(
+                        "",
+                        "",
+                        d_subject = temp.get("subject").toString(),
+                        d_description = temp.get("Description").toString()
+                    )
+                    listOfRequests.add(req)
                 }
-                    //Log.d(TAG, "$listOfRequests")
+                mRecyclerView = binding.pastRequestRecyclerViewList
+                mRecyclerView.layoutManager = LinearLayoutManager(context)
+                mRecyclerView.adapter = PastRequestAdapter(listOfRequests, this)
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents", exception)
             }
-        return root
     }
 
     override fun onDestroyView() {
