@@ -34,20 +34,13 @@ class PastRequestAdapter(
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // Get element from your dataset at this position and replace the contents of the view with that element
-        //val ( subject , description ) = mExampleList[position]
         val req = mExampleList[position]
-        Log.d(TAG,"IN ADAPTERB SUB: ${req.d_subject}")
         holder.subject.text = req.d_subject
         holder.description.text = req.d_description
         holder.itemView.setOnClickListener{view->
             Log.d(TAG,"Position Clicked: $position")
             val action = MaintenanceRequestFragmentDirections.actionNavigationMaintenanceRequestToViewPastRequestFragment(req.d_subject,req.d_description)
             view.findNavController().navigate(action)
-            //Navigation
-            //    .createNavigateOnClickListener(R.id.action_navigation_maintenance_request_to_viewPastRequestFragment,bundle).onClick(holder.itemView)
-
-
         }
     }
 

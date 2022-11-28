@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.example.tenantview_android_f22.databinding.FragmentViewEachPastRequestBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -13,12 +14,11 @@ import com.google.firebase.ktx.Firebase
 class ViewPastRequestFragment : Fragment() {
 
     private var _binding: FragmentViewEachPastRequestBinding? = null
-
+    val args: ViewPastRequestFragmentArgs by navArgs()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
     private val TAG = "Property_Management"
-    private val db = Firebase.firestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,9 +30,11 @@ class ViewPastRequestFragment : Fragment() {
 
         _binding = FragmentViewEachPastRequestBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val bundle = arguments
-        val temp1 = bundle?.getString("temp1")
-        Log.d(TAG,"from view past request fetch temp1= $temp1")
+        val subjectParam = args.subject
+        val descriptionParam = args.description
+        binding.textSubjectValue.text = subjectParam
+        binding.textDescriptionValue.text = descriptionParam
+
         return root
     }
 
