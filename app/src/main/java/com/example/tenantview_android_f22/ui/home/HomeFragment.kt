@@ -38,11 +38,21 @@ class HomeFragment : Fragment() {
             .addOnSuccessListener { documents ->
                 for (document in documents){
                     Log.d(TAG,"${document.id} => ${document.data}")
+
                     val paymentAmountView: TextView = binding.duePaymentAmount
                     paymentAmountView.text = document.data["duePaymentAmount"].toString()
+                    val paymentDueDateView: TextView = binding.showDueDate
 
-                    val paymentDueDateVie: TextView = binding.showDueDate
-                    paymentDueDateVie.text = document.data["duePaymentDate"].toString()
+                    var tempAmt = document.data["duePaymentAmount"].toString().toInt()
+                    if(tempAmt>0){
+                        
+                        paymentDueDateView.text = document.data["duePaymentDate"].toString()
+                    }
+                    else{
+
+                        paymentDueDateView.text = "Yayy!! You have no current bills to pay."
+                    }
+
                 }
             }
             .addOnFailureListener{ exception ->

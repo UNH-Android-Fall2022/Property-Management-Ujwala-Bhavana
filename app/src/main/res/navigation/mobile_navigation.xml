@@ -61,7 +61,14 @@
         android:id="@+id/my_profile"
         android:name="com.example.tenantview_android_f22.ui.my_profile.MyProfileFragment"
         android:label="My Profile"
-        tools:layout="@layout/fragment_my_profile" />
+        tools:layout="@layout/fragment_my_profile" >
+        <action
+            android:id="@+id/action_my_profile_to_navigation_account"
+            app:destination="@id/navigation_account" />
+        <argument
+            android:name="tenant_ID"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/propertyDetailsFragment"
         android:name="com.example.tenantview_android_f22.ui.property_details.PropertyDetailsFragment"

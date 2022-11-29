@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.tenantview_android_f22.databinding.FragmentAccountBinding
-import com.example.tenantview_android_f22.ui.maintenance_request.MaintenanceRequestFragmentDirections
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -25,6 +24,7 @@ class AccountFragment : Fragment() {
     private val binding get() = _binding!!
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
+    private var tenantID = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,10 +36,11 @@ class AccountFragment : Fragment() {
 
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        readTenantNameFromFirebase()
         binding.textViewMyProfile.setOnClickListener{
             Log.d(TAG, "My Profile clicked")
             val action =
-                AccountFragmentDirections.actionNavigationAccountToMyProfile()
+                AccountFragmentDirections.actionNavigationAccountToMyProfile(tenantID)
             findNavController().navigate(action)
         }
         binding.textViewPropertyDetails.setOnClickListener {
@@ -67,9 +68,24 @@ class AccountFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+
         return root
     }
-
+    private fun readTenantNameFromFirebase(){
+        db.collection("Tenant1")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents){
+                    Log.d(TAG,"Tenant db from account fragment: ${document.id} => ${document.data}")
+                    tenantID = document.id
+                    val tenantName: TextView = binding.textViewTenant
+                    tenantName.text = document.data["firstName"].toString().plus(" ").plus(document.data["lastName"].toString())
+                }
+            }
+            .addOnFailureListener{ exception ->
+                Log.w(TAG,"Error getting documents", exception)
+            }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
