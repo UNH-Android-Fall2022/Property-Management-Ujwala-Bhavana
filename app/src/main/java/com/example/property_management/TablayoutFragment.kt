@@ -1,10 +1,12 @@
 package com.example.property_management
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.example.property_management.databinding.FragmentTablayoutBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -13,6 +15,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 class TablayoutFragment : Fragment() {
     private var _binding: FragmentTablayoutBinding? = null
     private val binding get() = _binding!!
+    val args:TablayoutFragmentArgs by navArgs()
+    var propertyName = ""
+    var unitName = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         }
@@ -26,9 +31,15 @@ class TablayoutFragment : Fragment() {
         val root: View = binding.root
         val tabLayout = binding.tabLayout
         val viewPager2 = binding.pager1
-        val adapter = ViewPagerAdapter(this)
+        propertyName = args.propertyName
+        unitName = args.unitName
+        val adapter = ViewPagerAdapter(this,propertyName,unitName)
 
+
+        Log.d("TabLayoutFragemnt","$propertyName")
+        Log.d("TabLayoutFragment","$unitName")
         viewPager2.adapter = adapter
+
         TabLayoutMediator(tabLayout, viewPager2){ tab, position ->
             when(position){
                 0->{
@@ -46,6 +57,5 @@ class TablayoutFragment : Fragment() {
 
         return root
     }
+
     }
-
-

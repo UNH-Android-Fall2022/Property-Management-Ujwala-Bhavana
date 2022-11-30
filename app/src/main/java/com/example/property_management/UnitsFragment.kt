@@ -19,18 +19,27 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import java.security.MessageDigest
+import java.util.Arrays
 
 
 class UnitsFragment : Fragment() {
+
     private var _binding: FragmentUnitsBinding? = null
     private val binding get() = _binding!!
-    val args : UnitsFragmentArgs by navArgs()
-    private var propertyName:String=""
+
     private lateinit var uRecyclerView: RecyclerView
     private lateinit var unitAdapter: UnitAdapter
     private lateinit var unitList: ArrayList<UnitData>
     private val db = Firebase.firestore
     private val auth = Firebase.auth
+
+
+
+    /*
+    companion object{
+        private val PropertyName = "zujwala"
+    }
+     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +52,6 @@ class UnitsFragment : Fragment() {
     ): View? {
         _binding = FragmentUnitsBinding.inflate(inflater,container,false)
         val root: View = binding.root
-        propertyName = args.propertyName.trim()
 
         unitList = arrayListOf()
         Log.d("Test","UnitsFragment")
@@ -52,6 +60,10 @@ class UnitsFragment : Fragment() {
     }
 
     private fun readFromFirestore() {
+
+        val args : UnitsFragmentArgs by navArgs()
+        val propertyName = args.propertyName.trim()
+
         val userid = auth.currentUser?.uid
         val md = MessageDigest.getInstance("MD5")
         val docId = md.digest(propertyName.trim().toByteArray(Charsets.UTF_8)).toHex()
@@ -83,14 +95,17 @@ class UnitsFragment : Fragment() {
                 }
 
 
-                Log.d("Test","Size f unitList ${unitList.size}")
+                Log.d("Unit Fragment","Size f unitList ${unitList.size}")
                 uRecyclerView = binding.recyclerViewUnits
                 uRecyclerView.layoutManager = LinearLayoutManager(context)
-                unitAdapter = UnitAdapter(unitList,this)
+                val m = hashMapOf<String, ArrayList<UnitData>>()
+                m[propertyName] = unitList
+                m["units"] = unitList
+                unitAdapter = UnitAdapter(m    ,this)
                 uRecyclerView.adapter = unitAdapter
 
                 binding.btnAddUnit.setOnClickListener{
-                    Log.d("Test","Units Fragment $propertyName")
+                    Log.d("Unit Fragment","Units Fragment $propertyName")
                     val action = UnitsFragmentDirections.actionUnitsFragmentToAddunitFragment(propertyName)
                     findNavController().navigate(action)
                 }
