@@ -1,4 +1,5 @@
 package com.example.tenantview_android_f22.ui.view_past_request
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.tenantview_android_f22.databinding.FragmentViewEachPastRequestBinding
-import com.example.tenantview_android_f22.ui.create_request.NewRequestFragmentDirections
 import com.example.tenantview_android_f22.ui.maintenance_request.PastRequestData
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -50,6 +50,30 @@ class ViewPastRequestFragment : Fragment() {
                 ""
             )
             writeToFirebase(pastRequestData)
+        }
+        binding.delete.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage("Are you sure you want to Delete?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    Log.d(TAG,"yes is selected!!")
+                    db.collection("Maintenance Request").document(args.documentID).delete()
+                        .addOnSuccessListener { document ->
+                            Log.d(TAG,"Maintenance request deleted from collection:")
+                            val action = ViewPastRequestFragmentDirections.actionViewPastRequestFragmentToNavigationMaintenanceRequest()
+                            findNavController().navigate(action)
+                        }
+                        .addOnFailureListener { exception ->
+                            Log.d(TAG,"Error in writing document in Firebase",exception)
+                        }
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    // Dismiss the dialog
+                    dialog.dismiss()
+                }
+            val alert = builder.create()
+            alert.show()
+
         }
 
         return root

@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
 
                     var tempAmt = document.data["duePaymentAmount"].toString().toInt()
                     if(tempAmt>0){
-                        
+
                         paymentDueDateView.text = document.data["duePaymentDate"].toString()
                     }
                     else{

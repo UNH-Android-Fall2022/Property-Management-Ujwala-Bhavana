@@ -22,7 +22,7 @@ class PropertyDetailsFragment : Fragment() {
     private val binding get() = _binding!!
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
-
+    private var unitID = ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,13 +33,13 @@ class PropertyDetailsFragment : Fragment() {
 
         _binding = FragmentPropertyDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        var propertyName = ""
         Log.d(TAG,"Calling the Property Details database...")
         db.collection("Property_Details_Test")
             .get()
             .addOnSuccessListener { listOfProperties ->
                 for (property in listOfProperties){
                     Log.d(TAG,"${property.id} => ${property.data}")
+                    unitID = property.data["unitID"].toString()
 
                     val address1: TextView = binding.textAddress1Value
                     address1.text = property.data["propertyName"].toString()
@@ -57,15 +57,17 @@ class PropertyDetailsFragment : Fragment() {
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
             }
-        Log.d(TAG,"Unit collections called...")
-        db.collection("Property_Details_Test").document().collection("Unit")
+        Log.d(TAG,"Unit collections called...$unitID")
+        /*db.collection("Property_Details_Test").document(unitID).collection("Unit")
             .get()
-            .addOnSuccessListener { unitN ->
-                Log.d(TAG,"Unit name: $unitN")
+            .addOnCompleteListener{snapshot ->
+                for(unit in snapshot.result) {
+                    Log.d(TAG, "Unit name: ${unit.getData()}")
+                }
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
-            }
+            }*/
         return root
     }
 
