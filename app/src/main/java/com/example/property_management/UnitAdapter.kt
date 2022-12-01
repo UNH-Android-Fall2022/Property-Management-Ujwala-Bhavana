@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
 
 class UnitAdapter (
-    private val ulist:ArrayList<UnitData>,
-    private val context:UnitsFragment
+    private val uMap: HashMap<String, ArrayList<UnitData>>,
+    private val context: UnitsFragment
 ):RecyclerView.Adapter<UnitAdapter.UnitViewHolder>(){
     class UnitViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val uimage : ImageView = itemView.findViewById(R.id.imageUnit)
@@ -28,19 +26,23 @@ class UnitAdapter (
     }
 
     override fun onBindViewHolder(holder: UnitViewHolder, position: Int) {
-        val unit = ulist[position]
-        holder.uname.text=unit.unitName
-        holder.utype.text=unit.unitType
-        holder.usize.text= unit.unitSize.toString()+" SqFt"
+        val unit = uMap["units"]?.get(position)
+        holder.uname.text= unit?.unitName
+        holder.utype.text=unit?.unitType
+        holder.usize.text= unit?.unitSize.toString()+" SqFt"
 
         holder.itemView.setOnClickListener{view->
-            Log.d("Test","Position clicked $position")
-            val action = UnitsFragmentDirections.actionUnitsFragmentToTablayoutFragment()
+            Log.d("Unit Adapter","Position clicked $position")
+            val propName = uMap.keys.elementAt(0)
+            Log.d("UnitAdapter","$propName")
+            val unitName = uMap["units"]?.get(position)!!.unitName
+            Log.d("UnitAdapter","$unitName")
+            val action = UnitsFragmentDirections.actionUnitsFragmentToTablayoutFragment(propName,unitName)
             view.findNavController().navigate(action)
         }
     }
 
     override fun getItemCount(): Int {
-        return ulist.size
+        return uMap["units"]?.size!!
     }
 }

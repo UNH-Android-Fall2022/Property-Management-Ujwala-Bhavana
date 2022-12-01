@@ -84,14 +84,16 @@ class AddunitFragment:Fragment() {
             "Unit Size" to unitData.unitSize,
         )
         val md = MessageDigest.getInstance("MD5")
-        val docId = md.digest(propertyName.trim().toByteArray(Charsets.UTF_8)).toHex()
+        val docIdProp = md.digest(propertyName.trim().toByteArray(Charsets.UTF_8)).toHex()
+
+        val docIdUnit = md.digest(unitData.unitName.trim().toByteArray(Charsets.UTF_8)).toHex()
 
         Log.d("Test","AddunitFragment propertyname $propertyName")
-        Log.d("Test","AddUnitFragment $docId")
+        Log.d("Test","AddUnitFragment $docIdProp")
         val userid = auth.currentUser?.uid
-        db.collection("Owners").document(userid!!).collection("Properties").document(docId).collection("Units").add(unit)
-            .addOnSuccessListener { document->
-                Log.d("Test","Unit details added to collection ${document.id}")
+        db.collection("Owners").document(userid!!).collection("Properties").document(docIdProp).collection("Units").document(docIdUnit).set(unit)
+            .addOnSuccessListener {
+                Log.d("Test","Unit details added to collection")
                 val action = AddunitFragmentDirections.actionAddunitFragmentToUnitsFragment(propertyName)
                 findNavController().navigate(action)
             }

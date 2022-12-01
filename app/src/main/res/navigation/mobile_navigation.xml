@@ -83,7 +83,44 @@
     <fragment
         android:id="@+id/tablayoutFragment"
         android:name="com.example.property_management.TablayoutFragment"
-        android:label="TablayoutFragment" />
+        android:label="TablayoutFragment" >
+        <action
+            android:id="@+id/action_tablayoutFragment_to_addtenantFragment"
+            app:destination="@id/addtenantFragment" />
+        <argument
+            android:name="propertyName"
+            app:argType="string"
+            />
+        <argument
+            android:name="unitName"
+            app:argType="string"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/tenantFragment"
+        android:name="com.example.property_management.TenantFragment"
+        android:label="fragment_tenant"
+        tools:layout="@layout/fragment_tenant" >
+        <action
+            android:id="@+id/action_tenantFragment_to_addtenantFragment"
+            app:destination="@id/addtenantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addtenantFragment"
+        android:name="com.example.property_management.AddtenantFragment"
+        android:label="AddtenantFragment" >
+        <action
+            android:id="@+id/action_addtenantFragment_to_tablayoutFragment"
+            app:destination="@id/tablayoutFragment" />
+        <argument
+            android:name="propertyName"
+            app:argType="string"
+            />
+        <argument
+            android:name="unitName"
+            app:argType="string"
+            />
+    </fragment>
 
 
 </navigation>
