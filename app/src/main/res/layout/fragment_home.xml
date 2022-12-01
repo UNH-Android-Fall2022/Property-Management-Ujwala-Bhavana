@@ -10,7 +10,7 @@
         android:id="@+id/textViewForPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:text="Payments"
         android:textAlignment="center"
         android:textSize="70px"
@@ -92,6 +92,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showDueBy" />
+
+    <TextView
+        android:id="@+id/textForUpdatePaymentDetails"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="56dp"
+        android:text="Already made the payment? Click below to update the details"
+        android:textAlignment="center"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showDueDate" />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textForUpdatePaymentDetails" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

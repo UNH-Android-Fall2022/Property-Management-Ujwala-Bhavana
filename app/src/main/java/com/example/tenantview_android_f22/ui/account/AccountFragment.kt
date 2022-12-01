@@ -52,7 +52,7 @@ class AccountFragment : Fragment() {
         binding.textViewNotification.setOnClickListener {
             Log.d(TAG, "Notifications clicked")
             val action =
-                AccountFragmentDirections.actionNavigationAccountToNotificationsFragment()
+                AccountFragmentDirections.actionNavigationAccountToNotificationsFragment("")
             findNavController().navigate(action)
         }
         binding.textViewChatWithOwner.setOnClickListener {

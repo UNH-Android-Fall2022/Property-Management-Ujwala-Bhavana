@@ -9,17 +9,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tenantview_android_f22.R
 import com.example.tenantview_android_f22.databinding.FragmentNotificationsBinding
-import com.example.tenantview_android_f22.ui.maintenance_request.PastRequestAdapter
-import com.example.tenantview_android_f22.ui.maintenance_request.PastRequestData
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -36,6 +38,9 @@ class NotificationsFragment : Fragment() {
     private val notificationId = 101
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var listOfNotificationRequests: ArrayList<NotificationData>
+    private var contextTitle = ""
+    private var contextText = ""
+    val args: NotificationsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,10 +54,14 @@ class NotificationsFragment : Fragment() {
         val root: View = binding.root
         createNotificationChannel()
         binding.sendButton.setOnClickListener{
-            sendNotification()
+            sendPaymentReminderNotification()
         }
         listOfNotificationRequests = arrayListOf()
-        readFromFirestore()
+        notificationFirestore("read")
+
+        if(args.notificationID != null){
+            notificationFirestore("delete")
+        }
         return root
     }
     private fun createNotificationChannel(){
@@ -68,18 +77,34 @@ class NotificationsFragment : Fragment() {
             notificationManager.createNotificationChannel(channel)
         }
     }
-    private fun sendNotification(){
-        var builder = NotificationCompat.Builder(requireContext(),channelId)
-            .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-            .setContentTitle("My notification")
-            .setContentText("Much longer text that cannot fit one line...")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-        with(NotificationManagerCompat.from(requireContext())){
-            notify(notificationId,builder.build())
-        }
+    private fun sendPaymentReminderNotification(){
+        db.collection("Tenant1")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents){
+                    var dueAmount = document.data["duePaymentAmount"].toString()
+                    var dueDate = document.data["duePaymentDate"].toString()
+                    contextTitle = "Payment Due!!"
+                    contextText = "Your rent payment $$dueAmount is due. Please make the payment by $dueDate."
+                    var builder = NotificationCompat.Builder(requireContext(),channelId)
+                        .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                        .setContentTitle(contextTitle)
+                        .setContentText(contextText)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    with(NotificationManagerCompat.from(requireContext())){
+                        notify(notificationId,builder.build())
+                    }
+                    notificationFirestore("insert")
+                }
+            }
+            .addOnFailureListener{ exception ->
+                Log.w(TAG,"Error getting documents", exception)
+            }
     }
-    private fun readFromFirestore(){
+    private fun notificationFirestore(action : String) {
+        //TODO: fetch tenant id from db instead of hardcode
         val doc_id = "Hm45sgO2foCFweCYhNmn"
+        if (action == "read") {
         db.collection("Tenant1").document(doc_id).collection("Notification")
             .get()
             .addOnCompleteListener { snapshot ->
@@ -88,17 +113,44 @@ class NotificationsFragment : Fragment() {
                     val temp = document.getData()
                     val req: NotificationData = NotificationData(
                         n_id = document.id,
-                        temp.get("subject").toString(), temp.get("description").toString()
+                        temp.get("subject").toString(),
+                        temp.get("description").toString()
                     )
                     listOfNotificationRequests.add(req)
                 }
                 mRecyclerView = binding.notificationRecyclerViewList
                 mRecyclerView.layoutManager = LinearLayoutManager(context)
                 mRecyclerView.adapter = NotificationAdapter(listOfNotificationRequests, this)
+
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents", exception)
             }
+        }
+        else if(action == "insert"){
+            val req = hashMapOf(
+                "subject" to contextTitle,
+                "description" to contextText
+            )
+            db.collection("Tenant1").document(doc_id).collection("Notification").add(req)
+                .addOnSuccessListener { document ->
+                    Log.d(TAG,"Notification added to collection: ${document.id}")
+                }
+                .addOnFailureListener { exception ->
+                    Log.d(TAG,"Error in writing document in Firebase",exception)
+                }
+        }
+        else if(action == "delete"){
+            /*db.collection("Tenant1").document(doc_id).collection("Notification").document(args.notificationID).delete()
+                .addOnSuccessListener { document ->
+                    Log.d(TAG,"Notification deleted")
+                    val action = NotificationsFragmentDirections.actionNotificationsFragmentSelf("")
+                    findNavController().navigate(action)
+                }
+                .addOnFailureListener { exception ->
+                    Log.d(TAG,"Error in writing document in Firebase",exception)
+                }*/
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()
