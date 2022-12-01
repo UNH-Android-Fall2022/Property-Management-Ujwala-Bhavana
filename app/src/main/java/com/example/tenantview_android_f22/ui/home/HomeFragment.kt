@@ -58,6 +58,7 @@ class HomeFragment : Fragment() {
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents){
+                    Log.d(TAG," documt lo ${document.data["paymentForMonth"]}")
                     if(document.data["paymentForMonth"]==currentMonthYear){
                         recordExists  = true
                         ifPaid = document.data["paid"] as Boolean
@@ -66,6 +67,7 @@ class HomeFragment : Fragment() {
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
             }
+        Log.d(TAG,"record: $recordExists, paid: $ifPaid, current month $currentMonthYear")
         db.collection("Tenant1")
             .get()
             .addOnSuccessListener { documents ->

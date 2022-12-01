@@ -40,7 +40,7 @@ class NotificationsFragment : Fragment() {
     private lateinit var listOfNotificationRequests: ArrayList<NotificationData>
     private var contextTitle = ""
     private var contextText = ""
-    val args: NotificationsFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,9 +59,6 @@ class NotificationsFragment : Fragment() {
         listOfNotificationRequests = arrayListOf()
         notificationFirestore("read")
 
-        if(args.notificationID != null){
-            notificationFirestore("delete")
-        }
         return root
     }
     private fun createNotificationChannel(){

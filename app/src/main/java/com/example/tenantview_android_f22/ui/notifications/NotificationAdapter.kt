@@ -36,8 +36,8 @@ class NotificationAdapter(
         holder.description.text = req.n_description
         holder.delButton.setOnClickListener{view->
             Log.d(TAG,"delete button clicked")
-            val action = NotificationsFragmentDirections.actionNotificationsFragmentSelf(req.n_id)
-            view.findNavController().navigate(action)
+
+
         }
 
     }

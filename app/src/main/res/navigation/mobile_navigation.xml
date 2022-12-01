@@ -83,12 +83,6 @@
         android:name="com.example.tenantview_android_f22.ui.notifications.NotificationsFragment"
         android:label="Notifications"
         tools:layout="@layout/fragment_notifications">
-        <action
-            android:id="@+id/action_notificationsFragment_self"
-            app:destination="@id/notificationsFragment" />
-        <argument
-            android:name="notificationID"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/chatWithOwnerFragment"
