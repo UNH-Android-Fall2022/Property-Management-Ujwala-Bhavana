@@ -64,6 +64,8 @@ class AddtenantFragment: Fragment() {
         Log.d("Addtenentfragment","propid $docIdProp")
         Log.d("AddTenantFragment","unitid $docIdUnit")
 
+
+
         val tenant = hashMapOf(
             "Name" to binding.tenantName.text.toString(),
             "Email" to binding.tenantEmail.text.toString(),
@@ -77,6 +79,10 @@ class AddtenantFragment: Fragment() {
         )
 
         val docId = md.digest(tenantEmail.trim().toByteArray(Charsets.UTF_8)).toHex()
+
+        val unitdoc = db.collection("Owners").document(auth.currentUser!!.uid).collection("Properties").document(docIdProp).collection("Units").document(docIdUnit)
+        unitdoc.update("tenantid",docId)
+
         db.collection("Tenants").document(docId).set(tenant)
             .addOnSuccessListener {
                 Log.d("Test","Tenant details added succesfully to Firebase")
