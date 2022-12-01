@@ -11,7 +11,9 @@
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.2555" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.2215" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.2555" />
+        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2555" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.2555" />
+        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/ic_baseline_signout.xml" value="0.2555" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/image.xml" value="0.1675" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/activity_main.xml" value="0.2708803611738149" />
@@ -25,8 +27,9 @@
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_item.xml" value="0.25" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_item_list.xml" value="0.25" />
-        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_maintenance_request.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_maintenance_request.xml" value="0.264" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_my_profile.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_notification_item_list.xml" value="0.2" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_notifications.xml" value="0.25" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_pop_up_for_delete.xml" value="0.20512820512820512" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/layout/fragment_profile.xml" value="0.25" />

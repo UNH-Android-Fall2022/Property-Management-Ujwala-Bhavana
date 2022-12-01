@@ -39,8 +39,8 @@ class PropertyDetailsFragment : Fragment() {
             .addOnSuccessListener { listOfProperties ->
                 for (property in listOfProperties){
                     Log.d(TAG,"${property.id} => ${property.data}")
-                    unitID = property.data["unitID"].toString()
-
+                    unitID = property.id
+                    callUnitCollection(unitID)
                     val address1: TextView = binding.textAddress1Value
                     address1.text = property.data["propertyName"].toString()
 
@@ -57,20 +57,26 @@ class PropertyDetailsFragment : Fragment() {
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
             }
-        Log.d(TAG,"Unit collections called...$unitID")
-        /*db.collection("Property_Details_Test").document(unitID).collection("Unit")
+        //Log.d(TAG,"Unit collections called...$unitID")
+
+        return root
+    }
+    private fun callUnitCollection(unitId: String){
+        unitID = unitId
+        db.collection("Property_Details_Test").document(unitID).collection("Unit")
             .get()
             .addOnCompleteListener{snapshot ->
                 for(unit in snapshot.result) {
+                    val temp = unit.getData()
                     Log.d(TAG, "Unit name: ${unit.getData()}")
+                    val unitName: TextView = binding.textAddress2Value
+                    unitName.text = temp.get("unitName").toString()
                 }
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
-            }*/
-        return root
+            }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

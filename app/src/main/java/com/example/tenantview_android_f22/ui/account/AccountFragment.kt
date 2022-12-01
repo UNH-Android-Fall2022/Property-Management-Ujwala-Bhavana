@@ -31,7 +31,7 @@ class AccountFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val chatViewModel =
+        val AccountViewModel =
             ViewModelProvider(this).get(AccountViewModel::class.java)
 
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
@@ -79,7 +79,7 @@ class AccountFragment : Fragment() {
                     Log.d(TAG,"Tenant db from account fragment: ${document.id} => ${document.data}")
                     tenantID = document.id
                     val tenantName: TextView = binding.textViewTenant
-                    tenantName.text = document.data["firstName"].toString().plus(" ").plus(document.data["lastName"].toString())
+                    tenantName.text = "Hello ".plus(document.data["firstName"].toString()).plus(" ").plus(document.data["lastName"].toString()).plus("!!")
                 }
             }
             .addOnFailureListener{ exception ->

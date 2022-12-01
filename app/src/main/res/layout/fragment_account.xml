@@ -6,29 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.account.AccountFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="58dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="1px"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/ic_baseline_account_circle_24"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewTenant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:text="Tenant 1"
         android:textAlignment="center"
         android:textSize="20dp"
+        android:textColor="@color/darkGrey"
         android:textStyle="bold"
-
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -37,7 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:text="My Profile"
-        android:textColor="@color/black"
+        android:drawableLeft="@drawable/ic_baseline_account_circle_24"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
         android:textSize="18dp"
         android:clickable="true"
         app:layout_constraintTop_toBottomOf="@+id/textViewTenant"
@@ -58,7 +51,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Notification"
-        android:textColor="@color/black"
+        android:drawableLeft="@drawable/ic_notifications_black_24dp"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
         android:textSize="18dp"
         app:layout_constraintTop_toBottomOf="@+id/view"
         tools:layout_editor_absoluteX="-16dp" />
@@ -78,7 +73,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Property Details"
-        android:textColor="@color/black"
+        android:drawableLeft="@drawable/ic_baseline_house_24"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
         android:textSize="18dp"
         app:layout_constraintTop_toBottomOf="@+id/view2"
         tools:layout_editor_absoluteX="-16dp" />
@@ -98,7 +95,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Contact Owner"
-        android:textColor="@color/black"
+        android:drawableLeft="@drawable/ic_baseline_contact_owner"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
         android:textSize="18dp"
         app:layout_constraintTop_toBottomOf="@+id/view3"
         tools:layout_editor_absoluteX="-16dp" />
@@ -118,7 +117,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Chat With Owner"
-        android:textColor="@color/black"
+        android:drawableLeft="@drawable/ic_baseline_chat_24"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
         android:textSize="18dp"
         app:layout_constraintTop_toBottomOf="@+id/view4"
         tools:layout_editor_absoluteX="-16dp" />
@@ -138,7 +139,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Sign Out"
-        android:textColor="@color/black"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/ic_baseline_signout"
         android:textSize="18dp"
         app:layout_constraintTop_toBottomOf="@+id/view5"
         tools:layout_editor_absoluteX="0dp" />

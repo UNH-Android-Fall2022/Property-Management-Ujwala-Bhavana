@@ -6,29 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.my_profile.MyProfileFragment">
 
-    <ImageView
-        android:id="@+id/profilePicImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/maintenance"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="First Name:"
+        android:textColor="@color/darkGrey"
         android:textSize="17dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePicImageView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editFirstName"
@@ -37,6 +27,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/back"
         android:ems="15"
+        android:textColor="@color/darkGrey"
         android:inputType="textPersonName"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +43,7 @@
         android:text="Last Name:"
         android:textSize="17dp"
         android:textStyle="bold"
+        android:textColor="@color/darkGrey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +58,7 @@
         android:ems="15"
         android:inputType="textPersonName"
         android:textSize="20dp"
+        android:textColor="@color/darkGrey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +72,7 @@
         android:text="Email Address:"
         android:textSize="17dp"
         android:textStyle="bold"
+        android:textColor="@color/darkGrey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,8 +86,9 @@
         android:background="@drawable/back"
         android:ems="15"
         android:inputType="textEmailAddress"
+        android:textColor="@color/darkGrey"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintHorizontal_bias="0.257"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -104,6 +99,7 @@
         android:layout_marginTop="28dp"
         android:text="Phone Number:"
         android:textSize="17dp"
+        android:textColor="@color/darkGrey"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.054"
@@ -118,8 +114,9 @@
         android:background="@drawable/back"
         android:ems="15"
         android:inputType="number"
+        android:textColor="@color/darkGrey"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintHorizontal_bias="0.257"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNum" />
 

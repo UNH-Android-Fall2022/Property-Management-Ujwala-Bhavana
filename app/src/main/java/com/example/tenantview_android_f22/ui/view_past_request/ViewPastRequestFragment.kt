@@ -59,7 +59,9 @@ class ViewPastRequestFragment : Fragment() {
                     Log.d(TAG,"yes is selected!!")
                     db.collection("Maintenance Request").document(args.documentID).delete()
                         .addOnSuccessListener { document ->
-                            Log.d(TAG,"Maintenance request deleted from collection:")
+                            Log.d(TAG,"Maintenance request deleted from collection:" +
+                                    "" +
+                                    "")
                             val action = ViewPastRequestFragmentDirections.actionViewPastRequestFragmentToNavigationMaintenanceRequest()
                             findNavController().navigate(action)
                         }
