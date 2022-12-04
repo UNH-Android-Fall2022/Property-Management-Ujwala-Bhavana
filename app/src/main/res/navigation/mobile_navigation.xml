@@ -26,7 +26,11 @@
         android:id="@+id/navigation_requests"
         android:name="com.example.property_management.ui.requests.RequestsFragment"
         android:label="@string/title_requests"
-        tools:layout="@layout/fragment_requests" />
+        tools:layout="@layout/fragment_requests" >
+        <action
+            android:id="@+id/action_navigation_requests_to_maintenanceRequestFragment"
+            app:destination="@id/maintenanceRequestFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -121,6 +125,10 @@
             app:argType="string"
             />
     </fragment>
+    <fragment
+        android:id="@+id/maintenanceRequestFragment"
+        android:name="com.example.property_management.MaintenanceRequestFragment"
+        android:label="MaintenanceRequestFragment" />
 
 
 </navigation>

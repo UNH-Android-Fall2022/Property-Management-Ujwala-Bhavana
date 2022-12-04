@@ -33,7 +33,7 @@ class TablayoutFragment : Fragment() {
         val viewPager2 = binding.pager1
         propertyName = args.propertyName
         unitName = args.unitName
-        val adapter = ViewPagerAdapter(this,propertyName,unitName)
+        val adapter = ViewPagerAdapter(this,propertyName,unitName,lifecycle)
 
 
         Log.d("TabLayoutFragemnt","$propertyName")

@@ -75,7 +75,9 @@ class AddtenantFragment: Fragment() {
             "Lease Cycle" to binding.leaseCycle.text.toString(),
             "ownerid" to auth.currentUser?.uid,
             "propertyid" to docIdProp,
-            "unitid" to docIdUnit
+            "unitid" to docIdUnit,
+            "property name" to propertyName,
+            "unit name" to unitName
         )
 
         val docId = md.digest(tenantEmail.trim().toByteArray(Charsets.UTF_8)).toHex()
