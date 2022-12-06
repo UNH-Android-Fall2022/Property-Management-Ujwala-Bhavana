@@ -35,7 +35,7 @@ class RequestAdapter (
 
         holder.itemView.setOnClickListener{view ->
             Log.d("Test","Position Clicked $position")
-            val action = RequestsFragmentDirections.actionNavigationRequestsToMaintenanceRequestFragment()
+            val action = RequestsFragmentDirections.actionNavigationRequestsToMaintenanceRequestFragment(request.propertyname,request.unitname,request.subject,request.description,request.imgUrl)
             view.findNavController().navigate(action)
 
         }

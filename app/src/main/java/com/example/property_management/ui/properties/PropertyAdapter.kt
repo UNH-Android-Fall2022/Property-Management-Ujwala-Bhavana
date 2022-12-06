@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.property_management.PropertyData
 import com.example.property_management.R
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.example.property_management.GlideApp
 import com.google.firebase.firestore.core.View
 
 class PropertyAdapter (
@@ -21,7 +23,7 @@ class PropertyAdapter (
             private val context : PropertiesFragment
 ):RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder>(){
     class PropertyViewHolder(itemView: android.view.View):RecyclerView.ViewHolder(itemView){
-        // val pImageView:ImageView = itemView.findViewById(R.id.imageView)
+        val pImageView:ImageView = itemView.findViewById(R.id.imageView)
         val pName: TextView = itemView.findViewById(R.id.txtName)
         val pUnits: TextView = itemView.findViewById(R.id.txtunits)
     }
@@ -35,7 +37,7 @@ class PropertyAdapter (
     override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {
         Log.d("Test", "on bindviewholder")
         val property = plist[position]
-        //TODO ("Implement Image")
+        GlideApp.with(context).load(property.imgUrl).dontAnimate().into(holder.pImageView)
         holder.pName.text = property.propertyName
         holder.pUnits.text = property.units
         //TODO get property.units value

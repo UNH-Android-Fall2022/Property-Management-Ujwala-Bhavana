@@ -128,7 +128,23 @@
     <fragment
         android:id="@+id/maintenanceRequestFragment"
         android:name="com.example.property_management.MaintenanceRequestFragment"
-        android:label="MaintenanceRequestFragment" />
+        android:label="MaintenanceRequestFragment" >
+        <argument
+            android:name="propertyname"
+            app:argType="string" />
+        <argument
+            android:name="unitname"
+            app:argType="string" />
+        <argument
+            android:name="subject"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="imgURL"
+            app:argType="string" />
+    </fragment>
 
 
 </navigation>
