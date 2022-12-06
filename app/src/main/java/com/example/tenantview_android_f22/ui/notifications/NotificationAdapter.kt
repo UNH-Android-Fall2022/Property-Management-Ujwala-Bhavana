@@ -37,7 +37,6 @@ class NotificationAdapter(
         holder.delButton.setOnClickListener{view->
             Log.d(TAG,"delete button clicked")
 
-
         }
 
     }

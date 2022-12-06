@@ -5,7 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
+import android.widget.ImageView
+import android.content.Intent
+import android.graphics.Bitmap
+import android.os.Build
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -22,6 +27,12 @@ class NewRequestFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    lateinit var cameraID: Button
+    lateinit var clickID: ImageView
+    companion object {
+        // Define the pic id
+        private const val picID = 123
+    }
 
 
     override fun onCreateView(
@@ -45,10 +56,24 @@ class NewRequestFragment : Fragment() {
             )
             writeToFirebase(pastRequestData)
         }
+        binding.uploadImage.setOnClickListener{
+            val camera_intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+                Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            } else {
+                TODO("VERSION.SDK_INT < CUPCAKE")
+            }
+            startActivityForResult(camera_intent, picID)
+        }
 
         return root
     }
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == picID) {
+            val photo = data!!.extras!!["data"] as Bitmap?
+            binding.maintenanceRequestImageView.setImageBitmap(photo)
+        }
+    }
     private fun writeToFirebase(pastRequestData: PastRequestData){
         val req = hashMapOf(
             "image" to "",

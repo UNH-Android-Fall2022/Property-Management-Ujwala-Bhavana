@@ -59,6 +59,7 @@ class NotificationsFragment : Fragment() {
         listOfNotificationRequests = arrayListOf()
         notificationFirestore("read")
 
+
         return root
     }
     private fun createNotificationChannel(){
