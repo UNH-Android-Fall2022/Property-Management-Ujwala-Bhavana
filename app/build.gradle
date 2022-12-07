@@ -9,7 +9,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.tenantview_android_f22"
+        applicationId "com.property.management"
         minSdk 30
         targetSdk 32
         versionCode 1

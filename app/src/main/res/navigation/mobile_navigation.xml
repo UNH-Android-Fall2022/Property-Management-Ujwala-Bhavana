@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.tenantview_android_f22.ui.home.HomeFragment"
+        android:name="com.property.management.tenant.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_maintenance_request"
-        android:name="com.example.tenantview_android_f22.ui.maintenance_request.MaintenanceRequestFragment"
+        android:name="com.property.management.tenant.maintenance_request.MaintenanceRequestFragment"
         android:label="Maintenance Request"
         tools:layout="@layout/fragment_maintenance_request" >
         <action
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.example.tenantview_android_f22.ui.account.AccountFragment"
+        android:name="com.property.management.tenant.account.AccountFragment"
         android:label="My Account"
         tools:layout="@layout/fragment_account" >
         <action
@@ -53,7 +53,7 @@
 
     <fragment
         android:id="@+id/navigation_create_request"
-        android:name="com.example.tenantview_android_f22.ui.create_request.NewRequestFragment"
+        android:name="com.property.management.tenant.create_request.NewRequestFragment"
         android:label="Create Request"
         tools:layout="@layout/create_maintenance_request" >
         <action
@@ -63,7 +63,7 @@
 
     <fragment
         android:id="@+id/my_profile"
-        android:name="com.example.tenantview_android_f22.ui.my_profile.MyProfileFragment"
+        android:name="com.property.management.tenant.my_profile.MyProfileFragment"
         android:label="My Profile"
         tools:layout="@layout/fragment_my_profile" >
         <action
@@ -75,28 +75,28 @@
     </fragment>
     <fragment
         android:id="@+id/propertyDetailsFragment"
-        android:name="com.example.tenantview_android_f22.ui.property_details.PropertyDetailsFragment"
+        android:name="com.property.management.tenant.property_details.PropertyDetailsFragment"
         android:label="Property Details"
         tools:layout="@layout/fragment_property_details"/>
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.example.tenantview_android_f22.ui.notifications.NotificationsFragment"
+        android:name="com.property.management.tenant.notifications.NotificationsFragment"
         android:label="Notifications"
         tools:layout="@layout/fragment_notifications">
     </fragment>
     <fragment
         android:id="@+id/chatWithOwnerFragment"
-        android:name="com.example.tenantview_android_f22.ui.chat_with_owner.ChatWithOwnerFragment"
+        android:name="com.property.management.tenant.chat_with_owner.ChatWithOwnerFragment"
         android:label="Chat With Owner"
         tools:layout="@layout/fragment_chat_with_owner"/>
     <fragment
         android:id="@+id/contactOwnerFragment"
-        android:name="com.example.tenantview_android_f22.ui.contact_owner.ContactOwnerFragment"
+        android:name="com.property.management.tenant.contact_owner.ContactOwnerFragment"
         android:label="Contact Owner Fragment"
         tools:layout="@layout/fragment_contact_owner"/>
     <fragment
         android:id="@+id/viewPastRequestFragment"
-        android:name="com.example.tenantview_android_f22.ui.view_past_request.ViewPastRequestFragment"
+        android:name="com.property.management.tenant.view_past_request.ViewPastRequestFragment"
         android:label="ViewPastRequestFragment"
         tools:layout="@layout/fragment_view_each_past_request">
         <argument
@@ -114,7 +114,7 @@
     </fragment>
     <fragment
         android:id="@+id/paymentDetailsFragment"
-        android:name="com.example.tenantview_android_f22.ui.update_payment_details_fragment.PaymentDetailsFragment"
+        android:name="com.property.management.tenant.update_payment_details_fragment.PaymentDetailsFragment"
         android:label="PaymentDetailsFragment"
         tools:layout="@layout/fragment_update_payment_details">
 
