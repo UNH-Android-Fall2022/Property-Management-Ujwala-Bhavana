@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">property_management</string>
+    <string name="app_name">property-management</string>
     <string name="title_activity_properties">PropertiesActivity</string>
     <string name="title_properties">Properties</string>
     <string name="title_requests">Requests</string>

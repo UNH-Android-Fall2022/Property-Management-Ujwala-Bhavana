@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_properties"
-        android:name="com.example.property_management.ui.properties.PropertiesFragment"
+        android:name="com.property.management.owner.properties.PropertiesFragment"
         android:label="@string/title_properties"
         tools:layout="@layout/fragment_properties" >
         <action
@@ -24,23 +24,27 @@
 
     <fragment
         android:id="@+id/navigation_requests"
-        android:name="com.example.property_management.ui.requests.RequestsFragment"
+        android:name="com.property.management.owner.requests.RequestsFragment"
         android:label="@string/title_requests"
-        tools:layout="@layout/fragment_requests" />
+        tools:layout="@layout/fragment_requests" >
+        <action
+            android:id="@+id/action_navigation_requests_to_maintenanceRequestFragment"
+            app:destination="@id/maintenanceRequestFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.property_management.ui.notifications.NotificationsFragment"
+        android:name="com.property.management.owner.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.example.property_management.ui.account.AccountFragment"
+        android:name="com.property.management.owner.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account"/>
     <fragment
         android:id="@+id/addpropertyFragment"
-        android:name="com.example.property_management.ui.addproperty.AddpropertyFragment"
+        android:name="com.property.management.owner.properties.AddpropertyFragment"
         android:label="AddpropertyFragment" >
         <action
             android:id="@+id/action_addpropertyFragment_to_navigation_properties"
@@ -48,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/unitsFragment"
-        android:name="com.example.property_management.UnitsFragment"
+        android:name="com.property.management.owner.properties.UnitsFragment"
         android:label="fragment_units"
         tools:layout="@layout/fragment_units" >
         <action
@@ -70,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/addunitFragment"
-        android:name="com.example.property_management.AddunitFragment"
+        android:name="com.property.management.owner.properties.AddunitFragment"
         android:label="AddunitFragment" >
         <action
             android:id="@+id/action_addunitFragment_to_unitsFragment"
@@ -82,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/tablayoutFragment"
-        android:name="com.example.property_management.TablayoutFragment"
+        android:name="com.property.management.owner.properties.TablayoutFragment"
         android:label="TablayoutFragment" >
         <action
             android:id="@+id/action_tablayoutFragment_to_addtenantFragment"
@@ -98,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/tenantFragment"
-        android:name="com.example.property_management.TenantFragment"
+        android:name="com.property.management.owner.properties.TenantFragment"
         android:label="fragment_tenant"
         tools:layout="@layout/fragment_tenant" >
         <action
@@ -107,7 +111,7 @@
     </fragment>
     <fragment
         android:id="@+id/addtenantFragment"
-        android:name="com.example.property_management.AddtenantFragment"
+        android:name="com.property.management.owner.properties.AddtenantFragment"
         android:label="AddtenantFragment" >
         <action
             android:id="@+id/action_addtenantFragment_to_tablayoutFragment"
@@ -120,6 +124,26 @@
             android:name="unitName"
             app:argType="string"
             />
+    </fragment>
+    <fragment
+        android:id="@+id/maintenanceRequestFragment"
+        android:name="com.property.management.owner.requests.MaintenanceRequestFragment"
+        android:label="MaintenanceRequestFragment" >
+        <argument
+            android:name="propertyname"
+            app:argType="string" />
+        <argument
+            android:name="unitname"
+            app:argType="string" />
+        <argument
+            android:name="subject"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="imgURL"
+            app:argType="string" />
     </fragment>
 
 
