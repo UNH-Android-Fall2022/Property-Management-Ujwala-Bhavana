@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.property.management.databinding.FragmentMaintenanceRequestBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-
+import com.property.management.tenant.maintenance_request.MaintenanceRequestFragmentDirections
 
 
 class MaintenanceRequestFragment : Fragment() {
