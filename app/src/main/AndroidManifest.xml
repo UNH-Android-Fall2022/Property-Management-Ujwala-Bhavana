@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.property_management">
+    package="com.property.management">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"/>
@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".PropertiesActivity"
+            android:name="com.property.management.owner.OwnerHomeActivity"
             android:exported="false"
             android:label="@string/title_activity_properties">
             <meta-data
@@ -27,10 +27,10 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignupActivity"
+            android:name="com.property.management.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.property.management.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
