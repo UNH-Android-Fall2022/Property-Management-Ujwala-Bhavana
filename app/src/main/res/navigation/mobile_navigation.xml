@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.property.management.tenant.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_paymentDetailsFragment"
+            app:destination="@id/paymentDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_maintenance_request"
+        android:name="com.property.management.tenant.maintenance_request.MaintenanceRequestFragment"
+        android:label="Maintenance Request"
+        tools:layout="@layout/fragment_maintenance_request" >
+        <action
+            android:id="@+id/action_navigation_maintenance_request_to_navigation_create_request"
+            app:destination="@id/navigation_create_request" />
+        <action
+            android:id="@+id/action_navigation_maintenance_request_to_viewPastRequestFragment"
+            app:destination="@id/viewPastRequestFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.property.management.tenant.account.AccountFragment"
+        android:label="My Account"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_navigation_account_to_my_profile"
+            app:destination="@id/my_profile" />
+        <action
+            android:id="@+id/action_navigation_account_to_propertyDetailsFragment"
+            app:destination="@id/propertyDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_chatWithOwnerFragment"
+            app:destination="@id/chatWithOwnerFragment" />
+        <action
+            android:id="@+id/action_navigation_account_to_contactOwnerFragment"
+            app:destination="@id/contactOwnerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_create_request"
+        android:name="com.property.management.tenant.create_request.NewRequestFragment"
+        android:label="Create Request"
+        tools:layout="@layout/create_maintenance_request" >
+        <action
+            android:id="@+id/action_navigation_create_request_to_navigation_maintenance_request"
+            app:destination="@id/navigation_maintenance_request" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/my_profile"
+        android:name="com.property.management.tenant.my_profile.MyProfileFragment"
+        android:label="My Profile"
+        tools:layout="@layout/fragment_my_profile" >
+        <action
+            android:id="@+id/action_my_profile_to_navigation_account"
+            app:destination="@id/navigation_account" />
+        <argument
+            android:name="tenant_ID"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyDetailsFragment"
+        android:name="com.property.management.tenant.property_details.PropertyDetailsFragment"
+        android:label="Property Details"
+        tools:layout="@layout/fragment_property_details"/>
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.property.management.tenant.notifications.NotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notifications">
+    </fragment>
+    <fragment
+        android:id="@+id/chatWithOwnerFragment"
+        android:name="com.property.management.tenant.chat_with_owner.ChatWithOwnerFragment"
+        android:label="Chat With Owner"
+        tools:layout="@layout/fragment_chat_with_owner"/>
+    <fragment
+        android:id="@+id/contactOwnerFragment"
+        android:name="com.property.management.tenant.contact_owner.ContactOwnerFragment"
+        android:label="Contact Owner Fragment"
+        tools:layout="@layout/fragment_contact_owner"/>
+    <fragment
+        android:id="@+id/viewPastRequestFragment"
+        android:name="com.property.management.tenant.view_past_request.ViewPastRequestFragment"
+        android:label="ViewPastRequestFragment"
+        tools:layout="@layout/fragment_view_each_past_request">
+        <argument
+            android:name="subject"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_viewPastRequestFragment_to_navigation_maintenance_request"
+            app:destination="@id/navigation_maintenance_request" />
+        <argument
+            android:name="documentID"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentDetailsFragment"
+        android:name="com.property.management.tenant.update_payment_details_fragment.PaymentDetailsFragment"
+        android:label="PaymentDetailsFragment"
+        tools:layout="@layout/fragment_update_payment_details">
+
+        <action
+            android:id="@+id/action_paymentDetailsFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <argument
+            android:name="rentAmount"
+            app:argType="string" />
+    </fragment>
+
+
+</navigation>
