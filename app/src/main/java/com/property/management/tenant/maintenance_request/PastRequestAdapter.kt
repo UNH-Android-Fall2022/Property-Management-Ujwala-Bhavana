@@ -13,7 +13,7 @@ import com.property.management.R
 
 class PastRequestAdapter(
     private val mExampleList: ArrayList<PastRequestData>,
-    private val context: MaintenanceRequestFragment
+    private val context: MaintenanceRequestFragmentTenant
 ) : RecyclerView.Adapter<PastRequestAdapter.ViewHolder>() {
     private val TAG = "Property_Management"
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,11 +31,11 @@ class PastRequestAdapter(
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val req = mExampleList[position]
-        holder.subject.text = req.d_subject
-        holder.description.text = req.d_description
+        holder.subject.text = req.subject
+        holder.description.text = req.description
         holder.itemView.setOnClickListener{view->
             Log.d(TAG,"Position Clicked: $position")
-            val action = MaintenanceRequestFragmentDirections.actionNavigationMaintenanceRequestToViewPastRequestFragment(req.d_subject,req.d_description,req.d_id)
+            val action = MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToViewPastRequestFragment(req.subject,req.description,req.ownerid,req.tenantid,req.propertyname,req.unitname,req.status,req.image)
             view.findNavController().navigate(action)
         }
     }

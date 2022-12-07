@@ -1,9 +1,12 @@
 package com.property.management.tenant.maintenance_request
 
 data class PastRequestData (
-    val d_id: String,
-    var d_image: String,
-    var d_subject: String,
-    var d_description: String,
-    var d_tenant_id: String
+    var image: String,
+    var subject: String,
+    var description: String,
+    var ownerid: String,
+    var propertyname: String,
+    var unitname: String,
+    var status: String,
+    var tenantid: String
 )

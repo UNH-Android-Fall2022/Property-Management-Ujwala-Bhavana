@@ -7,19 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.property.management.databinding.FragmentMaintenancerequestBinding
+import com.property.management.databinding.FragmentMaintenancerequestownerBinding
 
-class MaintenanceRequestFragment:Fragment() {
-    private var _binding: FragmentMaintenancerequestBinding? = null
+class MaintenanceRequestFragmentOwner:Fragment() {
+    private var _binding: FragmentMaintenancerequestownerBinding? = null
     private val binding get() = _binding!!
-    private val args : com.property.management.owner.requests.MaintenanceRequestFragmentArgs by navArgs()
+    private val args : com.property.management.owner.requests.MaintenanceRequestFragmentOwnerArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMaintenancerequestBinding.inflate(inflater,container,false)
+        _binding = FragmentMaintenancerequestownerBinding.inflate(inflater,container,false)
         val root: View = binding.root
         val propertyname = args.propertyname
         val unitname = args.unitname

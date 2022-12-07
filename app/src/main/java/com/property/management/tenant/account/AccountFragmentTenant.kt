@@ -1,5 +1,6 @@
 package com.property.management.tenant.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,13 +10,15 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.property.management.databinding.FragmentAccountBinding
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.property.management.MainActivity
+import com.property.management.databinding.FragmentAccounttenantBinding
 
-class AccountFragment : Fragment() {
+class AccountFragmentTenant : Fragment() {
 
-    private var _binding: FragmentAccountBinding? = null
+    private var _binding: FragmentAccounttenantBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,6 +26,7 @@ class AccountFragment : Fragment() {
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
     private var tenantID = ""
+    private val auth = Firebase.auth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,38 +36,43 @@ class AccountFragment : Fragment() {
         val AccountViewModel =
             ViewModelProvider(this).get(AccountViewModel::class.java)
 
-        _binding = FragmentAccountBinding.inflate(inflater, container, false)
+        _binding = FragmentAccounttenantBinding.inflate(inflater, container, false)
         val root: View = binding.root
         readTenantNameFromFirebase()
         binding.textViewMyProfile.setOnClickListener{
             Log.d(TAG, "My Profile clicked")
             val action =
-                AccountFragmentDirections.actionNavigationAccountToMyProfile(tenantID)
+                AccountFragmentTenantDirections.actionNavigationAccountToMyProfile(tenantID)
             findNavController().navigate(action)
         }
         binding.textViewPropertyDetails.setOnClickListener {
             Log.d(TAG, "Property Details clicked")
             val action =
-                AccountFragmentDirections.actionNavigationAccountToPropertyDetailsFragment()
+                AccountFragmentTenantDirections.actionNavigationAccountToPropertyDetailsFragment()
             findNavController().navigate(action)
         }
         binding.textViewNotification.setOnClickListener {
             Log.d(TAG, "Notifications clicked")
             val action =
-                AccountFragmentDirections.actionNavigationAccountToNotificationsFragment()
+                AccountFragmentTenantDirections.actionNavigationAccountToNotificationsFragment()
             findNavController().navigate(action)
         }
         binding.textViewChatWithOwner.setOnClickListener {
             Log.d(TAG, "Chat With Owner clicked")
             val action =
-                AccountFragmentDirections.actionNavigationAccountToChatWithOwnerFragment()
+                AccountFragmentTenantDirections.actionNavigationAccountToChatWithOwnerFragment()
             findNavController().navigate(action)
         }
         binding.textViewContactOwner.setOnClickListener {
             Log.d(TAG, "Contact Owner clicked")
             val action =
-                AccountFragmentDirections.actionNavigationAccountToContactOwnerFragment()
+                AccountFragmentTenantDirections.actionNavigationAccountToContactOwnerFragment()
             findNavController().navigate(action)
+        }
+        binding.textViewSignOut.setOnClickListener{
+            auth.signOut()
+            val intent = Intent(activity,MainActivity::class.java)
+            startActivity(intent)
         }
 
 

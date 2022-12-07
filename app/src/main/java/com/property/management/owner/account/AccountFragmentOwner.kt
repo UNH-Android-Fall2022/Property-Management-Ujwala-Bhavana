@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.property.management.MainActivity
-import com.property.management.databinding.FragmentAccountBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.property.management.databinding.FragmentAccountownerBinding
+import com.property.management.databinding.FragmentAccounttenantBinding
 
-class AccountFragment: Fragment(){
+class AccountFragmentOwner: Fragment(){
 
-    private var _binding: FragmentAccountBinding? = null
+    private var _binding: FragmentAccountownerBinding? = null
     private val binding get() = _binding!!
     private val auth = Firebase.auth
 
@@ -22,7 +23,7 @@ class AccountFragment: Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAccountBinding.inflate(inflater, container, false)
+        _binding = FragmentAccountownerBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         binding.textlogout.setOnClickListener{

@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.property.management.owner.OwnerHomeActivity
+import com.property.management.tenant.TenantHomeActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,8 +50,11 @@ class MainActivity : AppCompatActivity() {
                             val intent = Intent(this, OwnerHomeActivity::class.java)
                             startActivity(intent)
                         }
-                        else if(binding.rbtntenant.isChecked)
-                            Log.d(TAG,"Tenant radio button checked")
+                        else if(binding.rbtntenant.isChecked) {
+                            val intent = Intent(this, TenantHomeActivity::class.java)
+                            startActivity(intent)
+                        }
+
                         else
                             Toast.makeText(applicationContext, "Select Owner or Tenant", Toast.LENGTH_SHORT).show()
 

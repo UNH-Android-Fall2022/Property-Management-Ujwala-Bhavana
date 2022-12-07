@@ -32,16 +32,15 @@
         <activity
             android:name="com.property.management.MainActivity"
             android:exported="true">
-        <activity
-            android:name="com.property.management.tenant.TenantHomeActivity"
-            android:exported="true"
-            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.property.management.tenant.TenantHomeActivity"
+            android:exported="false"/>
 
         <meta-data
             android:name="preloaded_fonts"

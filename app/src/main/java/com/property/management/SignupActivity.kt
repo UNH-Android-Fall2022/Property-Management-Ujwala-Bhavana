@@ -66,7 +66,7 @@ class SignupActivity : AppCompatActivity() {
                                         )
                                     }
                             }
-                        } else {
+                        } /*else {
                             if (userid != null) {
                                 db.collection("Tenants").document(userid)
                                     .set(user)
@@ -81,10 +81,10 @@ class SignupActivity : AppCompatActivity() {
                                         )
                                     }
                             }
-                        }
+                        }*/
                         startActivity(Intent(this, MainActivity::class.java))
                     } else {
-                        Log.w(TAG, "User creation failed", task.exception)
+                        Log.d(TAG, "Error writing owner to collection")
                     }
                 }
             binding.txtName.setText("")

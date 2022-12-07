@@ -34,14 +34,14 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.property.management.owner.notifications.NotificationsFragment"
+        android:name="com.property.management.owner.notifications.NotificationsFragmentOwner"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notificationstenant" />
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.property.management.owner.account.AccountFragment"
+        android:name="com.property.management.owner.account.AccountFragmentOwner"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_account"/>
+        tools:layout="@layout/fragment_accounttenant"/>
     <fragment
         android:id="@+id/addpropertyFragment"
         android:name="com.property.management.owner.properties.AddpropertyFragment"
@@ -127,7 +127,7 @@
     </fragment>
     <fragment
         android:id="@+id/maintenanceRequestFragment"
-        android:name="com.property.management.owner.requests.MaintenanceRequestFragment"
+        android:name="com.property.management.owner.requests.MaintenanceRequestFragmentOwner"
         android:label="MaintenanceRequestFragment" >
         <argument
             android:name="propertyname"
