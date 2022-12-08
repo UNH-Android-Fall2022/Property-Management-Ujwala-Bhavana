@@ -51,9 +51,9 @@ class ViewPastRequestFragment : Fragment() {
                 description = binding.textDescriptionValue.text.toString(),
                 status = args.status
             )
-            writeToFirebase(pastRequestData)
+            //writeToFirebase(pastRequestData)
         }
-        binding.delete.setOnClickListener {
+        /*binding.delete.setOnClickListener {
             val builder = AlertDialog.Builder(context)
             builder.setMessage("Are you sure you want to Delete?")
                 .setCancelable(false)
@@ -78,16 +78,16 @@ class ViewPastRequestFragment : Fragment() {
             val alert = builder.create()
             alert.show()
 
-        }
+        }*/
 
         return root
     }
-    private fun writeToFirebase(pastRequestData: PastRequestData){
+    /*private fun writeToFirebase(pastRequestData: PastRequestData){
         val req = hashMapOf(
             "image" to "",
-            "subject" to pastRequestData.d_subject,
-            "Description" to pastRequestData.d_description,
-            "tenant_ID" to pastRequestData.d_tenant_id
+            "subject" to pastRequestData.subject,
+            "Description" to pastRequestData.description,
+            "tenant_ID" to pastRequestData.tenantid
         )
         val docID = pastRequestData.d_id
         db.collection("Maintenance Request").document(docID).set(req)
@@ -100,7 +100,7 @@ class ViewPastRequestFragment : Fragment() {
                 Log.d(TAG,"Error in writing document in Firebase",exception)
             }
 
-    }
+    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()
