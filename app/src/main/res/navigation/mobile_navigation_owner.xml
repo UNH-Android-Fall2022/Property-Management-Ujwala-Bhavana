@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_properties">
+
+    <fragment
+        android:id="@+id/navigation_properties"
+        android:name="com.property.management.owner.properties.PropertiesFragment"
+        android:label="@string/title_properties"
+        tools:layout="@layout/fragment_properties" >
+        <action
+            android:id="@+id/action_navigation_properties_to_addpropertyFragment"
+            app:destination="@id/addpropertyFragment" />
+        <action
+            android:id="@+id/action_navigation_properties_to_unitsFragment"
+            app:destination="@id/unitsFragment"/>
+
+
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_requests"
+        android:name="com.property.management.owner.requests.RequestsFragment"
+        android:label="@string/title_requests"
+        tools:layout="@layout/fragment_requests" >
+        <action
+            android:id="@+id/action_navigation_requests_to_maintenanceRequestFragment"
+            app:destination="@id/maintenanceRequestFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.property.management.owner.notifications.NotificationsFragmentOwner"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notificationstenant" />
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.property.management.owner.account.AccountFragmentOwner"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_accounttenant"/>
+    <fragment
+        android:id="@+id/addpropertyFragment"
+        android:name="com.property.management.owner.properties.AddpropertyFragment"
+        android:label="AddpropertyFragment" >
+        <action
+            android:id="@+id/action_addpropertyFragment_to_navigation_properties"
+            app:destination="@id/navigation_properties" />
+    </fragment>
+    <fragment
+        android:id="@+id/unitsFragment"
+        android:name="com.property.management.owner.properties.UnitsFragment"
+        android:label="fragment_units"
+        tools:layout="@layout/fragment_units" >
+        <action
+            android:id="@+id/action_unitsFragment_to_addunitFragment"
+            app:destination="@id/addunitFragment" />
+        <argument
+            android:name="propertyName"
+            app:argType="string"
+            />
+        <action
+            android:id="@+id/action_unitsFragment_to_navigation_properties"
+            app:destination="@id/navigation_properties"
+            app:popUpTo="@id/navigation_properties"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_unitsFragment_to_tablayoutFragment"
+            app:destination="@id/tablayoutFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/addunitFragment"
+        android:name="com.property.management.owner.properties.AddunitFragment"
+        android:label="AddunitFragment" >
+        <action
+            android:id="@+id/action_addunitFragment_to_unitsFragment"
+            app:destination="@id/unitsFragment" />
+        <argument
+            android:name="propertyName"
+            app:argType="string"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/tablayoutFragment"
+        android:name="com.property.management.owner.properties.TablayoutFragment"
+        android:label="TablayoutFragment" >
+        <action
+            android:id="@+id/action_tablayoutFragment_to_addtenantFragment"
+            app:destination="@id/addtenantFragment" />
+        <argument
+            android:name="propertyName"
+            app:argType="string"
+            />
+        <argument
+            android:name="unitName"
+            app:argType="string"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/tenantFragment"
+        android:name="com.property.management.owner.properties.TenantFragment"
+        android:label="fragment_tenant"
+        tools:layout="@layout/fragment_tenant" >
+        <action
+            android:id="@+id/action_tenantFragment_to_addtenantFragment"
+            app:destination="@id/addtenantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addtenantFragment"
+        android:name="com.property.management.owner.properties.AddtenantFragment"
+        android:label="AddtenantFragment" >
+        <action
+            android:id="@+id/action_addtenantFragment_to_tablayoutFragment"
+            app:destination="@id/tablayoutFragment" />
+        <argument
+            android:name="propertyName"
+            app:argType="string"
+            />
+        <argument
+            android:name="unitName"
+            app:argType="string"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/maintenanceRequestFragment"
+        android:name="com.property.management.owner.requests.MaintenanceRequestFragmentOwner"
+        android:label="MaintenanceRequestFragment" >
+        <argument
+            android:name="propertyname"
+            app:argType="string" />
+        <argument
+            android:name="unitname"
+            app:argType="string" />
+        <argument
+            android:name="subject"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="imgURL"
+            app:argType="string" />
+    </fragment>
+
+
+</navigation>

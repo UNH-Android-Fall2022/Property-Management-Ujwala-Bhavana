@@ -17,9 +17,9 @@
 
     <fragment
         android:id="@+id/navigation_maintenance_request"
-        android:name="com.property.management.tenant.maintenance_request.MaintenanceRequestFragment"
+        android:name="com.property.management.tenant.maintenance_request.MaintenanceRequestFragmentTenant"
         android:label="Maintenance Request"
-        tools:layout="@layout/fragment_maintenance_request" >
+        tools:layout="@layout/fragment_maintenance_requesttenant" >
         <action
             android:id="@+id/action_navigation_maintenance_request_to_navigation_create_request"
             app:destination="@id/navigation_create_request" />
@@ -31,9 +31,9 @@
 
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.property.management.tenant.account.AccountFragment"
+        android:name="com.property.management.tenant.account.AccountFragmentTenant"
         android:label="My Account"
-        tools:layout="@layout/fragment_account" >
+        tools:layout="@layout/fragment_accounttenant" >
         <action
             android:id="@+id/action_navigation_account_to_my_profile"
             app:destination="@id/my_profile" />
@@ -80,9 +80,9 @@
         tools:layout="@layout/fragment_property_details"/>
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.property.management.tenant.notifications.NotificationsFragment"
+        android:name="com.property.management.tenant.notifications.NotificationsFragmentTenant"
         android:label="Notifications"
-        tools:layout="@layout/fragment_notifications">
+        tools:layout="@layout/fragment_notificationstenant">
     </fragment>
     <fragment
         android:id="@+id/chatWithOwnerFragment"
@@ -109,8 +109,23 @@
             android:id="@+id/action_viewPastRequestFragment_to_navigation_maintenance_request"
             app:destination="@id/navigation_maintenance_request" />
         <argument
-            android:name="documentID"
+            android:name="ownerid"
             app:argType="string" />
+        <argument
+            android:name="tenantid"
+            app:argType="string"/>
+        <argument
+            android:name="propertyname"
+            app:argType="string"/>
+        <argument
+            android:name="unitname"
+            app:argType="string"/>
+        <argument
+            android:name="status"
+            app:argType="string"/>
+        <argument
+            android:name="image"
+            app:argType="string"/>
     </fragment>
     <fragment
         android:id="@+id/paymentDetailsFragment"

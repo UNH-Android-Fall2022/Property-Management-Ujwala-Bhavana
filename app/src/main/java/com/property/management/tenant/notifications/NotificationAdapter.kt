@@ -12,7 +12,7 @@ import com.property.management.R
 
 class NotificationAdapter(
     private val notificationList: ArrayList<NotificationData>,
-    private val context: NotificationsFragment
+    private val context: NotificationsFragmentTenant
 ) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
     private val TAG = "Property_Management"
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

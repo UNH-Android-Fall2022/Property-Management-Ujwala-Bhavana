@@ -42,11 +42,14 @@ class ViewPastRequestFragment : Fragment() {
 
         binding.save.setOnClickListener{
             val pastRequestData = PastRequestData(
-                args.documentID,
-                "",
-                binding.textSubjectValue.text.toString(),
-                binding.textDescriptionValue.text.toString(),
-                ""
+                image = args.image,
+                ownerid = args.ownerid,
+                propertyname = args.propertyname,
+                unitname = args.unitname,
+                tenantid = args.tenantid,
+                subject = binding.textSubjectValue.text.toString(),
+                description = binding.textDescriptionValue.text.toString(),
+                status = args.status
             )
             writeToFirebase(pastRequestData)
         }

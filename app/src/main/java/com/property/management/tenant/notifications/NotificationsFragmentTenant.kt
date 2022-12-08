@@ -16,13 +16,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.property.management.R
-import com.property.management.databinding.FragmentNotificationsBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.property.management.databinding.FragmentNotificationstenantBinding
 
-class NotificationsFragment : Fragment() {
+class NotificationsFragmentTenant : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentNotificationstenantBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -45,7 +45,7 @@ class NotificationsFragment : Fragment() {
         val chatViewModel =
             ViewModelProvider(this).get(NotificationsViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentNotificationstenantBinding.inflate(inflater, container, false)
         val root: View = binding.root
         createNotificationChannel()
         binding.sendButton.setOnClickListener{

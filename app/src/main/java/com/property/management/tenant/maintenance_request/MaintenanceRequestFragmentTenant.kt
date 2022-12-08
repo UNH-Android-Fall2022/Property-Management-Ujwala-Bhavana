@@ -10,15 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.property.management.databinding.FragmentMaintenanceRequestBinding
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.property.management.databinding.FragmentMaintenanceRequesttenantBinding
+import com.property.management.tenant.maintenance_request.MaintenanceRequestFragmentTenantDirections
 
 
+class MaintenanceRequestFragmentTenant : Fragment() {
 
-class MaintenanceRequestFragment : Fragment() {
-
-    private var _binding: FragmentMaintenanceRequestBinding? = null
+    private var _binding: FragmentMaintenanceRequesttenantBinding? = null
     private val binding get() = _binding!!
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
@@ -33,12 +34,12 @@ class MaintenanceRequestFragment : Fragment() {
         val maintenanceRequestViewModel =
             ViewModelProvider(this).get(MaintenanceRequestViewModel::class.java)
 
-        _binding = FragmentMaintenanceRequestBinding.inflate(inflater, container, false)
+        _binding = FragmentMaintenanceRequesttenantBinding.inflate(inflater, container, false)
         val root: View = binding.root
         binding.floatingActionReqMaintenance.setOnClickListener {
             Log.d(TAG, "Request Maintenance Button clicked")
             val action =
-                MaintenanceRequestFragmentDirections.actionNavigationMaintenanceRequestToNavigationCreateRequest()
+                MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToNavigationCreateRequest()
             findNavController().navigate(action)
         }
         Log.d(TAG, "Calling maintenance request database...")
@@ -53,14 +54,12 @@ class MaintenanceRequestFragment : Fragment() {
                 for (document in snapshot.result) {
                     Log.d(TAG, "${document.getData()}")
                     val temp = document.getData()
-                    val req: PastRequestData = PastRequestData(
-                        d_id = document.id,
-                        "",
+                    /*val req: PastRequestData = PastRequestData(
                         d_subject = temp.get("subject").toString(),
-                        d_description = temp.get("Description").toString(),
-                        ""
+                        d_description = temp.get("Description").toString()
                     )
-                    listOfRequests.add(req)
+                    listOfRequests.add(req)*/
+                    listOfRequests.add(document.toObject<PastRequestData>())
                 }
                 mRecyclerView = binding.pastRequestRecyclerViewList
                 mRecyclerView.layoutManager = LinearLayoutManager(context)
