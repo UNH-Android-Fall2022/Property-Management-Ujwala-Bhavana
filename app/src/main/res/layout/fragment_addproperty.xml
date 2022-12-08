@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.115"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.03" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGallery"
+            android:text="Upload Image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:layout_marginTop="15dp"
+            android:textAllCaps="false"
+            android:textSize="15dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtAddress"
+            app:layout_constraintTop_toBottomOf="@+id/btnGallery"
+            android:background="@drawable/edit_text_border"
+            android:layout_marginTop="15dp"
+            android:hint="Address"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:padding="15dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City"
+            android:id="@+id/txtCity"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddress"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/edit_text_border"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="State"
+            android:id="@+id/txtState"
+            app:layout_constraintTop_toBottomOf="@+id/txtCity"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/edit_text_border"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Zipcode"
+            android:id="@+id/txtZipcode"
+            app:layout_constraintTop_toBottomOf="@+id/txtState"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/edit_text_border"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtUnits"
+            app:layout_constraintTop_toBottomOf="@+id/txtZipcode"
+            android:background="@drawable/edit_text_border"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:hint="Total Units"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="House type"
+            app:layout_constraintTop_toBottomOf="@+id/txtUnits"
+            android:id="@+id/houseType"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/edit_text_border"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/houseType">
+
+            <Button
+                android:id="@+id/btnAddProperty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Add Property"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtUnits"
+                android:layout_marginLeft="70dp"/>
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Cancel"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginRight="30dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+
+
+
+
+
+

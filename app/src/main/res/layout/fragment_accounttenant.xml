@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tenant.account.AccountFragmentTenant">
+
+
+    <TextView
+        android:id="@+id/textViewTenant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Tenant 1"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewMyProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="My Profile"
+        android:drawableLeft="@drawable/ic_baseline_account_circle_24"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:clickable="true"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTenant"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMyProfile"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textViewNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Notification"
+        android:drawableLeft="@drawable/ic_notifications_black_24dp"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNotification"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textViewPropertyDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Property Details"
+        android:drawableLeft="@drawable/ic_baseline_house_24"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPropertyDetails"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textViewContactOwner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Contact Owner"
+        android:drawableLeft="@drawable/ic_baseline_contact_owner"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/textViewContactOwner"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textViewChatWithOwner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Chat With Owner"
+        android:drawableLeft="@drawable/ic_baseline_chat_24"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/textViewChatWithOwner"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textViewSignOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Sign Out"
+        android:textColor="@color/darkGrey"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/ic_baseline_signout"
+        android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@+id/view5"
+        tools:layout_editor_absoluteX="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

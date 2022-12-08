@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">property-management</string>
+    <string name="title_activity_properties">PropertiesActivity</string>
+    <string name="title_properties">Properties</string>
+    <string name="title_requests">Requests</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home">Home</string>
+    <string name="title_maintenance_request">Maintenance Request</string>
+    <string name="title_account">My Account</string>
+    <string name="fab_content_desc">Add Maintenance Request</string>
+    <string name="label">Name</string>
+</resources>
