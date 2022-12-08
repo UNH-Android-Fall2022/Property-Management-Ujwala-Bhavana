@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">property-management</string>
+    <string name="title_home">Home</string>
+    <string name="title_maintenance_request">Maintenance Request</string>
+    <string name="title_account">My Account</string>
+    <string name="fab_content_desc">Add Maintenance Request</string>
+    <string name="label">Name</string>
+</resources>
