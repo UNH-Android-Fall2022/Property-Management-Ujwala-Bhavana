@@ -41,8 +41,6 @@ class NewRequestFragment : Fragment() {
         // Define the pic id
         private const val picID = 123
     }
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,22 +56,22 @@ class NewRequestFragment : Fragment() {
         val docId = md.digest(auth.currentUser!!.email!!.trim().toByteArray()).toHex()
         binding.save.setOnClickListener{
             var ownerId = ""
-            var propertyId = ""
-            var unitId = ""
+            var propertyName = ""
+            var unitName = ""
             db.collection("Tenants").document(docId)
                 .get()
                 .addOnSuccessListener { documents ->
                     ownerId = documents.data?.get("ownerid").toString()
-                    propertyId = documents.data?.get("propertyid").toString()
-                    unitId = documents.data?.get("unitid").toString()
+                    propertyName = documents.data?.get("property name").toString()
+                    unitName = documents.data?.get("unit name").toString()
                     val pastRequestData = PastRequestData(
                         "",
                         "",
                         subject = binding.editSubject.text.toString(),
                         description = binding.editDescription.text.toString(),
                         ownerId = ownerId,
-                        propertyId = propertyId,
-                        unitId = unitId,
+                        propertyName = propertyName,
+                        unitName = unitName,
                         status = "Open",
                         tenantId = docId
                     )
@@ -122,8 +120,8 @@ class NewRequestFragment : Fragment() {
             "subject" to pastRequestData.subject,
             "description" to pastRequestData.description,
             "ownerId" to pastRequestData.ownerId,
-            "propertyId" to pastRequestData.propertyId,
-            "unitId" to pastRequestData.unitId,
+            "propertyName" to pastRequestData.propertyName,
+            "unitName" to pastRequestData.unitName,
             "status" to pastRequestData.status,
             "tenantId" to pastRequestData.tenantId
         )

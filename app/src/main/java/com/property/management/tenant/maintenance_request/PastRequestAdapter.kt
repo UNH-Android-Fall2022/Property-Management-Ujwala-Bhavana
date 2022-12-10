@@ -38,11 +38,11 @@ class PastRequestAdapter(
         holder.itemView.setOnClickListener{view->
             Log.d(TAG,"Position Clicked: $position")
             if (req.status == "Open"){
-                val action = MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToViewPastRequestFragment(req.subject,req.description,req.ownerId,req.tenantId,req.propertyId,req.unitId,req.status,req.image,req.id)
+                val action = MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToViewPastRequestFragment(req.subject,req.description,req.image,req.id)
                 view.findNavController().navigate(action)
             }
             if (req.status == "Closed"){
-               val action = MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToClosedPastRequestFragment(req.subject,req.description,req.id)
+               val action = MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToClosedPastRequestFragment(req.subject,req.description,req.image,req.id)
                 view.findNavController().navigate(action)
             }
         }

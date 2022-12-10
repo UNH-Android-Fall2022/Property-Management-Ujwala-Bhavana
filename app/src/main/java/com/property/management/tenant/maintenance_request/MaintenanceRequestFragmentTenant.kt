@@ -15,7 +15,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.property.management.databinding.FragmentMaintenanceRequesttenantBinding
 import java.security.MessageDigest
-import java.io.ByteArrayOutputStream
 
 
 class MaintenanceRequestFragmentTenant : Fragment() {
@@ -67,8 +66,8 @@ class MaintenanceRequestFragmentTenant : Fragment() {
                         temp.get("subject").toString(),
                         temp.get("description").toString(),
                         temp.get("ownerId").toString(),
-                        temp.get("propertyId").toString(),
-                        temp.get("unitId").toString(),
+                        temp.get("propertyName").toString(),
+                        temp.get("unitName").toString(),
                         temp.get("status").toString(),
                         temp.get("tenantId").toString()
                     )

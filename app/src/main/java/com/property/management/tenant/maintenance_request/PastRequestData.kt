@@ -6,8 +6,8 @@ data class PastRequestData (
     var subject: String,
     var description: String,
     var ownerId: String,
-    var propertyId: String,
-    var unitId: String,
+    var propertyName: String,
+    var unitName: String,
     var status: String,
     var tenantId: String
 )

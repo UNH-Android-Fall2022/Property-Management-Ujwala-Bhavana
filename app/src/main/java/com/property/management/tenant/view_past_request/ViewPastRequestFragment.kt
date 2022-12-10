@@ -39,18 +39,7 @@ class ViewPastRequestFragment : Fragment() {
         descriptionParam.setText(args.description)
 
         binding.save.setOnClickListener{
-            val pastRequestData = PastRequestData(
-                id = args.documentID,
-                image = args.image,
-                ownerId = args.ownerid,
-                propertyId = args.propertyname,
-                unitId = args.unitname,
-                tenantId = args.tenantid,
-                subject = binding.textSubjectValue.text.toString(),
-                description = binding.textDescriptionValue.text.toString(),
-                status = args.status
-            )
-            writeToFirebase(pastRequestData)
+            writeToFirebase()
         }
         binding.closeRequest.setOnClickListener {
             val builder = AlertDialog.Builder(context)
@@ -79,20 +68,12 @@ class ViewPastRequestFragment : Fragment() {
 
         return root
     }
-    private fun writeToFirebase(pastRequestData: PastRequestData){
-        val req = hashMapOf(
-            "id" to pastRequestData.id,
-            "image" to pastRequestData.image,
-            "subject" to pastRequestData.subject,
-            "description" to pastRequestData.description,
-            "ownerId" to pastRequestData.ownerId,
-            "propertyId" to pastRequestData.propertyId,
-            "unitId" to pastRequestData.unitId,
-            "status" to pastRequestData.status,
-            "tenantId" to pastRequestData.tenantId
-        )
-        val docID = pastRequestData.id
-        db.collection("Maintenance Request").document(docID).set(req)
+    private fun writeToFirebase(){
+        val image = ""
+        val subject = binding.textSubjectValue.text.toString()
+        val description = binding.textDescriptionValue.text.toString()
+        val docID = args.documentID
+        db.collection("Maintenance Request").document(docID).update("image",image,"subject",subject,"description",description)
             .addOnSuccessListener { document ->
                 Log.d(TAG,"Maintenance request updated to collection: ${document}")
                 val action = ViewPastRequestFragmentDirections.actionViewPastRequestFragmentToNavigationMaintenanceRequest()

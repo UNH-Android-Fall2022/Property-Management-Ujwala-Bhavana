@@ -80,23 +80,44 @@
         android:id="@+id/propertyDetailsFragment"
         android:name="com.property.management.tenant.property_details.PropertyDetailsFragment"
         android:label="Property Details"
-        tools:layout="@layout/fragment_property_details"/>
+        tools:layout="@layout/fragment_property_details">
+        <argument
+            android:name="unitID"
+            app:argType="string" />
+        <argument
+            android:name="propertyID"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.property.management.tenant.notifications.NotificationsFragmentTenant"
         android:label="Notifications"
         tools:layout="@layout/fragment_notificationstenant">
+        <argument
+            android:name="tenantID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/chatWithOwnerFragment"
         android:name="com.property.management.tenant.chat_with_owner.ChatWithOwnerFragment"
         android:label="Chat With Owner"
-        tools:layout="@layout/fragment_chat_with_owner"/>
+        tools:layout="@layout/fragment_chat_with_owner">
+        <argument
+            android:name="tenantID"
+            app:argType="string" />
+        <argument
+            android:name="ownerID"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/contactOwnerFragment"
         android:name="com.property.management.tenant.contact_owner.ContactOwnerFragment"
         android:label="Contact Owner Fragment"
-        tools:layout="@layout/fragment_contact_owner"/>
+        tools:layout="@layout/fragment_contact_owner">
+        <argument
+            android:name="ownerID"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/viewPastRequestFragment"
         android:name="com.property.management.tenant.view_past_request.ViewPastRequestFragment"
@@ -111,21 +132,6 @@
         <action
             android:id="@+id/action_viewPastRequestFragment_to_navigation_maintenance_request"
             app:destination="@id/navigation_maintenance_request" />
-        <argument
-            android:name="ownerid"
-            app:argType="string" />
-        <argument
-            android:name="tenantid"
-            app:argType="string"/>
-        <argument
-            android:name="propertyname"
-            app:argType="string"/>
-        <argument
-            android:name="unitname"
-            app:argType="string"/>
-        <argument
-            android:name="status"
-            app:argType="string"/>
         <argument
             android:name="image"
             app:argType="string"/>
@@ -157,6 +163,9 @@
         <argument
             android:name="description"
             app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string"/>
         <argument
             android:name="documentID"
             app:argType="string" />
