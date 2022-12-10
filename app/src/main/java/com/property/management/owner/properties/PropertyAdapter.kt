@@ -29,9 +29,9 @@ class PropertyAdapter (
     override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {
         Log.d("Test", "on bindviewholder")
         val property = plist[position]
-        GlideApp.with(context).load(property.imgUrl).dontAnimate().into(holder.pImageView)
+        GlideApp.with(context).load(property.imgUrl).into(holder.pImageView)
         holder.pName.text = property.propertyName
-        holder.pUnits.text = property.units
+        holder.pUnits.text = property.units.toString() + " Units"
         //TODO get property.units value
         Log.d("Test","${property.units}")
 

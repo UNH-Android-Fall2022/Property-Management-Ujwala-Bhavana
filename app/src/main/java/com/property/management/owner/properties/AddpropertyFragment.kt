@@ -79,9 +79,9 @@ class AddpropertyFragment:Fragment() {
 
     private fun writeToFirebase(propertyData: PropertyData) {
         val property = hashMapOf(
-            "ImgURL" to propertyData.imgUrl,
+            "imgUrl" to propertyData.imgUrl,
             "propertyName" to propertyData.propertyName,
-            "Units" to propertyData.units
+            "units" to propertyData.units
         )
         val md = MessageDigest.getInstance("MD5")
         val docId = md.digest(propertyData.propertyName.trim().toByteArray(UTF_8)).toHex()
@@ -114,7 +114,7 @@ class AddpropertyFragment:Fragment() {
                         propertyData = PropertyData(
                             imgURL,
                             binding.txtAddress.text.toString(),
-                            binding.txtUnits.text.toString()
+                            binding.txtUnits.text.toString().toInt()
                         )
                         // Write to firestore
                         writeToFirebase(propertyData)
