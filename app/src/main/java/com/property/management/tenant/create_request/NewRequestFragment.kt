@@ -74,7 +74,7 @@ class NewRequestFragment : Fragment() {
                         ownerId = ownerId,
                         propertyId = propertyId,
                         unitId = unitId,
-                        status = "open",
+                        status = "Open",
                         tenantId = docId
                     )
                     writeToFirebase(pastRequestData)

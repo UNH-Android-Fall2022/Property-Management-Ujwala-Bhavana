@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_navigation_maintenance_request_to_viewPastRequestFragment"
             app:destination="@id/viewPastRequestFragment" />
+        <action
+            android:id="@+id/action_navigation_maintenance_request_to_closedPastRequestFragment"
+            app:destination="@id/closedPastRequestFragment" />
     </fragment>
 
 
@@ -141,6 +144,18 @@
             app:destination="@id/navigation_home" />
         <argument
             android:name="rentAmount"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/closedPastRequestFragment"
+        android:name="com.property.management.tenant.view_past_request_closed.ClosedPastRequestFragment"
+        android:label="ClosedPastRequestFragment"
+        tools:layout="@layout/frgament_view_past_request_closed">
+        <argument
+            android:name="subject"
+            app:argType="string" />
+        <argument
+            android:name="description"
             app:argType="string" />
     </fragment>
 

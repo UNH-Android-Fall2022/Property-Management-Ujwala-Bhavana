@@ -22,6 +22,7 @@
 
     <EditText
         android:id="@+id/editFirstName"
+        android:padding="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -51,6 +52,7 @@
 
     <EditText
         android:id="@+id/editLastName"
+        android:padding="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -80,6 +82,7 @@
 
     <EditText
         android:id="@+id/editEmailAddress"
+        android:padding="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -108,6 +111,7 @@
 
     <EditText
         android:id="@+id/editPhoneNumber"
+        android:padding="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
