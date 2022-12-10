@@ -126,6 +126,9 @@
         <argument
             android:name="image"
             app:argType="string"/>
+        <argument
+            android:name="documentID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/paymentDetailsFragment"

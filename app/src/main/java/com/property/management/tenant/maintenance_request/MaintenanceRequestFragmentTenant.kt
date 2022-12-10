@@ -54,12 +54,19 @@ class MaintenanceRequestFragmentTenant : Fragment() {
                 for (document in snapshot.result) {
                     Log.d(TAG, "${document.getData()}")
                     val temp = document.getData()
-                    /*val req: PastRequestData = PastRequestData(
-                        d_subject = temp.get("subject").toString(),
-                        d_description = temp.get("Description").toString()
+                    val req: PastRequestData = PastRequestData(
+                        document.id,
+                        temp.get("image").toString(),
+                        temp.get("subject").toString(),
+                        temp.get("description").toString(),
+                        temp.get("ownerId").toString(),
+                        temp.get("propertyId").toString(),
+                        temp.get("unitId").toString(),
+                        temp.get("status").toString(),
+                        temp.get("tenantId").toString()
                     )
-                    listOfRequests.add(req)*/
-                    listOfRequests.add(document.toObject<PastRequestData>())
+                    listOfRequests.add(req)
+                    //listOfRequests.add(document.toObject<PastRequestData>())
                 }
                 mRecyclerView = binding.pastRequestRecyclerViewList
                 mRecyclerView.layoutManager = LinearLayoutManager(context)

@@ -11,6 +11,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.provider.MediaStore
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -56,17 +57,31 @@ class NewRequestFragment : Fragment() {
         val md = MessageDigest.getInstance("MD5")
         val docId = md.digest(auth.currentUser!!.email!!.trim().toByteArray()).toHex()
         binding.save.setOnClickListener{
-            val pastRequestData = PastRequestData(
-                "",
-                subject = binding.editSubject.text.toString(),
-                description = binding.editDescription.text.toString(),
-                ownerid = "",
-                propertyname = "",
-                unitname = "",
-                status = "open",
-                tenantid = docId
-            )
-            writeToFirebase(pastRequestData)
+            var ownerId = ""
+            var propertyId = ""
+            var unitId = ""
+            db.collection("Tenants").document(docId)
+                .get()
+                .addOnSuccessListener { documents ->
+                    ownerId = documents.data?.get("ownerid").toString()
+                    propertyId = documents.data?.get("propertyid").toString()
+                    unitId = documents.data?.get("unitid").toString()
+                    val pastRequestData = PastRequestData(
+                        "",
+                        "",
+                        subject = binding.editSubject.text.toString(),
+                        description = binding.editDescription.text.toString(),
+                        ownerId = ownerId,
+                        propertyId = propertyId,
+                        unitId = unitId,
+                        status = "open",
+                        tenantId = docId
+                    )
+                    writeToFirebase(pastRequestData)
+                }
+                .addOnFailureListener{ exception ->
+                    Log.w(TAG,"Error getting documents", exception)
+                }
         }
         binding.uploadImage.setOnClickListener{
             val camera_intent =
@@ -105,11 +120,12 @@ class NewRequestFragment : Fragment() {
         val req = hashMapOf(
             "image" to "",
             "subject" to pastRequestData.subject,
-            "Description" to pastRequestData.description,
-            "ownerid" to pastRequestData.ownerid,
-            "propertyname" to pastRequestData.propertyname,
-            "unitname" to pastRequestData.unitname,
-            "status" to pastRequestData.status
+            "description" to pastRequestData.description,
+            "ownerId" to pastRequestData.ownerId,
+            "propertyId" to pastRequestData.propertyId,
+            "unitId" to pastRequestData.unitId,
+            "status" to pastRequestData.status,
+            "tenantId" to pastRequestData.tenantId
         )
         db.collection("Maintenance Request").add(req)
             .addOnSuccessListener { document ->

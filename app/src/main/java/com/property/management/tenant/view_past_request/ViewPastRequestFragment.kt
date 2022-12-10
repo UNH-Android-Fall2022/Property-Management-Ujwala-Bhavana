@@ -42,11 +42,12 @@ class ViewPastRequestFragment : Fragment() {
 
         binding.save.setOnClickListener{
             val pastRequestData = PastRequestData(
+                id = args.documentID,
                 image = args.image,
-                ownerid = args.ownerid,
-                propertyname = args.propertyname,
-                unitname = args.unitname,
-                tenantid = args.tenantid,
+                ownerId = args.ownerid,
+                propertyId = args.propertyname,
+                unitId = args.unitname,
+                tenantId = args.tenantid,
                 subject = binding.textSubjectValue.text.toString(),
                 description = binding.textDescriptionValue.text.toString(),
                 status = args.status
@@ -84,12 +85,17 @@ class ViewPastRequestFragment : Fragment() {
     }
     private fun writeToFirebase(pastRequestData: PastRequestData){
         val req = hashMapOf(
-            "image" to "",
-            "subject" to pastRequestData.d_subject,
-            "Description" to pastRequestData.d_description,
-            "tenant_ID" to pastRequestData.d_tenant_id
+            "id" to pastRequestData.id,
+            "image" to pastRequestData.image,
+            "subject" to pastRequestData.subject,
+            "description" to pastRequestData.description,
+            "ownerId" to pastRequestData.ownerId,
+            "propertyId" to pastRequestData.propertyId,
+            "unitId" to pastRequestData.unitId,
+            "status" to pastRequestData.status,
+            "tenantId" to pastRequestData.tenantId
         )
-        val docID = pastRequestData.d_id
+        val docID = pastRequestData.id
         db.collection("Maintenance Request").document(docID).set(req)
             .addOnSuccessListener { document ->
                 Log.d(TAG,"Maintenance request updated to collection: ${document}")

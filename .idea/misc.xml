@@ -5,6 +5,16 @@
       <map>
         <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/drawable/ic_baseline_apartment_24.xml" value="0.248" />
         <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/drawable/ic_baseline_cottage_24.xml" value="0.248" />
+        <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/layout/activity_ownerhome.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/layout/create_maintenance_request.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/layout/fragment_chat_with_owner.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/layout/fragment_documents.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/layout/fragment_maintenance_requesttenant.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/layout/fragment_maintenancerequestowner.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/layout/fragment_view_each_past_request.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/layout/past_request_items_list.xml" value="0.25" />
+        <entry key="..\:/Users/14752/Documents/Android/Android App Merged/Property-Management/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/back.xml" value="0.2545" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/circle.xml" value="0.1675" />
         <entry key="..\:/Users/14752/Documents/Android/tenantView_Android_F22/app/src/main/res/drawable/edit_text_style.xml" value="0.2215" />
