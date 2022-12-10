@@ -70,9 +70,6 @@ class AddpropertyFragment:Fragment() {
             uploadImage()
             //TODO check if all entries all filled
 
-            val action =
-                com.property.management.owner.properties.AddpropertyFragmentDirections.actionAddpropertyFragmentToNavigationProperties()
-            findNavController().navigate(action)
         }
 
     }
@@ -96,6 +93,9 @@ class AddpropertyFragment:Fragment() {
             db.collection("Owners").document(userid).collection("Properties").document(docId).set(property)
                 .addOnSuccessListener {
                     Log.d(TAG, "Property details added to collection")
+                    val action =
+                        com.property.management.owner.properties.AddpropertyFragmentDirections.actionAddpropertyFragmentToNavigationProperties()
+                    findNavController().navigate(action)
                 }
                 .addOnFailureListener {
                     Log.d(TAG, "Error in writing property details to collection", it)

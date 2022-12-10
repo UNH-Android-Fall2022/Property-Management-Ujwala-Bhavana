@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.property.management.GlideApp
 import com.property.management.R
 
 class UnitAdapter (
@@ -28,6 +29,7 @@ class UnitAdapter (
 
     override fun onBindViewHolder(holder: UnitViewHolder, position: Int) {
         val unit = uMap["units"]?.get(position)
+        GlideApp.with(context).load(unit?.imgUrl).into(holder.uimage)
         holder.uname.text= unit?.unitName
         holder.utype.text=unit?.unitType
         holder.usize.text= unit?.unitSize.toString()+" SqFt"

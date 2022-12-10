@@ -81,7 +81,7 @@ class UnitsFragment : Fragment() {
                             unitName = m.get("unitName").toString(),
                             unitSize = m.get("unitSize").toString().toInt(),
                             unitType = m.get("unitType").toString(),
-                            imgUrl = m.get("imguRL").toString(),
+                            imgUrl = m.get("imgUrl").toString(),
                             tenantId = m.get("tenantId").toString()
                         )
 
