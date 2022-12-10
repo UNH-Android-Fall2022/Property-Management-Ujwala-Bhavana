@@ -87,6 +87,9 @@
         <argument
             android:name="propertyID"
             app:argType="string" />
+        <argument
+            android:name="ownerID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"

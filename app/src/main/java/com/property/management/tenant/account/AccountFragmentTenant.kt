@@ -55,7 +55,7 @@ class AccountFragmentTenant : Fragment() {
         binding.textViewPropertyDetails.setOnClickListener {
             Log.d(TAG, "Property Details clicked")
             val action =
-                AccountFragmentTenantDirections.actionNavigationAccountToPropertyDetailsFragment(unitID,propertyID)
+                AccountFragmentTenantDirections.actionNavigationAccountToPropertyDetailsFragment(unitID,propertyID,ownerID)
             findNavController().navigate(action)
         }
         binding.textViewNotification.setOnClickListener {
