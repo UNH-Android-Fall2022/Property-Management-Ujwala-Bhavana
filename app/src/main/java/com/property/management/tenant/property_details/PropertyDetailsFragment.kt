@@ -49,7 +49,7 @@ class PropertyDetailsFragment : Fragment() {
                 state.text = property.data?.get("state").toString()
 
                 val zipCode: TextView = binding.textZipCodeValue
-                zipCode.text = property.data?.get("zipCode").toString()
+                zipCode.text = property.data?.get("zipcode").toString()
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
