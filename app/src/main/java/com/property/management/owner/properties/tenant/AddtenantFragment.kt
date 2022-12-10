@@ -1,4 +1,4 @@
-package com.property.management.owner.properties
+package com.property.management.owner.properties.tenant
 
 import android.os.Bundle
 import android.util.Log
@@ -20,10 +20,11 @@ class AddtenantFragment: Fragment() {
     private val binding get() = _binding!!
     private val db = Firebase.firestore
     private val auth = Firebase.auth
-    private val args : AddtenantFragmentArgs by navArgs()
+    private val args : com.property.management.owner.properties.tenant.AddtenantFragmentArgs by navArgs()
 
     private var propertyName =""
     private var unitName = ""
+    private var tenantId = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -41,15 +42,24 @@ class AddtenantFragment: Fragment() {
             propertyName = args.propertyName
             Log.d("Addtenantfragment","Add tenant button listener")
             unitName = args.unitName
+            val md = MessageDigest.getInstance("MD5")
+            val docId = md.digest(binding.tenantEmail.text.toString().trim().toByteArray(Charsets.UTF_8)).toHex()
+            tenantId = docId
             //CoroutineScope(IO).launch {
                 writeTenantToFirebase()
             //}
 
             val action =
-                AddtenantFragmentDirections.actionAddtenantFragmentToTablayoutFragment(
+                com.property.management.owner.properties.tenant.AddtenantFragmentDirections.actionAddtenantFragmentToTablayoutFragment(
                     propertyName,
-                    unitName
+                    unitName,
+                    docId
                 )
+            findNavController().navigate(action)
+        }
+        binding.btntenantcancel.setOnClickListener {
+            tenantId = ""
+            val action = AddtenantFragmentDirections.actionAddtenantFragmentToTablayoutFragment(propertyName,unitName,tenantId)
             findNavController().navigate(action)
         }
 
@@ -86,7 +96,7 @@ class AddtenantFragment: Fragment() {
         val docId = md.digest(tenantEmail.trim().toByteArray(Charsets.UTF_8)).toHex()
 
         val unitdoc = db.collection("Owners").document(auth.currentUser!!.uid).collection("Properties").document(docIdProp).collection("Units").document(docIdUnit)
-        unitdoc.update("tenantid",docId)
+        unitdoc.update("tenantId",docId)
 
         db.collection("Tenants").document(docId).set(tenant)
             .addOnSuccessListener {

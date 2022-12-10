@@ -78,10 +78,11 @@ class UnitsFragment : Fragment() {
                         val m = document.getData()
 
                         val unit: UnitData = UnitData(
-                            unitName = m.get("Unit Name").toString(),
-                            unitSize = m.get("Unit Size").toString().toInt(),
-                            unitType = m.get("Unit Type").toString(),
-                            imgURL = m.get("imguRL").toString()
+                            unitName = m.get("unitName").toString(),
+                            unitSize = m.get("unitSize").toString().toInt(),
+                            unitType = m.get("unitType").toString(),
+                            imgUrl = m.get("imguRL").toString(),
+                            tenantId = m.get("tenantId").toString()
                         )
 
                             // Log.d("Test", "Unit $unit")

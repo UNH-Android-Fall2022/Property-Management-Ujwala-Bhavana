@@ -1,4 +1,4 @@
-package com.property.management.owner.properties
+package com.property.management.owner.properties.tenant
 
 import android.os.Bundle
 import android.view.LayoutInflater

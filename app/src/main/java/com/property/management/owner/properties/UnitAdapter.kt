@@ -38,7 +38,8 @@ class UnitAdapter (
             Log.d("UnitAdapter","$propName")
             val unitName = uMap["units"]?.get(position)!!.unitName
             Log.d("UnitAdapter","$unitName")
-            val action = UnitsFragmentDirections.actionUnitsFragmentToTablayoutFragment(propName,unitName)
+            val tenantId = uMap["units"]?.get(position)!!.tenantId
+            val action = UnitsFragmentDirections.actionUnitsFragmentToTablayoutFragment(propName, unitName, tenantId)
             view.findNavController().navigate(action)
         }
     }

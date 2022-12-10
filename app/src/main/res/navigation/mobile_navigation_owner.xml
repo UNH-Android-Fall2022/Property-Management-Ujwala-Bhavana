@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/tablayoutFragment"
-        android:name="com.property.management.owner.properties.TablayoutFragment"
+        android:name="com.property.management.owner.properties.tenant.TablayoutFragment"
         android:label="TablayoutFragment" >
         <action
             android:id="@+id/action_tablayoutFragment_to_addtenantFragment"
@@ -99,10 +99,13 @@
             android:name="unitName"
             app:argType="string"
             />
+        <argument
+            android:name="tenantId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/tenantFragment"
-        android:name="com.property.management.owner.properties.TenantFragment"
+        android:name="com.property.management.owner.properties.tenant.TenantFragment"
         android:label="fragment_tenant"
         tools:layout="@layout/fragment_tenant" >
         <action
@@ -111,7 +114,7 @@
     </fragment>
     <fragment
         android:id="@+id/addtenantFragment"
-        android:name="com.property.management.owner.properties.AddtenantFragment"
+        android:name="com.property.management.owner.properties.tenant.AddtenantFragment"
         android:label="AddtenantFragment" >
         <action
             android:id="@+id/action_addtenantFragment_to_tablayoutFragment"
@@ -124,6 +127,9 @@
             android:name="unitName"
             app:argType="string"
             />
+        <argument
+            android:name="tenantId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/maintenanceRequestFragment"

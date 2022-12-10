@@ -67,7 +67,7 @@ class AddunitFragment:Fragment() {
         binding.btnAddUnit.setOnClickListener{
 
             val unitData = UnitData(
-                imgURL = "",
+                imgUrl = "",
                 binding.txtUnitName.text.toString(),
                 binding.txtUnittype.text.toString(),
                 binding.txtSqft.text.toString().toInt()
@@ -81,10 +81,11 @@ class AddunitFragment:Fragment() {
 
     private fun writeToFirebase(unitData: UnitData) {
         val unit = hashMapOf(
-            "imguRL" to "",
-            "Unit Name" to unitData.unitName,
-            "Unit Type" to unitData.unitType,
-            "Unit Size" to unitData.unitSize,
+            "imgUrl" to "",
+            "unitName" to unitData.unitName,
+            "unitType" to unitData.unitType,
+            "unitSize" to unitData.unitSize,
+            "tenantId" to ""
         )
         val md = MessageDigest.getInstance("MD5")
         val docIdProp = md.digest(propertyName.trim().toByteArray(Charsets.UTF_8)).toHex()
