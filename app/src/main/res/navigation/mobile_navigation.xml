@@ -157,6 +157,12 @@
         <argument
             android:name="description"
             app:argType="string" />
+        <argument
+            android:name="documentID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_closedPastRequestFragment_to_navigation_maintenance_request"
+            app:destination="@id/navigation_maintenance_request" />
     </fragment>
 
 

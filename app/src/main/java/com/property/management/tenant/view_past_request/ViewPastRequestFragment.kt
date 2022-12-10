@@ -54,17 +54,15 @@ class ViewPastRequestFragment : Fragment() {
             )
             writeToFirebase(pastRequestData)
         }
-        binding.delete.setOnClickListener {
+        binding.closeRequest.setOnClickListener {
             val builder = AlertDialog.Builder(context)
-            builder.setMessage("Are you sure you want to Delete?")
+            builder.setMessage("Are you sure you want to close the request?")
                 .setCancelable(false)
                 .setPositiveButton("Yes") { dialog, id ->
                     Log.d(TAG,"yes is selected!!")
-                    db.collection("Maintenance Request").document(args.documentID).delete()
+                    db.collection("Maintenance Request").document(args.documentID).update("status","Closed")
                         .addOnSuccessListener { document ->
-                            Log.d(TAG,"Maintenance request deleted from collection:" +
-                                    "" +
-                                    "")
+                            Log.d(TAG,"Maintenance request closed")
                             val action = ViewPastRequestFragmentDirections.actionViewPastRequestFragmentToNavigationMaintenanceRequest()
                             findNavController().navigate(action)
                         }

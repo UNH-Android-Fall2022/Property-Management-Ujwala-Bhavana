@@ -42,7 +42,7 @@ class PastRequestAdapter(
                 view.findNavController().navigate(action)
             }
             if (req.status == "Closed"){
-               val action = MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToClosedPastRequestFragment(req.subject,req.description)
+               val action = MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToClosedPastRequestFragment(req.subject,req.description,req.id)
                 view.findNavController().navigate(action)
             }
         }
