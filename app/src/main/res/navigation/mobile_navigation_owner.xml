@@ -151,6 +151,10 @@
             android:name="imgURL"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/addedtenantFragment"
+        android:name="com.property.management.owner.properties.tenant.AddedtenantFragment"
+        android:label="AddedtenantFragment" />
 
 
 </navigation>

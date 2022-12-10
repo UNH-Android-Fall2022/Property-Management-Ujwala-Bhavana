@@ -13,6 +13,7 @@ class AddedtenantFragment:Fragment() {
     private var _binding: FragmentAddedtenantBinding? = null
     private val binding get() = _binding!!
     private val db = Firebase.firestore
+    private var tenantId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +27,24 @@ class AddedtenantFragment:Fragment() {
         _binding = FragmentAddedtenantBinding.inflate(inflater,container,false)
         val root:View = binding.root
 
+        val bundle = Bundle(this.arguments)
+        if(bundle!=null)
+        {
+            tenantId = bundle.get("tenantId").toString()
+        }
 
-        binding.txtName.setText("name")
-        binding.textEmailid.setText("")
-        binding.textPhonenum.setText("")
-        binding.textRentt.setText("")
-        binding.textLeasedate.setText("")
-        binding.textLeaseCycle.setText("")
+        db.collection("Tenants").document(tenantId).get()
+            .addOnCompleteListener{document ->
+                val m = document.result.getData()
+                val name = m!!.get("firstName").toString() + " " + m.get("lastName").toString()
+                binding.txtName.setText(name)
+                binding.textEmailid.setText(m.get("email").toString())
+                binding.textPhonenum.setText(m.get("phoneNumber").toString())
+                binding.textRentt.setText(m.get("rent").toString())
+                binding.textLeasedate.setText(m.get("leaseStartDate").toString())
+                binding.textLeaseCycle.setText(m.get("leaseCycle").toString())
+            }
+
 
         return root
     }

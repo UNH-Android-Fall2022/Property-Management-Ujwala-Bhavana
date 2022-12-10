@@ -44,18 +44,10 @@ class AddtenantFragment: Fragment() {
             unitName = args.unitName
             val md = MessageDigest.getInstance("MD5")
             val docId = md.digest(binding.tenantEmail.text.toString().trim().toByteArray(Charsets.UTF_8)).toHex()
-            tenantId = docId
             //CoroutineScope(IO).launch {
                 writeTenantToFirebase()
             //}
 
-            val action =
-                com.property.management.owner.properties.tenant.AddtenantFragmentDirections.actionAddtenantFragmentToTablayoutFragment(
-                    propertyName,
-                    unitName,
-                    docId
-                )
-            findNavController().navigate(action)
         }
         binding.btntenantcancel.setOnClickListener {
             tenantId = ""
@@ -76,6 +68,13 @@ class AddtenantFragment: Fragment() {
         Log.d("Addtenentfragment","propid $docIdProp")
         Log.d("AddTenantFragment","unitid $docIdUnit")
 
+        var leaseCycle = ""
+
+        if(binding.rbtnmonthly.isChecked)
+            leaseCycle = "Monthly"
+        else if(binding.rbtnyearly.isChecked)
+            leaseCycle = "Yearly"
+
 
 
         val tenant = hashMapOf(
@@ -83,9 +82,9 @@ class AddtenantFragment: Fragment() {
             "lastName" to binding.txtlastname.text.toString(),
             "email" to binding.tenantEmail.text.toString(),
             "phoneNumber" to binding.tenantPhone.text.toString(),
-            "rent" to binding.Rent.text.toString(),
+            "rent" to binding.Rent.text.toString().toInt(),
             "leaseStartDate" to binding.leaseStartdate.text.toString(),
-            "leaseCycle" to binding.leaseCycle.text.toString(),
+            "leaseCycle" to leaseCycle,
             "ownerId" to auth.currentUser?.uid,
             "propertyId" to docIdProp,
             "unitId" to docIdUnit,
@@ -95,16 +94,23 @@ class AddtenantFragment: Fragment() {
 
         val docId = md.digest(tenantEmail.trim().toByteArray(Charsets.UTF_8)).toHex()
 
-        val unitdoc = db.collection("Owners").document(auth.currentUser!!.uid).collection("Properties").document(docIdProp).collection("Units").document(docIdUnit)
-        unitdoc.update("tenantId",docId)
 
         db.collection("Tenants").document(docId).set(tenant)
             .addOnSuccessListener {
                 Log.d("Test","Tenant details added succesfully to Firebase")
+                val action =
+                    com.property.management.owner.properties.tenant.AddtenantFragmentDirections.actionAddtenantFragmentToTablayoutFragment(
+                        propertyName,
+                        unitName,
+                        docId
+                    )
+                findNavController().navigate(action)
             }
             .addOnFailureListener{
                 Log.d("Test","Error in adding Tenant to Firebase",it)
             }
+        val unitdoc = db.collection("Owners").document(auth.currentUser!!.uid).collection("Properties").document(docIdProp).collection("Units").document(docIdUnit)
+        unitdoc.update("tenantId",docId)
     }
 
     private fun ByteArray.toHex() :String = joinToString(separator = "") { byte -> "%02x".format(byte) }
