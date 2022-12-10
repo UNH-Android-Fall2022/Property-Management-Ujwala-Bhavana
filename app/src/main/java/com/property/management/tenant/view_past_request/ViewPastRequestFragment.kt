@@ -19,8 +19,6 @@ class ViewPastRequestFragment : Fragment() {
 
     private var _binding: FragmentViewEachPastRequestBinding? = null
     val args: ViewPastRequestFragmentArgs by navArgs()
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
