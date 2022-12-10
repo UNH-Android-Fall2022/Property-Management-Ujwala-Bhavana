@@ -18,15 +18,28 @@
         app:layout_constraintVertical_bias="0.037"
         android:textSize="20dp"
         android:textStyle="bold"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtfirstname"
+        android:hint="First Name"
+        app:layout_constraintTop_toBottomOf="@+id/txtHeader1"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/edit_text_border"/>
+
+
 
     <EditText
-        android:id="@+id/tenantName"
+        android:id="@+id/txtlastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_border"
-        android:hint="Tenant Name"
+        android:hint="Last Name"
         android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/txtHeader1"
+        app:layout_constraintTop_toBottomOf="@+id/txtfirstname"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"/>
@@ -37,7 +50,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_border"
         android:hint="Phone number"
-        app:layout_constraintTop_toBottomOf="@+id/tenantName"
+        app:layout_constraintTop_toBottomOf="@+id/txtlastname"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"

@@ -32,8 +32,6 @@ class PropertyAdapter (
         GlideApp.with(context).load(property.imgUrl).into(holder.pImageView)
         holder.pName.text = property.propertyName
         holder.pUnits.text = property.units.toString() + " Units"
-        //TODO get property.units value
-        Log.d("Test","${property.units}")
 
         holder.itemView.setOnClickListener{view ->
             Log.d("Test","Position Clicked $position")

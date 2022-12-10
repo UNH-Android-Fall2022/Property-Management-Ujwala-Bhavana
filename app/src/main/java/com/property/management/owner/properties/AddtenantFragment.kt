@@ -69,17 +69,18 @@ class AddtenantFragment: Fragment() {
 
 
         val tenant = hashMapOf(
-            "Name" to binding.tenantName.text.toString(),
-            "Email" to binding.tenantEmail.text.toString(),
-            "Phone Number" to binding.tenantPhone.text.toString(),
-            "Rent" to binding.Rent.text.toString(),
-            "Lease Start Date" to binding.leaseStartdate.text.toString(),
-            "Lease Cycle" to binding.leaseCycle.text.toString(),
-            "ownerid" to auth.currentUser?.uid,
-            "propertyid" to docIdProp,
-            "unitid" to docIdUnit,
-            "property name" to propertyName,
-            "unit name" to unitName
+            "firstName" to binding.txtfirstname.text.toString(),
+            "lastName" to binding.txtlastname.text.toString(),
+            "email" to binding.tenantEmail.text.toString(),
+            "phoneNumber" to binding.tenantPhone.text.toString(),
+            "rent" to binding.Rent.text.toString(),
+            "leaseStartDate" to binding.leaseStartdate.text.toString(),
+            "leaseCycle" to binding.leaseCycle.text.toString(),
+            "ownerId" to auth.currentUser?.uid,
+            "propertyId" to docIdProp,
+            "unitId" to docIdUnit,
+            "propertyName" to propertyName,
+            "unitName" to unitName
         )
 
         val docId = md.digest(tenantEmail.trim().toByteArray(Charsets.UTF_8)).toHex()

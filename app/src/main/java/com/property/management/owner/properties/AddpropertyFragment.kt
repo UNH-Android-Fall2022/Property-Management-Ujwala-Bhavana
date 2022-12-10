@@ -81,6 +81,9 @@ class AddpropertyFragment:Fragment() {
         val property = hashMapOf(
             "imgUrl" to propertyData.imgUrl,
             "propertyName" to propertyData.propertyName,
+            "city" to propertyData.city,
+            "state" to propertyData.state,
+            "zipcode" to propertyData.zipcode,
             "units" to propertyData.units
         )
         val md = MessageDigest.getInstance("MD5")
@@ -114,6 +117,9 @@ class AddpropertyFragment:Fragment() {
                         propertyData = PropertyData(
                             imgURL,
                             binding.txtAddress.text.toString(),
+                            binding.txtCity.text.toString(),
+                            binding.txtState.text.toString(),
+                            binding.txtZipcode.text.toString().toInt(),
                             binding.txtUnits.text.toString().toInt()
                         )
                         // Write to firestore
@@ -125,7 +131,7 @@ class AddpropertyFragment:Fragment() {
                     }
             }
             .addOnFailureListener{exception ->
-                Log.d("Test","Error in uploading image to Firebase")
+                Log.d("Test","Error in uploading image to Firebase",exception)
             }
     }
 
