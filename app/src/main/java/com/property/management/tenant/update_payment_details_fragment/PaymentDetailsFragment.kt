@@ -23,7 +23,6 @@ class PaymentDetailsFragment : Fragment() {
     private var _binding: FragmentUpdatePaymentDetailsBinding? = null
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
-    private val args : PaymentDetailsFragmentArgs by navArgs()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -82,7 +81,6 @@ class PaymentDetailsFragment : Fragment() {
             "amountPaid" to binding.editAmountPaid.text.toString(),
             "paid" to false,
             "transactionDate" to binding.editTransactionDate.text.toString(),
-            "rentAmount" to args.rentAmount,
             "paymentForMonth" to binding.editPaymentForDate.text.toString(),
             "transactionReceipt" to ""
         )

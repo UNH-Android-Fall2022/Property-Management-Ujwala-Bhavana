@@ -151,9 +151,6 @@
         <action
             android:id="@+id/action_paymentDetailsFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
-        <argument
-            android:name="rentAmount"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/closedPastRequestFragment"
