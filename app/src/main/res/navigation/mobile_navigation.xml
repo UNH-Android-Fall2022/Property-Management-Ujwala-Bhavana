@@ -30,7 +30,7 @@
 
 
     <fragment
-        android:id="@+id/navigation_account"
+        android:id="@+id/navigation_account_owner"
         android:name="com.property.management.tenant.account.AccountFragmentTenant"
         android:label="My Account"
         tools:layout="@layout/fragment_accounttenant" >
@@ -68,7 +68,7 @@
         tools:layout="@layout/fragment_my_profile" >
         <action
             android:id="@+id/action_my_profile_to_navigation_account"
-            app:destination="@id/navigation_account" />
+            app:destination="@id/navigation_account_owner" />
         <argument
             android:name="tenant_ID"
             app:argType="string" />

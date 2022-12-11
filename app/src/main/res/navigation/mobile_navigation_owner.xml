@@ -23,7 +23,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_requests"
+        android:id="@+id/navigation_requests_owner"
         android:name="com.property.management.owner.requests.RequestsFragment"
         android:label="@string/title_requests"
         tools:layout="@layout/fragment_requests" >
@@ -33,15 +33,15 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_notifications_owner"
         android:name="com.property.management.owner.notifications.NotificationsFragmentOwner"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notificationstenant" />
+        tools:layout="@layout/fragment_notificationsowner" />
     <fragment
-        android:id="@+id/navigation_account"
+        android:id="@+id/navigation_account_owner"
         android:name="com.property.management.owner.account.AccountFragmentOwner"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_accounttenant"/>
+        tools:layout="@layout/fragment_accountowner"/>
     <fragment
         android:id="@+id/addpropertyFragment"
         android:name="com.property.management.owner.properties.AddpropertyFragment"
@@ -154,7 +154,11 @@
     <fragment
         android:id="@+id/addedtenantFragment"
         android:name="com.property.management.owner.properties.tenant.AddedtenantFragment"
-        android:label="AddedtenantFragment" />
+        android:label="AddedtenantFragment" >
+        <action
+            android:id="@+id/action_addedtenantFragment_to_addtenantFragment"
+            app:destination="@id/addtenantFragment" />
+    </fragment>
 
 
 </navigation>
