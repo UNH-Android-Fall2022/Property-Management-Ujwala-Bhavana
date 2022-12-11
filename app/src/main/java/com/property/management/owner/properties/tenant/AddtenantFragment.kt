@@ -1,5 +1,7 @@
 package com.property.management.owner.properties.tenant
 
+import android.app.DatePickerDialog
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +16,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 import java.security.MessageDigest
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddtenantFragment: Fragment() {
     private var _binding: FragmentAddtenantBinding? = null
@@ -25,6 +29,7 @@ class AddtenantFragment: Fragment() {
     private var propertyName =""
     private var unitName = ""
     private var tenantId = ""
+    val calendar = Calendar.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -38,6 +43,17 @@ class AddtenantFragment: Fragment() {
         val root:View = binding.root
 
 
+        val datePicker = DatePickerDialog.OnDateSetListener{view, year, month, dayOfMonth ->
+            calendar.set(Calendar.YEAR,year)
+            calendar.set(Calendar.MONTH, month)
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateDateInView()
+        }
+        binding.leaseStartdate.setOnClickListener {
+            DatePickerDialog(requireContext(), datePicker, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                .show()
+
+        }
         binding.btnAddTenant.setOnClickListener{
             propertyName = args.propertyName
             Log.d("Addtenantfragment","Add tenant button listener")
@@ -57,6 +73,13 @@ class AddtenantFragment: Fragment() {
 
         return root
     }
+
+    private fun updateDateInView() {
+        val format = "MM/dd/YYYY"
+        val sdf = SimpleDateFormat(format, Locale.US)
+        binding.leaseStartdate.setText(sdf.format(calendar.time))
+    }
+
 
     private fun writeTenantToFirebase() {
         val tenantEmail = binding.tenantEmail.text.toString()
