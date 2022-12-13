@@ -1,11 +1,13 @@
 package com.property.management.tenant.view_past_request_closed
 
 import android.app.AlertDialog
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.property.management.GlideApp
 import com.property.management.databinding.FrgamentViewPastRequestClosedBinding
 
 
@@ -40,6 +43,9 @@ class ClosedPastRequestFragment : Fragment() {
         subjectParam.setText(args.subject)
         val descriptionParam: TextView = binding.textDescriptionValue
         descriptionParam.setText(args.description)
+        val imageParam : ImageView = binding.imageValue
+        GlideApp.with(requireContext()).load(args.image).into(imageParam)
+
         binding.reopenRequest.setOnClickListener{
             val builder = AlertDialog.Builder(context)
             builder.setMessage("Are you sure you want to reopen the request?")

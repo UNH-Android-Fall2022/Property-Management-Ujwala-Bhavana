@@ -89,11 +89,11 @@ class AccountFragmentTenant : Fragment() {
         db.collection("Tenants").document(tenantID)
             .get()
             .addOnSuccessListener { documents ->
-                propertyID = documents.data?.get("propertyid").toString()
-                unitID = documents.data?.get("unitid").toString()
-                ownerID = documents.data?.get("ownerid").toString()
+                propertyID = documents.data?.get("propertyId").toString()
+                unitID = documents.data?.get("unitId").toString()
+                ownerID = documents.data?.get("ownerId").toString()
                 val tenantName: TextView = binding.textViewTenant
-                tenantName.text = "Hello ".plus(documents.data?.get("Name").toString()).plus("!!")
+                tenantName.text = "Hello ".plus(documents.data?.get("firstName")).plus(" ").plus(documents.data?.get("lastName").toString()).plus("!!")
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)

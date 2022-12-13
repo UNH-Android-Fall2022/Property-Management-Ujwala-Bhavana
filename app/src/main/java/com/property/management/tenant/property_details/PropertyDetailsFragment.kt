@@ -63,7 +63,7 @@ class PropertyDetailsFragment : Fragment() {
             .get()
             .addOnSuccessListener{unit ->
                 val unitName: TextView = binding.textAddress2Value
-                unitName.text = unit.data?.get("Unit Name").toString()
+                unitName.text = unit.data?.get("unitName").toString()
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)

@@ -49,13 +49,13 @@ class MyProfileFragment : Fragment() {
                 Log.d(TAG,"Called Tenant db from my profile fragment:")
 
                 val tenantFirstName: TextView = binding.editFirstName
-                tenantFirstName.text = documents.data?.get("Name").toString()
-                //val tenantLastName: TextView = binding.editLastName
-                //tenantLastName.text = document.data["lastName"].toString()
+                tenantFirstName.text = documents.data?.get("firstName").toString()
+                val tenantLastName: TextView = binding.editLastName
+                tenantLastName.text = documents.data?.get("lastName").toString()
                 val tenantEmail: TextView = binding.editEmailAddress
-                tenantEmail.text = documents.data?.get("Email").toString()
+                tenantEmail.text = documents.data?.get("email").toString()
                 val tenantPhoneNum: TextView = binding.editPhoneNumber
-                tenantPhoneNum.text = documents.data?.get("Phone Number").toString()
+                tenantPhoneNum.text = documents.data?.get("phoneNumber").toString()
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
@@ -69,7 +69,7 @@ class MyProfileFragment : Fragment() {
             val phoneNum = binding.editPhoneNumber.text.toString()
 
 
-        db.collection("Tenants").document(args.tenantID).update("Name",firstName,"Email",emailID,"Phone Number",phoneNum)
+        db.collection("Tenants").document(args.tenantID).update("firstName",firstName,"lastName",lastName,"email",emailID,"phoneNumber",phoneNum)
             .addOnSuccessListener { document ->
                 Log.d(TAG,"Tenant details updated to collection: $document")
                 val action = MyProfileFragmentDirections.actionMyProfileToNavigationAccount()

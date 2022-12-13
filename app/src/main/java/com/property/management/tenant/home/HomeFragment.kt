@@ -56,13 +56,15 @@ class HomeFragment : Fragment() {
         val currentMonthYear : String = formatDate.format(currentDate.time)
         var recordExists : Boolean = false
         var ifPaid : Boolean = false
-        db.collection("Payments").whereEqualTo("paymentForMonth",currentMonthYear)
+        db.collection("Payments").whereEqualTo("tenantId",tenantId)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents){
-                    Log.d(TAG," Payment for month: ${document.data["paymentForMonth"]}")
-                        recordExists  = true
+                    if(document.data["paymentForMonth"] == currentMonthYear ) {
+                        Log.d(TAG, " Payment for month: ${document.data["paymentForMonth"]}")
+                        recordExists = true
                         ifPaid = document.data["paid"] as Boolean
+                    }
                 }
             }
             .addOnFailureListener{ exception ->
@@ -73,7 +75,7 @@ class HomeFragment : Fragment() {
             .get()
             .addOnSuccessListener { document ->
 
-                    rentAmount = document.data?.get("Rent").toString()
+                    rentAmount = document.data?.get("rent").toString()
                     if(recordExists == true and ifPaid == true){
                         paymentAmountView.text = "0"
                         paymentDueDateView.text = "Yayy!! You have no current bills to pay."
