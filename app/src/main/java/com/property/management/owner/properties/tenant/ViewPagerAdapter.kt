@@ -10,7 +10,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.property.management.owner.properties.DocumentsFragment
-import com.property.management.owner.properties.PaymentsFragment
+import com.property.management.owner.properties.payments.PaymentsFragment
 import java.security.MessageDigest
 
 class ViewPagerAdapter(fragment: Fragment, private val propName: String, private val unitName: String,
@@ -63,7 +63,16 @@ class ViewPagerAdapter(fragment: Fragment, private val propName: String, private
                return t
            }
            1->{
-               PaymentsFragment()
+               val bundle = Bundle()
+               bundle.putString("propName", propName)
+               bundle.putString("unitName", unitName)
+               bundle.putString("tenantId",tenantId)
+               Log.d("Test","ViewPagerAdapter TenantId $tenantId")
+               val t = PaymentsFragment()
+               t.arguments = bundle
+
+               return t
+
            }
            2->{
                DocumentsFragment()

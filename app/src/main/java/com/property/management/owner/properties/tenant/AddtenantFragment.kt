@@ -16,7 +16,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 import java.security.MessageDigest
+import java.security.Timestamp
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 class AddtenantFragment: Fragment() {
@@ -70,7 +72,6 @@ class AddtenantFragment: Fragment() {
             val action = AddtenantFragmentDirections.actionAddtenantFragmentToTablayoutFragment(propertyName,unitName,tenantId)
             findNavController().navigate(action)
         }
-
         return root
     }
 
@@ -106,7 +107,7 @@ class AddtenantFragment: Fragment() {
             "email" to binding.tenantEmail.text.toString(),
             "phoneNumber" to binding.tenantPhone.text.toString(),
             "rent" to binding.Rent.text.toString().toInt(),
-            "leaseStartDate" to binding.leaseStartdate.text.toString(),
+            "leaseStartDate" to Date(binding.leaseStartdate.text.toString()),
             "leaseCycle" to leaseCycle,
             "ownerId" to auth.currentUser?.uid,
             "propertyId" to docIdProp,
