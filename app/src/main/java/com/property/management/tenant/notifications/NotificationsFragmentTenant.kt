@@ -78,6 +78,7 @@ class NotificationsFragmentTenant : Fragment() {
         db.collection("Tenants").document(args.tenantID)
             .get()
             .addOnSuccessListener { document ->
+                Log.d(TAG,"${document.data}")
                 var dueAmount = document.data?.get("rent").toString()
                 var formatDate = SimpleDateFormat("MMMM YYYY", Locale.US)
                 val currentDate = Date()
