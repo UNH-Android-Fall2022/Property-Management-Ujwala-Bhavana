@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sender Name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:id="@+id/txtsenderName"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:id="@+id/view1"
+        android:layout_below="@id/txtsenderName"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_view_messages"
+        android:layout_below="@+id/view1"/>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="8dp"
+    android:layout_marginTop="350dp"
+    android:elevation="12dp"
+    android:orientation="horizontal"
+        android:layout_marginBottom="50dp">
+    <EditText
+        android:id="@+id/edittext_chat"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:hint="Type message here..."
+        android:background="@drawable/et_background"
+        android:layout_weight="1" />
+    <ImageView
+        android:id="@+id/button_send"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_baseline_send_24" />
+
+</LinearLayout>
+
+</RelativeLayout>

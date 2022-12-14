@@ -160,5 +160,25 @@
             app:destination="@id/addtenantFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_chats"
+        android:name="com.property.management.owner.chats.ChatsFragment"
+        android:label="ChatsFragment"
+        tools:layout="@layout/fragment_chats">
+        <action
+            android:id="@+id/action_chatsFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.property.management.owner.chats.ChatFragment"
+        android:label="ChatFragment" >
+        <argument
+            android:name="uid"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

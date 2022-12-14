@@ -34,6 +34,7 @@ class OwnerHomeActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_properties,
                 R.id.navigation_requests_owner,
+                R.id.navigation_chats,
                 R.id.navigation_notifications_owner,
                 R.id.navigation_account_owner
             )

@@ -10,6 +10,10 @@
         android:id="@+id/navigation_requests_owner"
         android:icon="@drawable/ic_baseline_pending"
         android:title="@string/title_requests" />
+    <item
+        android:id="@+id/navigation_chats"
+        android:icon="@drawable/ic_baseline_chat_24"
+        android:title="Chats"/>
 
     <item
         android:id="@+id/navigation_notifications_owner"
