@@ -74,7 +74,6 @@ class HomeFragment : Fragment() {
         db.collection("Tenants").document(tenantId)
             .get()
             .addOnSuccessListener { document ->
-
                     rentAmount = document.data?.get("rent").toString()
                     if(recordExists == true and ifPaid == true){
                         paymentAmountView.text = "0"

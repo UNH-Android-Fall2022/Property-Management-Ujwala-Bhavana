@@ -66,7 +66,7 @@ class MyProfileFragment : Fragment() {
             val firstName = binding.editFirstName.text.toString()
             val lastName =  binding.editLastName.text.toString()
             val emailID = binding.editEmailAddress.text.toString()
-            val phoneNum = binding.editPhoneNumber.text.toString()
+            val phoneNum = binding.editPhoneNumber.text.toString().toInt()
 
 
         db.collection("Tenants").document(args.tenantID).update("firstName",firstName,"lastName",lastName,"email",emailID,"phoneNumber",phoneNum)

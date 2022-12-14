@@ -1,6 +1,5 @@
 package com.property.management.tenant.create_request
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -9,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -35,10 +33,8 @@ class NewRequestFragment : Fragment() {
     private var storageRef = Firebase.storage
     private var imgURL = ""
     companion object {
-        // Define the pic id
         private const val picID = 123
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -86,29 +82,6 @@ class NewRequestFragment : Fragment() {
                 Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(camera_intent, picID)
         }
-        /*binding.maintenanceRequestImageView.setOnClickListener{
-            Log.d(TAG,"image view clicked")
-            /*val image : ImageView = binding.maintenanceRequestImageView
-            val builder = AlertDialog.Builder(context)
-            builder.setView(image)
-                .setCancelable(false)
-                .setPositiveButton("Ok") { dialog, id ->
-                    dialog.dismiss()
-                }
-            val alert = builder.create()
-            alert.show()*/
-
-            val imageDialog = AlertDialog.Builder(context)
-            imageDialog.setTitle("Title")
-            val showImage : ImageView = binding.maintenanceRequestImageView
-            imageDialog.setView(showImage)
-
-            imageDialog.setNegativeButton(
-                "Close"
-            ) { arg0, arg1 -> }
-            imageDialog.show()
-
-        }*/
         return root
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

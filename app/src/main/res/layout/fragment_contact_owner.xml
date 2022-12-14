@@ -67,6 +67,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/back"
         android:padding="2dp"
+        android:inputType="number"
         android:textSize="19dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.144"
@@ -99,4 +100,5 @@
         app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textOwnerEmailID" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

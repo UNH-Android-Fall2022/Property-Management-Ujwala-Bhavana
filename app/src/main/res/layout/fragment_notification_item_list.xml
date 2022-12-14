@@ -27,7 +27,7 @@
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@+id/notificationImage"
             android:text="TextView"
-            android:textSize="20dp"
+            android:textSize="19dp"
             android:maxLines="1"
             android:ellipsize="end"
             android:textStyle="bold" />
@@ -43,13 +43,13 @@
             android:maxLines="3"
             android:ellipsize="end"
             android:text="Description"
-            android:textSize="19dp" />
+            android:textSize="17dp" />
 
 
         <Button
             android:id="@+id/deleteButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"

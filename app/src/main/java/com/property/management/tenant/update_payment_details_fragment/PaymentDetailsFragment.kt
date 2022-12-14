@@ -10,16 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
-import com.property.management.databinding.FragmentUpdatePaymentDetailsBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.property.management.databinding.FragmentUpdatePaymentDetailsBinding
 import java.io.ByteArrayOutputStream
 import java.security.MessageDigest
 import java.text.SimpleDateFormat
@@ -36,7 +35,7 @@ class PaymentDetailsFragment : Fragment() {
     private var storageRef = Firebase.storage
     private val auth = Firebase.auth
     private var imgURL = ""
-    private var formatDate = SimpleDateFormat("dd MMMM YYYY", Locale.US)
+    private var formatDate = SimpleDateFormat("MMMM d, yyyy", Locale.US)
     private var formatDateWithMonthYear = SimpleDateFormat("MMMM YYYY", Locale.US)
     private var tenantId = ""
     companion object {
@@ -67,7 +66,7 @@ class PaymentDetailsFragment : Fragment() {
                 selectDate.set(Calendar.MONTH,i2)
                 selectDate.set(Calendar.DAY_OF_MONTH,i3)
                 val date : String = formatDate.format(selectDate.time)
-                Toast.makeText(requireContext(),"Date: "+ date, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(),"Date: "+ date, Toast.LENGTH_SHORT).show()
                 val displayDate: TextView = binding.editTransactionDate
                 displayDate.text = date
 
@@ -83,7 +82,7 @@ class PaymentDetailsFragment : Fragment() {
                 selectDate.set(Calendar.MONTH,i2)
                 //selectDate.set(Calendar.DAY_OF_MONTH,i3)
                 val date : String = formatDateWithMonthYear.format(selectDate.time)
-                Toast.makeText(requireContext(),"Date: "+ date, Toast.LENGTH_SHORT).show()
+
                 val displayDate: TextView = binding.editPaymentForDate
                 displayDate.text = date
             },getDate.get(Calendar.YEAR),getDate.get(Calendar.MONTH),getDate.get(Calendar.DAY_OF_MONTH))
@@ -92,6 +91,7 @@ class PaymentDetailsFragment : Fragment() {
         binding.saveButton.setOnClickListener {
             callPaymentDatabase()
         }
+
         binding.uploadImageButton.setOnClickListener{
             val camera_intent =
                 Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -122,11 +122,11 @@ class PaymentDetailsFragment : Fragment() {
             }
     }
     private fun callPaymentDatabase(){
-
+        val transactionDateTimestamp = Timestamp(Date(binding.editTransactionDate.text.toString()))
         val req = hashMapOf(
-            "amountPaid" to binding.editAmountPaid.text.toString(),
+            "amountPaid" to binding.editAmountPaid.text.toString().toInt(),
             "paid" to false,
-            "transactionDate" to binding.editTransactionDate.text.toString(),
+            "transactionDate" to transactionDateTimestamp,
             "paymentForMonth" to binding.editPaymentForDate.text.toString(),
             "transactionReceipt" to imgURL,
             "tenantId" to tenantId

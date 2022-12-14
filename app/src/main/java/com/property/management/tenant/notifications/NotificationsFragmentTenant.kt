@@ -58,8 +58,7 @@ class NotificationsFragmentTenant : Fragment() {
         }
         listOfNotificationRequests = arrayListOf()
         notificationFirestore("read")
-
-
+        
         return root
     }
     private fun createNotificationChannel(){
@@ -79,7 +78,7 @@ class NotificationsFragmentTenant : Fragment() {
         db.collection("Tenants").document(args.tenantID)
             .get()
             .addOnSuccessListener { document ->
-                var dueAmount = document.data?.get("Rent").toString()
+                var dueAmount = document.data?.get("rent").toString()
                 var formatDate = SimpleDateFormat("MMMM YYYY", Locale.US)
                 val currentDate = Date()
                 val currentMonthYear : String = formatDate.format(currentDate.time)
