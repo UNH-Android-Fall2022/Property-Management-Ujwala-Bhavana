@@ -88,7 +88,14 @@
         android:id="@+id/chatWithOwnerFragment"
         android:name="com.property.management.tenant.chat_with_owner.ChatWithOwnerFragment"
         android:label="Chat With Owner"
-        tools:layout="@layout/fragment_chat_with_owner"/>
+        tools:layout="@layout/fragment_chat_with_owner">
+        <argument
+            android:name="ownerId"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/contactOwnerFragment"
         android:name="com.property.management.tenant.contact_owner.ContactOwnerFragment"

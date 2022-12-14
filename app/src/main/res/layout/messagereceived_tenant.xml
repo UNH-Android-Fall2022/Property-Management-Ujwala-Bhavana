@@ -12,7 +12,7 @@
         android:layout_marginTop="5dp">
 
         <TextView
-            android:id="@+id/txtreceivemsg"
+            android:id="@+id/txtreceivemsg_tenant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="This is received message"

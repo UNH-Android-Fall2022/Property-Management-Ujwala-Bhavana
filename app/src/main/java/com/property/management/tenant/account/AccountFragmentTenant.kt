@@ -15,6 +15,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.property.management.MainActivity
 import com.property.management.databinding.FragmentAccounttenantBinding
+import java.security.MessageDigest
 
 class AccountFragmentTenant : Fragment() {
 
@@ -27,18 +28,21 @@ class AccountFragmentTenant : Fragment() {
     private val db = Firebase.firestore
     private var tenantID = ""
     private val auth = Firebase.auth
+    lateinit var ownerId:String
+    lateinit var name:String
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val AccountViewModel =
-            ViewModelProvider(this).get(AccountViewModel::class.java)
 
         _binding = FragmentAccounttenantBinding.inflate(inflater, container, false)
         val root: View = binding.root
         readTenantNameFromFirebase()
+
+        val md = MessageDigest.getInstance("MD5")
+        val uid = md.digest(auth.currentUser?.email.toString().trim().toByteArray(Charsets.UTF_8)).toHex()
         binding.textViewMyProfile.setOnClickListener{
             Log.d(TAG, "My Profile clicked")
             val action =
@@ -59,9 +63,19 @@ class AccountFragmentTenant : Fragment() {
         }
         binding.textViewChatWithOwner.setOnClickListener {
             Log.d(TAG, "Chat With Owner clicked")
-            val action =
-                AccountFragmentTenantDirections.actionNavigationAccountToChatWithOwnerFragment()
-            findNavController().navigate(action)
+            db.collection("Tenants").document(uid).get()
+                .addOnCompleteListener { document ->
+                    val m = document.result.getData()
+                    ownerId = m?.get("ownerId").toString()
+                    db.collection("Owners").document(ownerId).get()
+                        .addOnCompleteListener { document ->
+                            val m = document.result.getData()
+                            name = m?.get("Name").toString()
+                            val action =
+                                AccountFragmentTenantDirections.actionNavigationAccountToChatWithOwnerFragment(ownerId,name)
+                            findNavController().navigate(action)
+                        }
+                }
         }
         binding.textViewContactOwner.setOnClickListener {
             Log.d(TAG, "Contact Owner clicked")
@@ -97,4 +111,5 @@ class AccountFragmentTenant : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+    private fun ByteArray.toHex() :String = joinToString(separator = "") { byte -> "%02x".format(byte) }
 }
