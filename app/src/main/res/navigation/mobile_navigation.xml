@@ -99,6 +99,9 @@
         <argument
             android:name="tenantID"
             app:argType="string" />
+        <argument
+            android:name="rentAmount"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/chatWithOwnerFragment"
@@ -124,7 +127,7 @@
     <fragment
         android:id="@+id/viewPastRequestFragment"
         android:name="com.property.management.tenant.view_past_request.ViewPastRequestFragment"
-        android:label="ViewPastRequestFragment"
+        android:label="View Past Request"
         tools:layout="@layout/fragment_view_each_past_request">
         <argument
             android:name="subject"
@@ -145,7 +148,7 @@
     <fragment
         android:id="@+id/paymentDetailsFragment"
         android:name="com.property.management.tenant.update_payment_details_fragment.PaymentDetailsFragment"
-        android:label="PaymentDetailsFragment"
+        android:label="Update Payment Details"
         tools:layout="@layout/fragment_update_payment_details">
 
         <action
@@ -155,7 +158,7 @@
     <fragment
         android:id="@+id/closedPastRequestFragment"
         android:name="com.property.management.tenant.view_past_request_closed.ClosedPastRequestFragment"
-        android:label="ClosedPastRequestFragment"
+        android:label="Closed Past Requests"
         tools:layout="@layout/frgament_view_past_request_closed">
         <argument
             android:name="subject"

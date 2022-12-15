@@ -1,8 +1,11 @@
 package com.property.management.tenant.notifications
 
+import android.app.AlarmManager.RTC_WAKEUP
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -19,8 +23,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.property.management.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.property.management.AlarmManager
 import com.property.management.databinding.FragmentNotificationstenantBinding
 import java.text.SimpleDateFormat
+
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -52,12 +58,17 @@ class NotificationsFragmentTenant : Fragment() {
 
         _binding = FragmentNotificationstenantBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        createNotificationChannel()
-        binding.sendButton.setOnClickListener{
-            sendPaymentReminderNotification()
-        }
-        listOfNotificationRequests = arrayListOf()
         notificationFirestore("read")
+        var dueAmount = args.rentAmount
+        var formatDate = SimpleDateFormat("MMMM YYYY", Locale.US)
+        val currentDate = Date()
+        val currentMonthYear : String = formatDate.format(currentDate.time)
+        contextTitle = "Payment Due!!"
+        contextText = "Your rent payment $$dueAmount is due. Please make the payment by 05 $currentMonthYear."
+        createNotificationChannel()
+        scheduleNotification()
+        listOfNotificationRequests = arrayListOf()
+
         
         return root
     }
@@ -74,30 +85,30 @@ class NotificationsFragmentTenant : Fragment() {
             notificationManager.createNotificationChannel(channel)
         }
     }
-    private fun sendPaymentReminderNotification(){
-        db.collection("Tenants").document(args.tenantID)
-            .get()
-            .addOnSuccessListener { document ->
-                var dueAmount = document.data?.get("rent").toString()
-                var formatDate = SimpleDateFormat("MMMM YYYY", Locale.US)
-                val currentDate = Date()
-                val currentMonthYear : String = formatDate.format(currentDate.time)
-                contextTitle = "Payment Due!!"
-                contextText = "Your rent payment $$dueAmount is due. Please make the payment by 05 $currentMonthYear."
-                var builder = NotificationCompat.Builder(requireContext(),channelId)
-                    .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-                    .setContentTitle(contextTitle)
-                    .setContentText(contextText)
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                with(NotificationManagerCompat.from(requireContext())){
-                    notify(notificationId,builder.build())
-                }
-                notificationFirestore("insert")
-            }
-            .addOnFailureListener{ exception ->
-                Log.w(TAG,"Error getting documents", exception)
-            }
+    private fun scheduleNotification(){
+        val intent = Intent(context,ScheduleNotification::class.java)
+        intent.putExtra(text,contextText)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            notificationId,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as android.app.AlarmManager
+        val calendar = Calendar.getInstance()
+        //trigger notification on first day of every month at 9am
+        calendar.set(Calendar.YEAR,Calendar.MONTH,1,9,0)
+        val time = calendar.timeInMillis
+        alarmManager.setAndAllowWhileIdle(
+            RTC_WAKEUP,
+            time,
+            pendingIntent
+        )
+        Log.d(TAG,"Notification Scheduled")
+
+        notificationFirestore("insert")
     }
+
     private fun notificationFirestore(action : String) {
         if (action == "read") {
         db.collection("Notifications").whereEqualTo("userID",args.tenantID)
@@ -132,17 +143,6 @@ class NotificationsFragmentTenant : Fragment() {
                 .addOnFailureListener { exception ->
                     Log.d(TAG,"Error in writing document in Firebase",exception)
                 }
-        }
-        else if(action == "delete"){
-            /*db.collection("Tenant1").document(doc_id).collection("Notification").document(args.notificationID).delete()
-                .addOnSuccessListener { document ->
-                    Log.d(TAG,"Notification deleted")
-                    val action = NotificationsFragmentDirections.actionNotificationsFragmentSelf("")
-                    findNavController().navigate(action)
-                }
-                .addOnFailureListener { exception ->
-                    Log.d(TAG,"Error in writing document in Firebase",exception)
-                }*/
         }
     }
     override fun onDestroyView() {
