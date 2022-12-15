@@ -31,6 +31,7 @@
 
     <EditText
         android:id="@+id/editAmountPaid"
+        android:padding="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -58,6 +59,7 @@
 
     <EditText
         android:id="@+id/editTransactionDate"
+        android:padding="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -86,6 +88,7 @@
 
     <EditText
         android:id="@+id/editPaymentForDate"
+        android:padding="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -100,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTransactionDate" />
 
     <Button
-        android:id="@+id/textUploadImage"
+        android:id="@+id/uploadImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -118,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textUploadImage"
+        app:layout_constraintTop_toBottomOf="@+id/uploadImageButton"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button

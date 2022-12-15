@@ -45,6 +45,7 @@
 
     <EditText
         android:id="@+id/editSubject"
+        android:padding="2dp"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -73,6 +74,7 @@
 
     <EditText
         android:id="@+id/editDescription"
+        android:padding="2dp"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:height="90dp"

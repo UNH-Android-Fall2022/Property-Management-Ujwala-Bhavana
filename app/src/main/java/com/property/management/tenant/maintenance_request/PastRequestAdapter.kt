@@ -19,6 +19,7 @@ class PastRequestAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val subject: TextView = itemView.findViewById(R.id.requestSubject)
         val description : TextView = itemView.findViewById(R.id.requestDescription)
+        val status : TextView = itemView.findViewById(R.id.status)
     }
 
     // Create new views (invoked by the layout manager)
@@ -33,10 +34,17 @@ class PastRequestAdapter(
         val req = mExampleList[position]
         holder.subject.text = req.subject
         holder.description.text = req.description
+        holder.status.text = req.status
         holder.itemView.setOnClickListener{view->
             Log.d(TAG,"Position Clicked: $position")
-            val action = MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToViewPastRequestFragment(req.subject,req.description,req.ownerid,req.tenantid,req.propertyname,req.unitname,req.status,req.image)
-            view.findNavController().navigate(action)
+            if (req.status == "Open"){
+                val action = MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToViewPastRequestFragment(req.subject,req.description,req.image,req.id)
+                view.findNavController().navigate(action)
+            }
+            if (req.status == "Closed"){
+               val action = MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToClosedPastRequestFragment(req.subject,req.description,req.image,req.id)
+                view.findNavController().navigate(action)
+            }
         }
     }
 

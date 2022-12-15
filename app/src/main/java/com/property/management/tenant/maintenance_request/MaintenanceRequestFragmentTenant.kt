@@ -11,10 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.property.management.databinding.FragmentMaintenanceRequesttenantBinding
-import com.property.management.tenant.maintenance_request.MaintenanceRequestFragmentTenantDirections
+import java.security.MessageDigest
 
 
 class MaintenanceRequestFragmentTenant : Fragment() {
@@ -25,6 +25,8 @@ class MaintenanceRequestFragmentTenant : Fragment() {
     private val db = Firebase.firestore
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var listOfRequests: ArrayList<PastRequestData>
+    private var auth = Firebase.auth
+    private var docId = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,30 +38,40 @@ class MaintenanceRequestFragmentTenant : Fragment() {
 
         _binding = FragmentMaintenanceRequesttenantBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val md = MessageDigest.getInstance("MD5")
+        docId = md.digest(auth.currentUser!!.email!!.trim().toByteArray()).toHex()
+
         binding.floatingActionReqMaintenance.setOnClickListener {
             Log.d(TAG, "Request Maintenance Button clicked")
             val action =
                 MaintenanceRequestFragmentTenantDirections.actionNavigationMaintenanceRequestToNavigationCreateRequest()
             findNavController().navigate(action)
         }
-        Log.d(TAG, "Calling maintenance request database...")
         listOfRequests = arrayListOf()
         readFromFirestore()
         return root
     }
     private fun readFromFirestore(){
         db.collection("Maintenance Request")
+            .whereEqualTo("tenantId",docId)
             .get()
             .addOnCompleteListener { snapshot ->
                 for (document in snapshot.result) {
                     Log.d(TAG, "${document.getData()}")
                     val temp = document.getData()
-                    /*val req: PastRequestData = PastRequestData(
-                        d_subject = temp.get("subject").toString(),
-                        d_description = temp.get("Description").toString()
+                    val req: PastRequestData = PastRequestData(
+                        document.id,
+                        temp.get("image").toString(),
+                        temp.get("subject").toString(),
+                        temp.get("description").toString(),
+                        temp.get("ownerId").toString(),
+                        temp.get("propertyName").toString(),
+                        temp.get("unitName").toString(),
+                        temp.get("status").toString(),
+                        temp.get("tenantId").toString()
                     )
-                    listOfRequests.add(req)*/
-                    listOfRequests.add(document.toObject<PastRequestData>())
+                    listOfRequests.add(req)
                 }
                 mRecyclerView = binding.pastRequestRecyclerViewList
                 mRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -74,4 +86,5 @@ class MaintenanceRequestFragmentTenant : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+    private fun ByteArray.toHex() :String = joinToString(separator = "") { byte -> "%02x".format(byte) }
 }

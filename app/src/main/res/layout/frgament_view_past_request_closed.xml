@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/textSubjectValue"
         android:padding="2dp"
         android:layout_width="300dp"
@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSubjectValue" />
 
-    <EditText
+    <TextView
         android:id="@+id/textDescriptionValue"
         android:padding="2dp"
         android:layout_width="300dp"
@@ -87,24 +87,14 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/save"
-        android:layout_width="100dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="72dp"
-        android:text="Save"
-        app:layout_constraintEnd_toStartOf="@+id/closeRequest"
-        app:layout_constraintHorizontal_bias="0.408"
+        android:id="@+id/reopenRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Reopen Request"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageValue" />
 
-    <Button
-        android:id="@+id/closeRequest"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="64dp"
-        android:text="Close Request"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageValue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
