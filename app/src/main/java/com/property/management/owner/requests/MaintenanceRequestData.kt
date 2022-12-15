@@ -5,6 +5,7 @@ data class MaintenanceRequestData (
     var unitName:String ="",
     var subject: String ="",
     var description:String ="",
-    var image: String ="",
-    var status: String =""
+    var image: String,
+    var status: String ="",
+    var docId:String
     )

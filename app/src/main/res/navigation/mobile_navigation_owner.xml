@@ -41,7 +41,11 @@
         android:id="@+id/navigation_account_owner"
         android:name="com.property.management.owner.account.AccountFragmentOwner"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_accountowner"/>
+        tools:layout="@layout/fragment_accountowner">
+        <action
+            android:id="@+id/action_navigation_account_owner_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addpropertyFragment"
         android:name="com.property.management.owner.properties.AddpropertyFragment"
@@ -150,6 +154,9 @@
         <argument
             android:name="imgURL"
             app:argType="string" />
+        <argument
+            android:name="docId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addedtenantFragment"
@@ -180,5 +187,9 @@
             android:name="name"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.property.management.owner.account.ProfileFragment"
+        android:label="ProfileFragment" />
 
 </navigation>

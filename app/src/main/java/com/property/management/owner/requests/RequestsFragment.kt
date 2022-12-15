@@ -55,7 +55,8 @@ class RequestsFragment : Fragment() {
                         status = m.get("status").toString(),
                         propertyName = m.get("propertyName").toString(),
                         unitName = m.get("unitName").toString(),
-                        image = m.get("image").toString()
+                        image = m.get("image").toString(),
+                        docId = document.id.toString()
                     )
 
                     )}

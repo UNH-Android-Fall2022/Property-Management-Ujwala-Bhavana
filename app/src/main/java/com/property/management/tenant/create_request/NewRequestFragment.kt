@@ -76,6 +76,8 @@ class NewRequestFragment : Fragment() {
                 .addOnFailureListener{ exception ->
                     Log.w(TAG,"Error getting documents", exception)
                 }
+
+
         }
         binding.uploadImage.setOnClickListener{
             val camera_intent =
@@ -118,6 +120,17 @@ class NewRequestFragment : Fragment() {
             "status" to pastRequestData.status,
             "tenantId" to pastRequestData.tenantId
         )
+        val notification = hashMapOf(
+            "title" to "New Maintenance Request!!",
+            "subject" to binding.editSubject.text.toString()
+        )
+        db.collection("Owners").document(pastRequestData.ownerId).collection("Notifications").add(notification)
+            .addOnSuccessListener {
+                Log.d("NewRequestFrag","Notification added")
+            }
+            .addOnFailureListener{
+                Log.d("NewRequestFrag","Error in adding notification to collection")
+            }
         db.collection("Maintenance Request").add(req)
             .addOnSuccessListener { document ->
                 Log.d(TAG,"Maintenance request added to collection: ${document.id}")

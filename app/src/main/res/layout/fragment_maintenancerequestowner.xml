@@ -22,7 +22,9 @@
             android:layout_column="0"
             android:layout_marginTop="15dp"
             android:text="Property Name:  "
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textpropertyname"
@@ -42,7 +44,9 @@
             android:layout_column="0"
             android:layout_marginTop="15dp"
             android:text="Unit Name:"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textunitname"
@@ -62,7 +66,9 @@
             android:layout_column="0"
             android:layout_marginTop="15dp"
             android:text="Subject:"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textsubject"
@@ -85,7 +91,9 @@
             android:layout_column="0"
             android:layout_marginTop="15dp"
             android:text="Description:"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textdescription"
@@ -113,6 +121,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/propertyimg"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
     <Button
@@ -120,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Close Request"
+        android:id="@+id/closerequestbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/request_image" />
