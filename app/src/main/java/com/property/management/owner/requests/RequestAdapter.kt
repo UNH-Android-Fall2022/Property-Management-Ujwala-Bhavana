@@ -26,14 +26,14 @@ class RequestAdapter (
 
     override fun onBindViewHolder(holder: RequestViewHolder, position: Int) {
         val request = rlist[position]
-        holder.propertyname.text = request.propertyname
-        holder.unitname.text = request.unitname
+        holder.propertyname.text = request.propertyName
+        holder.unitname.text = request.unitName
         holder.subject.text = request.subject
         Log.d("RequestsFragment","onBindViewHolder")
 
         holder.itemView.setOnClickListener{view ->
             Log.d("Test","Position Clicked $position")
-            val action = RequestsFragmentDirections.actionNavigationRequestsToMaintenanceRequestFragment(request.propertyname,request.unitname,request.subject,request.description,request.imgUrl)
+            val action = RequestsFragmentDirections.actionNavigationRequestsToMaintenanceRequestFragment(request.propertyName,request.unitName,request.subject,request.description,request.image)
             view.findNavController().navigate(action)
 
         }

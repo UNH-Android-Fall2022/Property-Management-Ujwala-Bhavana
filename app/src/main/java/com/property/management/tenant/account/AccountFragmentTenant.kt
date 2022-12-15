@@ -31,21 +31,20 @@ class AccountFragmentTenant : Fragment() {
     private var propertyID = ""
     private var unitID = ""
     private val auth = Firebase.auth
+    private lateinit var ownerUid:String
+    private lateinit var name:String
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val AccountViewModel =
-            ViewModelProvider(this).get(AccountViewModel::class.java)
 
         _binding = FragmentAccounttenantBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val md = MessageDigest.getInstance("MD5")
-        tenantID = md.digest(auth.currentUser!!.email!!.trim().toByteArray()).toHex()
+        tenantID = md.digest(auth.currentUser!!.email!!.toString().trim().toByteArray(Charsets.UTF_8)).toHex()
         readTenantNameFromFirebase()
-
         binding.textViewMyProfile.setOnClickListener{
             Log.d(TAG, "My Profile clicked")
             val action =
@@ -66,9 +65,19 @@ class AccountFragmentTenant : Fragment() {
         }
         binding.textViewChatWithOwner.setOnClickListener {
             Log.d(TAG, "Chat With Owner clicked")
-            val action =
-                AccountFragmentTenantDirections.actionNavigationAccountToChatWithOwnerFragment(tenantID,ownerID)
-            findNavController().navigate(action)
+            db.collection("Tenants").document(tenantID).get()
+                .addOnCompleteListener { document ->
+                    val m = document.result.getData()
+                    ownerUid = m?.get("ownerId").toString()
+                    db.collection("Owners").document(ownerUid).get()
+                        .addOnCompleteListener { document ->
+                            val m = document.result.getData()
+                            name = m?.get("Name").toString()
+                            val action =
+                                AccountFragmentTenantDirections.actionNavigationAccountToChatWithOwnerFragment(ownerUid,name)
+                            findNavController().navigate(action)
+                        }
+                }
         }
         binding.textViewContactOwner.setOnClickListener {
             Log.d(TAG, "Contact Owner clicked")

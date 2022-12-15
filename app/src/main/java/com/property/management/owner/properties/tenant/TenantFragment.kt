@@ -1,4 +1,4 @@
-package com.property.management.owner.properties
+package com.property.management.owner.properties.tenant
 
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +14,7 @@ class TenantFragment : Fragment() {
     private val binding get() = _binding!!
     var propertyName :String = ""
     var unitName :String =""
+    var tenantId: String =""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         }
@@ -36,11 +37,12 @@ class TenantFragment : Fragment() {
             {
                  propertyName = bundle.get("propName").toString()
                 unitName = bundle.get("unitName").toString()
+                tenantId = bundle.get("tenantId").toString()
             }
             Log.d("TenantFragment","propertyname $propertyName")
             Log.d("TenantFragment","unitnmae $unitName")
 
-            val action = TablayoutFragmentDirections.actionTablayoutFragmentToAddtenantFragment(propertyName,unitName)
+            val action = TablayoutFragmentDirections.actionTablayoutFragmentToAddtenantFragment(propertyName,unitName,tenantId)
             view.findNavController().navigate(action)
 
         }

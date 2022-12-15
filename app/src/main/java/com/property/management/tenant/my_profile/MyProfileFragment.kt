@@ -31,8 +31,6 @@ class MyProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val chatViewModel =
-            ViewModelProvider(this).get(MyProfileViewModel::class.java)
 
         _binding = FragmentMyProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root

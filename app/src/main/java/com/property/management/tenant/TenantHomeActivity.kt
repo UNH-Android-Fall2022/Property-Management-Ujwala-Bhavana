@@ -28,7 +28,7 @@ class TenantHomeActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_maintenance_request, R.id.navigation_account
+                R.id.navigation_home, R.id.navigation_maintenance_request, R.id.navigation_account_owner
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -106,10 +106,10 @@
         android:label="Chat With Owner"
         tools:layout="@layout/fragment_chat_with_owner">
         <argument
-            android:name="tenantID"
+            android:name="ownerId"
             app:argType="string" />
         <argument
-            android:name="ownerID"
+            android:name="name"
             app:argType="string" />
     </fragment>
     <fragment

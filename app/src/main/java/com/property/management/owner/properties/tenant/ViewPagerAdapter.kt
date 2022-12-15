@@ -1,4 +1,4 @@
-package com.property.management.owner.properties
+package com.property.management.owner.properties.tenant
 
 
 import android.os.Bundle
@@ -9,9 +9,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.property.management.owner.properties.DocumentsFragment
+import com.property.management.owner.properties.payments.PaymentsFragment
 import java.security.MessageDigest
 
 class ViewPagerAdapter(fragment: Fragment, private val propName: String, private val unitName: String,
+                       private val tenantId: String,
                      private  val lifecycle: Lifecycle): FragmentStateAdapter(fragment){
     override fun getItemCount(): Int {
         return 3
@@ -31,8 +34,9 @@ class ViewPagerAdapter(fragment: Fragment, private val propName: String, private
                val bundle = Bundle()
                bundle.putString("propName", propName)
                bundle.putString("unitName", unitName)
+               bundle.putString("tenantId",tenantId)
                var t = Fragment()
-                   val flag = readUnitFromFirebase()
+                   /*val flag = readUnitFromFirebase()
                    Log.d("Frag","returned value ${flag}")
                    if (flag) {
                        t = AddedtenantFragment()
@@ -44,13 +48,31 @@ class ViewPagerAdapter(fragment: Fragment, private val propName: String, private
                        t = TenantFragment()
                        t.arguments = bundle
 
-                   }
-
+                   }*/
+               if(tenantId == "")
+               {
+                   t = TenantFragment()
+                   t.arguments = bundle
+               }
+               else
+               {
+                   t = AddedtenantFragment()
+                   t.arguments = bundle
+               }
                Log.d("Test frag", "Empty Msg")
                return t
            }
            1->{
-               PaymentsFragment()
+               val bundle = Bundle()
+               bundle.putString("propName", propName)
+               bundle.putString("unitName", unitName)
+               bundle.putString("tenantId",tenantId)
+               Log.d("Test","ViewPagerAdapter TenantId $tenantId")
+               val t = PaymentsFragment()
+               t.arguments = bundle
+
+               return t
+
            }
            2->{
                DocumentsFragment()
@@ -62,7 +84,7 @@ class ViewPagerAdapter(fragment: Fragment, private val propName: String, private
        }
     }
 
-    private fun readUnitFromFirebase():Boolean {
+    /*private fun readUnitFromFirebase():Boolean {
 
         var flag = false
         val auth = Firebase.auth
@@ -89,7 +111,7 @@ class ViewPagerAdapter(fragment: Fragment, private val propName: String, private
                 }
             }
         return flag
-    }
+    }*/
 
     private fun ByteArray.toHex() :String = joinToString(separator = "") { byte -> "%02x".format(byte) }
 

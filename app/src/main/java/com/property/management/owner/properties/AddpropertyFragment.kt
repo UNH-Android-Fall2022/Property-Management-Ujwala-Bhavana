@@ -70,9 +70,6 @@ class AddpropertyFragment:Fragment() {
             uploadImage()
             //TODO check if all entries all filled
 
-            val action =
-                com.property.management.owner.properties.AddpropertyFragmentDirections.actionAddpropertyFragmentToNavigationProperties()
-            findNavController().navigate(action)
         }
 
     }
@@ -81,6 +78,9 @@ class AddpropertyFragment:Fragment() {
         val property = hashMapOf(
             "imgUrl" to propertyData.imgUrl,
             "propertyName" to propertyData.propertyName,
+            "city" to propertyData.city,
+            "state" to propertyData.state,
+            "zipcode" to propertyData.zipcode,
             "units" to propertyData.units
         )
         val md = MessageDigest.getInstance("MD5")
@@ -93,6 +93,9 @@ class AddpropertyFragment:Fragment() {
             db.collection("Owners").document(userid).collection("Properties").document(docId).set(property)
                 .addOnSuccessListener {
                     Log.d(TAG, "Property details added to collection")
+                    val action =
+                        com.property.management.owner.properties.AddpropertyFragmentDirections.actionAddpropertyFragmentToNavigationProperties()
+                    findNavController().navigate(action)
                 }
                 .addOnFailureListener {
                     Log.d(TAG, "Error in writing property details to collection", it)
@@ -114,6 +117,9 @@ class AddpropertyFragment:Fragment() {
                         propertyData = PropertyData(
                             imgURL,
                             binding.txtAddress.text.toString(),
+                            binding.txtCity.text.toString(),
+                            binding.txtState.text.toString(),
+                            binding.txtZipcode.text.toString().toInt(),
                             binding.txtUnits.text.toString().toInt()
                         )
                         // Write to firestore
@@ -125,7 +131,7 @@ class AddpropertyFragment:Fragment() {
                     }
             }
             .addOnFailureListener{exception ->
-                Log.d("Test","Error in uploading image to Firebase")
+                Log.d("Test","Error in uploading image to Firebase",exception)
             }
     }
 

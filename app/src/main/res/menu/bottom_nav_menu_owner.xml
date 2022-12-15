@@ -7,16 +7,20 @@
         android:title="@string/title_properties" />
 
     <item
-        android:id="@+id/navigation_requests"
+        android:id="@+id/navigation_requests_owner"
         android:icon="@drawable/ic_baseline_pending"
         android:title="@string/title_requests" />
+    <item
+        android:id="@+id/navigation_chats"
+        android:icon="@drawable/ic_baseline_chat_24"
+        android:title="Chats"/>
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_notifications_owner"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_notifications" />
     <item
-        android:id="@+id/navigation_account"
+        android:id="@+id/navigation_account_owner"
         android:icon="@drawable/ic_baseline_person"
         android:title="@string/title_account"/>
 

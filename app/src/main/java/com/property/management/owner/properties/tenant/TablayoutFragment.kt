@@ -1,4 +1,4 @@
-package com.property.management.owner.properties
+package com.property.management.owner.properties.tenant
 
 import android.os.Bundle
 import android.util.Log
@@ -14,9 +14,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 class TablayoutFragment : Fragment() {
     private var _binding: FragmentTablayoutBinding? = null
     private val binding get() = _binding!!
-    val args: com.property.management.owner.properties.TablayoutFragmentArgs by navArgs()
+    val args: com.property.management.owner.properties.tenant.TablayoutFragmentArgs by navArgs()
     var propertyName = ""
     var unitName = ""
+    var tenantId = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         }
@@ -32,7 +33,8 @@ class TablayoutFragment : Fragment() {
         val viewPager2 = binding.pager1
         propertyName = args.propertyName
         unitName = args.unitName
-        val adapter = ViewPagerAdapter(this,propertyName,unitName,lifecycle)
+        tenantId = args.tenantId
+        val adapter = ViewPagerAdapter(this,propertyName,unitName,tenantId,lifecycle)
 
 
         Log.d("TabLayoutFragemnt","$propertyName")
