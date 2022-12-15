@@ -96,14 +96,14 @@ class NotificationsFragmentTenant : Fragment() {
         )
         val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as android.app.AlarmManager
         val calendar = Calendar.getInstance()
-        calendar.set(Calendar.YEAR,Calendar.MONTH,15,14,59)
+        //trigger notification on first day of every month at 9am
+        calendar.set(Calendar.YEAR,Calendar.MONTH,1,9,0)
         val time = calendar.timeInMillis
         alarmManager.setAndAllowWhileIdle(
             RTC_WAKEUP,
             time,
             pendingIntent
         )
-
         Log.d(TAG,"Notification Scheduled")
 
         notificationFirestore("insert")
