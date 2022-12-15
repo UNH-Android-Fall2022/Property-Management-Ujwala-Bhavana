@@ -91,7 +91,7 @@ class PaymentDetailsFragment : Fragment() {
             },getDate.get(Calendar.YEAR),getDate.get(Calendar.MONTH),getDate.get(Calendar.DAY_OF_MONTH))
             datePicker.show()
             datePicker.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            
+
 
         })
         binding.saveButton.setOnClickListener {

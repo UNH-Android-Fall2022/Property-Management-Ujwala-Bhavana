@@ -134,17 +134,6 @@ class NotificationsFragmentTenant : Fragment() {
                     Log.d(TAG,"Error in writing document in Firebase",exception)
                 }
         }
-        else if(action == "delete"){
-            /*db.collection("Tenant1").document(doc_id).collection("Notification").document(args.notificationID).delete()
-                .addOnSuccessListener { document ->
-                    Log.d(TAG,"Notification deleted")
-                    val action = NotificationsFragmentDirections.actionNotificationsFragmentSelf("")
-                    findNavController().navigate(action)
-                }
-                .addOnFailureListener { exception ->
-                    Log.d(TAG,"Error in writing document in Firebase",exception)
-                }*/
-        }
     }
     override fun onDestroyView() {
         super.onDestroyView()
