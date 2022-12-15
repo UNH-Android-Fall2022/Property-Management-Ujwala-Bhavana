@@ -2,6 +2,7 @@ package com.property.management.tenant.update_payment_details_fragment
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -91,7 +92,11 @@ class PaymentDetailsFragment : Fragment() {
             },getDate.get(Calendar.YEAR),getDate.get(Calendar.MONTH),getDate.get(Calendar.DAY_OF_MONTH))
             datePicker.show()
             datePicker.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
+            //hide the day from date picker
+            val date = datePicker.findViewById<View>(Resources.getSystem().getIdentifier("android:id/day", null, null))
+            if (date != null) {
+                date.visibility = View.GONE
+            }
 
         })
         binding.saveButton.setOnClickListener {
