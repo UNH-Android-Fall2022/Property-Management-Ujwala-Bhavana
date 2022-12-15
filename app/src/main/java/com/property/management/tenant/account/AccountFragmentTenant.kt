@@ -30,6 +30,7 @@ class AccountFragmentTenant : Fragment() {
     private var ownerID = ""
     private var propertyID = ""
     private var unitID = ""
+    private var rentAmount = ""
     private val auth = Firebase.auth
     private lateinit var ownerUid:String
     private lateinit var name:String
@@ -60,7 +61,7 @@ class AccountFragmentTenant : Fragment() {
         binding.textViewNotification.setOnClickListener {
             Log.d(TAG, "Notifications clicked")
             val action =
-                AccountFragmentTenantDirections.actionNavigationAccountToNotificationsFragment(tenantID)
+                AccountFragmentTenantDirections.actionNavigationAccountToNotificationsFragment(tenantID,rentAmount)
             findNavController().navigate(action)
         }
         binding.textViewChatWithOwner.setOnClickListener {
@@ -101,6 +102,7 @@ class AccountFragmentTenant : Fragment() {
                 propertyID = documents.data?.get("propertyId").toString()
                 unitID = documents.data?.get("unitId").toString()
                 ownerID = documents.data?.get("ownerId").toString()
+                rentAmount =  documents.data?.get("rent").toString()
                 val tenantName: TextView = binding.textViewTenant
                 tenantName.text = "Hello ".plus(documents.data?.get("firstName")).plus(" ").plus(documents.data?.get("lastName").toString()).plus("!!")
             }

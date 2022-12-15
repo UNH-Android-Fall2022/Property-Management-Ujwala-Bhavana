@@ -99,6 +99,9 @@
         <argument
             android:name="tenantID"
             app:argType="string" />
+        <argument
+            android:name="rentAmount"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/chatWithOwnerFragment"
