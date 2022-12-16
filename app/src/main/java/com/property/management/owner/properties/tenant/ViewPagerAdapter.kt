@@ -9,7 +9,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.property.management.owner.properties.DocumentsFragment
 import com.property.management.owner.properties.payments.PaymentsFragment
 import java.security.MessageDigest
 
@@ -73,9 +72,6 @@ class ViewPagerAdapter(fragment: Fragment, private val propName: String, private
 
                return t
 
-           }
-           2->{
-               DocumentsFragment()
            }
            else->{
                Fragment()

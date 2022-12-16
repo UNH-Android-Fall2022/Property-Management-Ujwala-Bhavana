@@ -27,8 +27,8 @@ class ProfileFragment:Fragment() {
             .addOnSuccessListener { document ->
                 val m = document.getData()
                 binding.txtprofileName.setText(m?.get("Name").toString())
-                binding.txtprofileEmail.setText(m?.get("Email id").toString())
-                binding.txtprofilePhone.setText(m?.get("Phone number").toString())
+                binding.txtprofileEmail.setText(m?.get("Emailid").toString())
+                binding.txtprofilePhone.setText(m?.get("PhoneNumber").toString())
             }
         return root
     }

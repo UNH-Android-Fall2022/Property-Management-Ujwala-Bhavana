@@ -34,7 +34,7 @@ class SignupActivity : AppCompatActivity() {
             val name = binding.txtName.text.toString().trim()
             val email = binding.txtEmailid.text.toString().trim()
             val password = binding.txtPassword.text.toString().trim()
-            val phoneNum = binding.txtphoneNum.text.toString().toInt()
+            val phoneNum = binding.txtphoneNum.text.toString()
 
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
@@ -45,8 +45,8 @@ class SignupActivity : AppCompatActivity() {
                         //create Hashmap with user details
                         val user = hashMapOf(
                             "Name" to name,
-                            "Email id" to email,
-                            "Phone Number" to phoneNum
+                            "Emailid" to email,
+                            "PhoneNumber" to phoneNum
                         )
 
                         //add hashmap to collection
