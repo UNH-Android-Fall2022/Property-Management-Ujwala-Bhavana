@@ -45,13 +45,24 @@ class RequestsFragment : Fragment() {
 
     private fun readRequestsFromFirestore() {
         val ownerid = auth.currentUser?.uid
-        db.collection("Maintenance Request").whereEqualTo("ownerid",ownerid).get()
+        db.collection("Maintenance Request").whereEqualTo("ownerId",ownerid).get()
             .addOnCompleteListener { documents ->
                 for(document in documents.result){
-                    requestList.add(document.toObject<MaintenanceRequestData>())}
+                    val m = document.getData()
+                    requestList.add(MaintenanceRequestData(
+                        subject = m.get("subject").toString(),
+                        description = m.get("description").toString(),
+                        status = m.get("status").toString(),
+                        propertyName = m.get("propertyName").toString(),
+                        unitName = m.get("unitName").toString(),
+                        image = m.get("image").toString(),
+                        docId = document.id.toString()
+                    )
+
+                    )}
 
                 Log.d("RequestFragment","requestlist size ${requestList.size}")
-                Log.d("RequestFragment","${requestList[0]}")
+                //Log.d("RequestFragment","${requestList[0]}")
                 rRecyclerView = binding.recyclerViewRequests
                 rRecyclerView.layoutManager = LinearLayoutManager(context)
                 requestAdapter = RequestAdapter(requestList,this)

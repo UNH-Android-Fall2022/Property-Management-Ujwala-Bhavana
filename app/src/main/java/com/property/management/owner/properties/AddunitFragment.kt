@@ -15,6 +15,7 @@ import com.property.management.databinding.FragmentAddunitBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.security.MessageDigest
 
 class AddunitFragment:Fragment() {
@@ -24,8 +25,11 @@ class AddunitFragment:Fragment() {
     private val auth = Firebase.auth
     private val args: com.property.management.owner.properties.AddunitFragmentArgs by navArgs()
     private var propertyName:String = ""
+    private var storageRef = Firebase.storage
 
     private lateinit var imgURI: Uri
+    private var imgURL =""
+    lateinit var unitData: UnitData
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,32 +63,48 @@ class AddunitFragment:Fragment() {
                 com.property.management.owner.properties.AddunitFragmentDirections.actionAddunitFragmentToUnitsFragment(
                     propertyName
                 )
-            Log.d("Test","Add Unit Fragment $propertyName")
             findNavController().navigate(action)
+            Log.d("Test","Add Unit Fragment $propertyName")
         }
 
         //Listener to Add Unit button
         binding.btnAddUnit.setOnClickListener{
-
-            val unitData = UnitData(
-                imgURL = "",
-                binding.txtUnitName.text.toString(),
-                binding.txtUnittype.text.toString(),
-                binding.txtSqft.text.toString().toInt()
-            )
-
-            writeToFirebase(unitData)
-
-
+            uploadImage()
         }
+    }
+
+    private fun uploadImage() {
+        storageRef.getReference("images").child(System.currentTimeMillis().toString())
+            .putFile(imgURI)
+            .addOnSuccessListener { task ->
+                task.metadata!!.reference!!.downloadUrl
+                    .addOnSuccessListener {
+                        imgURL = it.toString()
+                        unitData = UnitData(
+                            imgURL,
+                            binding.txtUnitName.text.toString(),
+                            binding.txtUnittype.text.toString(),
+                            binding.txtSqft.text.toString().toInt()
+                        )
+                        writeToFirebase(unitData)
+                    }
+                    .addOnFailureListener{
+                        Log.d("Test","Error in getting image URL")
+                    }
+
+            }
+            .addOnFailureListener{
+                Log.d("Test","Error in uploading image to Firebase",it)
+            }
     }
 
     private fun writeToFirebase(unitData: UnitData) {
         val unit = hashMapOf(
-            "imguRL" to "",
-            "Unit Name" to unitData.unitName,
-            "Unit Type" to unitData.unitType,
-            "Unit Size" to unitData.unitSize,
+            "imgUrl" to unitData.imgUrl,
+            "unitName" to unitData.unitName,
+            "unitType" to unitData.unitType,
+            "unitSize" to unitData.unitSize,
+            "tenantId" to ""
         )
         val md = MessageDigest.getInstance("MD5")
         val docIdProp = md.digest(propertyName.trim().toByteArray(Charsets.UTF_8)).toHex()
@@ -98,9 +118,7 @@ class AddunitFragment:Fragment() {
             .addOnSuccessListener {
                 Log.d("Test","Unit details added to collection")
                 val action =
-                    com.property.management.owner.properties.AddunitFragmentDirections.actionAddunitFragmentToUnitsFragment(
-                        propertyName
-                    )
+                    com.property.management.owner.properties.AddunitFragmentDirections.actionAddunitFragmentToUnitsFragment(propertyName)
                 findNavController().navigate(action)
             }
             .addOnFailureListener{exception ->

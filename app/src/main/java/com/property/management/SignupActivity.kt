@@ -45,9 +45,8 @@ class SignupActivity : AppCompatActivity() {
                         //create Hashmap with user details
                         val user = hashMapOf(
                             "Name" to name,
-                            "Email id" to email,
-                            "Password" to password,
-                            "Phone Number" to phoneNum
+                            "Emailid" to email,
+                            "PhoneNumber" to phoneNum
                         )
 
                         //add hashmap to collection

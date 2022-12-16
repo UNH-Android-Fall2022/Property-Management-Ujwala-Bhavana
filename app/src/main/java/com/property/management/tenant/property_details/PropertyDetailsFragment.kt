@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.property.management.databinding.FragmentPropertyDetailsBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -22,6 +23,7 @@ class PropertyDetailsFragment : Fragment() {
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
     private var unitID = ""
+    private val args : PropertyDetailsFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,26 +34,22 @@ class PropertyDetailsFragment : Fragment() {
 
         _binding = FragmentPropertyDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        Log.d(TAG,"Calling the Property Details database...")
-        db.collection("Property_Details_Test")
+
+        db.collection("Owners").document(args.ownerID).collection("Properties").document(args.propertyID)
             .get()
-            .addOnSuccessListener { listOfProperties ->
-                for (property in listOfProperties){
-                    Log.d(TAG,"${property.id} => ${property.data}")
-                    unitID = property.id
-                    callUnitCollection(unitID)
-                    val address1: TextView = binding.textAddress1Value
-                    address1.text = property.data["propertyName"].toString()
+            .addOnSuccessListener { property ->
+                callUnitCollection()
+                val address1: TextView = binding.textAddress1Value
+                address1.text = property.data?.get("propertyName").toString()
 
-                    val city: TextView = binding.textCityValue
-                    city.text = property.data["city"].toString()
+                val city: TextView = binding.textCityValue
+                city.text = property.data?.get("city").toString()
 
-                    val state: TextView = binding.textStateValue
-                    state.text = property.data["state"].toString()
+                val state: TextView = binding.textStateValue
+                state.text = property.data?.get("state").toString()
 
-                    val zipCode: TextView = binding.textZipCodeValue
-                    zipCode.text = property.data["zipCode"].toString()
-                }
+                val zipCode: TextView = binding.textZipCodeValue
+                zipCode.text = property.data?.get("zipcode").toString()
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
@@ -60,17 +58,12 @@ class PropertyDetailsFragment : Fragment() {
 
         return root
     }
-    private fun callUnitCollection(unitId: String){
-        unitID = unitId
-        db.collection("Property_Details_Test").document(unitID).collection("Unit")
+    private fun callUnitCollection(){
+        db.collection("Owners").document(args.ownerID).collection("Properties").document(args.propertyID).collection("Units").document(args.unitID)
             .get()
-            .addOnCompleteListener{snapshot ->
-                for(unit in snapshot.result) {
-                    val temp = unit.getData()
-                    Log.d(TAG, "Unit name: ${unit.getData()}")
-                    val unitName: TextView = binding.textAddress2Value
-                    unitName.text = temp.get("unitName").toString()
-                }
+            .addOnSuccessListener{unit ->
+                val unitName: TextView = binding.textAddress2Value
+                unitName.text = unit.data?.get("unitName").toString()
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)

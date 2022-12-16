@@ -15,6 +15,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.property.management.MainActivity
 import com.property.management.databinding.FragmentAccounttenantBinding
+import java.security.MessageDigest
 
 class AccountFragmentTenant : Fragment() {
 
@@ -26,18 +27,24 @@ class AccountFragmentTenant : Fragment() {
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
     private var tenantID = ""
+    private var ownerID = ""
+    private var propertyID = ""
+    private var unitID = ""
+    private var rentAmount = ""
     private val auth = Firebase.auth
+    private lateinit var ownerUid:String
+    private lateinit var name:String
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val AccountViewModel =
-            ViewModelProvider(this).get(AccountViewModel::class.java)
 
         _binding = FragmentAccounttenantBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val md = MessageDigest.getInstance("MD5")
+        tenantID = md.digest(auth.currentUser!!.email!!.toString().trim().toByteArray(Charsets.UTF_8)).toHex()
         readTenantNameFromFirebase()
         binding.textViewMyProfile.setOnClickListener{
             Log.d(TAG, "My Profile clicked")
@@ -48,25 +55,35 @@ class AccountFragmentTenant : Fragment() {
         binding.textViewPropertyDetails.setOnClickListener {
             Log.d(TAG, "Property Details clicked")
             val action =
-                AccountFragmentTenantDirections.actionNavigationAccountToPropertyDetailsFragment()
+                AccountFragmentTenantDirections.actionNavigationAccountToPropertyDetailsFragment(unitID,propertyID,ownerID)
             findNavController().navigate(action)
         }
         binding.textViewNotification.setOnClickListener {
             Log.d(TAG, "Notifications clicked")
             val action =
-                AccountFragmentTenantDirections.actionNavigationAccountToNotificationsFragment()
+                AccountFragmentTenantDirections.actionNavigationAccountToNotificationsFragment(tenantID,rentAmount)
             findNavController().navigate(action)
         }
         binding.textViewChatWithOwner.setOnClickListener {
             Log.d(TAG, "Chat With Owner clicked")
-            val action =
-                AccountFragmentTenantDirections.actionNavigationAccountToChatWithOwnerFragment()
-            findNavController().navigate(action)
+            db.collection("Tenants").document(tenantID).get()
+                .addOnCompleteListener { document ->
+                    val m = document.result.getData()
+                    ownerUid = m?.get("ownerId").toString()
+                    db.collection("Owners").document(ownerUid).get()
+                        .addOnCompleteListener { document ->
+                            val m = document.result.getData()
+                            name = m?.get("Name").toString()
+                            val action =
+                                AccountFragmentTenantDirections.actionNavigationAccountToChatWithOwnerFragment(ownerUid,name)
+                            findNavController().navigate(action)
+                        }
+                }
         }
         binding.textViewContactOwner.setOnClickListener {
             Log.d(TAG, "Contact Owner clicked")
             val action =
-                AccountFragmentTenantDirections.actionNavigationAccountToContactOwnerFragment()
+                AccountFragmentTenantDirections.actionNavigationAccountToContactOwnerFragment(ownerID)
             findNavController().navigate(action)
         }
         binding.textViewSignOut.setOnClickListener{
@@ -79,15 +96,15 @@ class AccountFragmentTenant : Fragment() {
         return root
     }
     private fun readTenantNameFromFirebase(){
-        db.collection("Tenant1")
+        db.collection("Tenants").document(tenantID)
             .get()
             .addOnSuccessListener { documents ->
-                for (document in documents){
-                    Log.d(TAG,"Tenant db from account fragment: ${document.id} => ${document.data}")
-                    tenantID = document.id
-                    val tenantName: TextView = binding.textViewTenant
-                    tenantName.text = "Hello ".plus(document.data["firstName"].toString()).plus(" ").plus(document.data["lastName"].toString()).plus("!!")
-                }
+                propertyID = documents.data?.get("propertyId").toString()
+                unitID = documents.data?.get("unitId").toString()
+                ownerID = documents.data?.get("ownerId").toString()
+                rentAmount =  documents.data?.get("rent").toString()
+                val tenantName: TextView = binding.textViewTenant
+                tenantName.text = "Hello ".plus(documents.data?.get("firstName")).plus(" ").plus(documents.data?.get("lastName").toString()).plus("!!")
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
@@ -97,4 +114,5 @@ class AccountFragmentTenant : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+    private fun ByteArray.toHex() :String = joinToString(separator = "") { byte -> "%02x".format(byte) }
 }

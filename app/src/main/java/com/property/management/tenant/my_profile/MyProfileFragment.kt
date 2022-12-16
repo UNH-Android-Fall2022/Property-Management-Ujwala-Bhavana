@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.property.management.databinding.FragmentMyProfileBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.property.management.tenant.maintenance_request.PastRequestData
 
 class MyProfileFragment : Fragment() {
 
@@ -23,16 +24,13 @@ class MyProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private val TAG = "Property_Management"
     private val db = Firebase.firestore
-    private var duePaymentAmount = 0
-    private var duePaymentDate = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val chatViewModel =
-            ViewModelProvider(this).get(MyProfileViewModel::class.java)
 
         _binding = FragmentMyProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -43,40 +41,35 @@ class MyProfileFragment : Fragment() {
         return root
     }
     private fun readDataFromFirebase(){
-        db.collection("Tenant1")
+        db.collection("Tenants").document(args.tenantID)
             .get()
             .addOnSuccessListener { documents ->
-                for (document in documents){
-                    Log.d(TAG,"Tenant db from my profile fragment: ${document.id} => ${document.data}")
-                    duePaymentAmount = document.data["duePaymentAmount"].toString().toInt()
-                    duePaymentDate = document.data["duePaymentDate"].toString()
-                    val tenantFirstName: TextView = binding.editFirstName
-                    tenantFirstName.text = document.data["firstName"].toString()
-                    val tenantLastName: TextView = binding.editLastName
-                    tenantLastName.text = document.data["lastName"].toString()
-                    val tenantEmail: TextView = binding.editEmailAddress
-                    tenantEmail.text = document.data["emailID"].toString()
-                    val tenantPhoneNum: TextView = binding.editPhoneNumber
-                    tenantPhoneNum.text = document.data["phoneNum"].toString()
-                }
+                Log.d(TAG,"Called Tenant db from my profile fragment:")
+
+                val tenantFirstName: TextView = binding.editFirstName
+                tenantFirstName.text = documents.data?.get("firstName").toString()
+                val tenantLastName: TextView = binding.editLastName
+                tenantLastName.text = documents.data?.get("lastName").toString()
+                val tenantEmail: TextView = binding.editEmailAddress
+                tenantEmail.text = documents.data?.get("email").toString()
+                val tenantPhoneNum: TextView = binding.editPhoneNumber
+                tenantPhoneNum.text = documents.data?.get("phoneNumber").toString()
             }
             .addOnFailureListener{ exception ->
                 Log.w(TAG,"Error getting documents", exception)
             }
     }
     private fun writeDataToFirebase(){
-        val req = hashMapOf(
-            "firstName" to binding.editFirstName.text.toString(),
-            "lastName" to binding.editLastName.text.toString(),
-            "emailID" to binding.editEmailAddress.text.toString(),
-            "phoneNum" to binding.editPhoneNumber.text.toString(),
-            "duePaymentAmount" to duePaymentAmount,
-            "duePaymentDate" to duePaymentDate
-        )
 
-        db.collection("Tenant1").document(args.tenantID).set(req)
+            val firstName = binding.editFirstName.text.toString()
+            val lastName =  binding.editLastName.text.toString()
+            val emailID = binding.editEmailAddress.text.toString()
+            val phoneNum = binding.editPhoneNumber.text.toString().toInt()
+
+
+        db.collection("Tenants").document(args.tenantID).update("firstName",firstName,"lastName",lastName,"email",emailID,"phoneNumber",phoneNum)
             .addOnSuccessListener { document ->
-                Log.d(TAG,"Tenant details updated to collection: ${document}")
+                Log.d(TAG,"Tenant details updated to collection: $document")
                 val action = MyProfileFragmentDirections.actionMyProfileToNavigationAccount()
                 findNavController().navigate(action)
             }

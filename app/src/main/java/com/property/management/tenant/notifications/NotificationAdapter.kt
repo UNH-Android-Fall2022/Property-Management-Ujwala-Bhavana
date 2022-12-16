@@ -35,11 +35,13 @@ class NotificationAdapter(
         holder.description.text = req.n_description
         holder.delButton.setOnClickListener{view->
             Log.d(TAG,"delete button clicked")
-
+            deleteItem(position)
         }
-
     }
-
+    private fun deleteItem(index: Int){
+        notificationList.removeAt(index)
+        notifyDataSetChanged()
+    }
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int{
         return notificationList.size

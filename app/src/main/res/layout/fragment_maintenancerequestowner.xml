@@ -22,7 +22,9 @@
             android:layout_column="0"
             android:layout_marginTop="15dp"
             android:text="Property Name:  "
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textpropertyname"
@@ -42,7 +44,9 @@
             android:layout_column="0"
             android:layout_marginTop="15dp"
             android:text="Unit Name:"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textunitname"
@@ -62,7 +66,9 @@
             android:layout_column="0"
             android:layout_marginTop="15dp"
             android:text="Subject:"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textsubject"
@@ -73,7 +79,9 @@
             android:layout_marginTop="15dp"
             android:text="TextView"
             android:textSize="18dp"
-            android:inputType="textMultiLine"/>
+            android:inputType="textMultiLine"
+            android:scrollHorizontally="false"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/description"
@@ -83,18 +91,25 @@
             android:layout_column="0"
             android:layout_marginTop="15dp"
             android:text="Description:"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textdescription"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_row="3"
             android:layout_column="1"
             android:layout_marginTop="15dp"
             android:text="TextView"
             android:textSize="18dp"
-            android:inputType="textMultiLine"/>
+            android:inputType="textMultiLine"
+            android:scrollHorizontally="false"
+            android:ellipsize="end"
+            android:maxLines="100"
+            android:layout_marginEnd="7dp"
+            android:layout_gravity="fill"/>
 
 
     </GridLayout>
@@ -106,6 +121,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/propertyimg"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
     <Button
@@ -113,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Close Request"
+        android:id="@+id/closerequestbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/request_image" />

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.property.management.MainActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -30,6 +31,10 @@ class AccountFragmentOwner: Fragment(){
             auth.signOut()
             startActivity(Intent(activity,MainActivity::class.java))
 
+        }
+        binding.textprofile.setOnClickListener {
+            val action = AccountFragmentOwnerDirections.actionNavigationAccountOwnerToProfileFragment()
+            findNavController().navigate(action)
         }
         return root
     }

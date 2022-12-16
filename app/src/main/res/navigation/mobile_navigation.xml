@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_navigation_maintenance_request_to_viewPastRequestFragment"
             app:destination="@id/viewPastRequestFragment" />
+        <action
+            android:id="@+id/action_navigation_maintenance_request_to_closedPastRequestFragment"
+            app:destination="@id/closedPastRequestFragment" />
     </fragment>
 
 
@@ -77,27 +80,54 @@
         android:id="@+id/propertyDetailsFragment"
         android:name="com.property.management.tenant.property_details.PropertyDetailsFragment"
         android:label="Property Details"
-        tools:layout="@layout/fragment_property_details"/>
+        tools:layout="@layout/fragment_property_details">
+        <argument
+            android:name="unitID"
+            app:argType="string" />
+        <argument
+            android:name="propertyID"
+            app:argType="string" />
+        <argument
+            android:name="ownerID"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.property.management.tenant.notifications.NotificationsFragmentTenant"
         android:label="Notifications"
         tools:layout="@layout/fragment_notificationstenant">
+        <argument
+            android:name="tenantID"
+            app:argType="string" />
+        <argument
+            android:name="rentAmount"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/chatWithOwnerFragment"
         android:name="com.property.management.tenant.chat_with_owner.ChatWithOwnerFragment"
         android:label="Chat With Owner"
-        tools:layout="@layout/fragment_chat_with_owner"/>
+        tools:layout="@layout/fragment_chat_with_owner">
+        <argument
+            android:name="ownerId"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/contactOwnerFragment"
         android:name="com.property.management.tenant.contact_owner.ContactOwnerFragment"
         android:label="Contact Owner Fragment"
-        tools:layout="@layout/fragment_contact_owner"/>
+        tools:layout="@layout/fragment_contact_owner">
+        <argument
+            android:name="ownerID"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/viewPastRequestFragment"
         android:name="com.property.management.tenant.view_past_request.ViewPastRequestFragment"
-        android:label="ViewPastRequestFragment"
+        android:label="View Past Request"
         tools:layout="@layout/fragment_view_each_past_request">
         <argument
             android:name="subject"
@@ -109,36 +139,42 @@
             android:id="@+id/action_viewPastRequestFragment_to_navigation_maintenance_request"
             app:destination="@id/navigation_maintenance_request" />
         <argument
-            android:name="ownerid"
-            app:argType="string" />
-        <argument
-            android:name="tenantid"
-            app:argType="string"/>
-        <argument
-            android:name="propertyname"
-            app:argType="string"/>
-        <argument
-            android:name="unitname"
-            app:argType="string"/>
-        <argument
-            android:name="status"
-            app:argType="string"/>
-        <argument
             android:name="image"
             app:argType="string"/>
+        <argument
+            android:name="documentID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/paymentDetailsFragment"
         android:name="com.property.management.tenant.update_payment_details_fragment.PaymentDetailsFragment"
-        android:label="PaymentDetailsFragment"
+        android:label="Update Payment Details"
         tools:layout="@layout/fragment_update_payment_details">
 
         <action
             android:id="@+id/action_paymentDetailsFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/closedPastRequestFragment"
+        android:name="com.property.management.tenant.view_past_request_closed.ClosedPastRequestFragment"
+        android:label="Closed Past Requests"
+        tools:layout="@layout/frgament_view_past_request_closed">
         <argument
-            android:name="rentAmount"
+            android:name="subject"
             app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string"/>
+        <argument
+            android:name="documentID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_closedPastRequestFragment_to_navigation_maintenance_request"
+            app:destination="@id/navigation_maintenance_request" />
     </fragment>
 
 

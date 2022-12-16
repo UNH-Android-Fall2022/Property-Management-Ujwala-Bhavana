@@ -23,7 +23,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_requests"
+        android:id="@+id/navigation_requests_owner"
         android:name="com.property.management.owner.requests.RequestsFragment"
         android:label="@string/title_requests"
         tools:layout="@layout/fragment_requests" >
@@ -33,15 +33,19 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_notifications_owner"
         android:name="com.property.management.owner.notifications.NotificationsFragmentOwner"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notificationstenant" />
+        tools:layout="@layout/fragment_notificationsowner" />
     <fragment
-        android:id="@+id/navigation_account"
+        android:id="@+id/navigation_account_owner"
         android:name="com.property.management.owner.account.AccountFragmentOwner"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_accounttenant"/>
+        tools:layout="@layout/fragment_accountowner">
+        <action
+            android:id="@+id/action_navigation_account_owner_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addpropertyFragment"
         android:name="com.property.management.owner.properties.AddpropertyFragment"
@@ -86,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/tablayoutFragment"
-        android:name="com.property.management.owner.properties.TablayoutFragment"
+        android:name="com.property.management.owner.properties.tenant.TablayoutFragment"
         android:label="TablayoutFragment" >
         <action
             android:id="@+id/action_tablayoutFragment_to_addtenantFragment"
@@ -99,10 +103,13 @@
             android:name="unitName"
             app:argType="string"
             />
+        <argument
+            android:name="tenantId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/tenantFragment"
-        android:name="com.property.management.owner.properties.TenantFragment"
+        android:name="com.property.management.owner.properties.tenant.TenantFragment"
         android:label="fragment_tenant"
         tools:layout="@layout/fragment_tenant" >
         <action
@@ -111,7 +118,7 @@
     </fragment>
     <fragment
         android:id="@+id/addtenantFragment"
-        android:name="com.property.management.owner.properties.AddtenantFragment"
+        android:name="com.property.management.owner.properties.tenant.AddtenantFragment"
         android:label="AddtenantFragment" >
         <action
             android:id="@+id/action_addtenantFragment_to_tablayoutFragment"
@@ -124,6 +131,9 @@
             android:name="unitName"
             app:argType="string"
             />
+        <argument
+            android:name="tenantId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/maintenanceRequestFragment"
@@ -144,7 +154,42 @@
         <argument
             android:name="imgURL"
             app:argType="string" />
+        <argument
+            android:name="docId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addedtenantFragment"
+        android:name="com.property.management.owner.properties.tenant.AddedtenantFragment"
+        android:label="AddedtenantFragment" >
+        <action
+            android:id="@+id/action_addedtenantFragment_to_addtenantFragment"
+            app:destination="@id/addtenantFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_chats"
+        android:name="com.property.management.owner.chats.ChatsFragment"
+        android:label="ChatsFragment"
+        tools:layout="@layout/fragment_chats">
+        <action
+            android:id="@+id/action_chatsFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.property.management.owner.chats.ChatFragment"
+        android:label="ChatFragment" >
+        <argument
+            android:name="uid"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.property.management.owner.account.ProfileFragment"
+        android:label="ProfileFragment" />
 
 </navigation>

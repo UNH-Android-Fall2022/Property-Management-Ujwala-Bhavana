@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".owner.properties.PropertiesFragment"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    tools:context=".owner.properties.PropertiesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_properties"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:padding="5dp"
-        android:scrollbars="vertical"
+        android:padding="10dp"
+        android:layout_marginBottom="40dp"
         tools:listitem="@layout/added_property" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
